@@ -1,0 +1,474 @@
+{
+ "text": [
+  "About",
+  "Robots",
+  "Outreach",
+  "Resources",
+  "Introducing Ex Nihilo, a brand-new, open community FTC robotics team.",
+  "JOIN US",
+  "What is Ex Nihilo?",
+  "Ex Nihilo is an open community robotics team being launched by Ultro Robotics for the 2025-26 season. At Ex Nihilo, you'll have access to Browning's brand-new fabrication equipment, an extensive catalog of parts spanning a decade of robotics, and collaboration with and mentorship of Ultro.",
+  "WHAT ARE EX NIHILO'S GOALS?",
+  "At Ex Nihilo, we plan on building simple, efficient, and effective designs that utilize the resources we have to their maximum potential. We treat every member as valuable, regardless of experience, and want our resources to enable",
+  "everyone",
+  "to",
+  "succeed in STEM.",
+  "WHY DID YOU LAUNCH EX NIHILO?",
+  "With the expansion of Browning's Upper School, we have continued to broaden access to STEM education and FIRST Robotics, reinforcing our commitment to diversity and inclusion. Through Ex Nihilo, we are now able to share our expertise more widely and connect with an even broader community of learners.",
+  "Scheduling",
+  "Weekdays:",
+  "TBD at The Browning School (337 East 64th Street)",
+  "Weekends:",
+  "TBD at NYC FIRST STEM Center @ Cornell Tech",
+  "READY TO JOIN?",
+  "JOIN US",
+  "337 EAST 64TH STREET",
+  "NEW YORK, NY 10065",
+  "Ultro Robotics is the Browning School's premier FTC robotics team.",
+  "This website is",
+  "open source!"
+ ],
+ "marquees": [
+  [
+   "TEAM 30413",
+   "·",
+   "\"FROM NOTHING\"",
+   "·"
+  ]
+ ],
+ "outline": [
+  [
+   "h2",
+   "What is Ex Nihilo?"
+  ],
+  [
+   "h3",
+   "WHAT ARE EX NIHILO'S GOALS?"
+  ],
+  [
+   "h3",
+   "WHY DID YOU LAUNCH EX NIHILO?"
+  ],
+  [
+   "h2",
+   "Scheduling"
+  ],
+  [
+   "h2",
+   "READY TO JOIN?"
+  ]
+ ],
+ "attrs": [
+  {
+   "tag": "link",
+   "attr": "href",
+   "value": "/favicon-96x96.png",
+   "rel": "icon",
+   "as": "",
+   "type": "image/png",
+   "path": "head:0>link:2"
+  },
+  {
+   "tag": "link",
+   "attr": "href",
+   "value": "/favicon.svg",
+   "rel": "icon",
+   "as": "",
+   "type": "image/svg+xml",
+   "path": "head:0>link:3"
+  },
+  {
+   "tag": "link",
+   "attr": "href",
+   "value": "/favicon.ico",
+   "rel": "shortcut icon",
+   "as": "",
+   "type": "",
+   "path": "head:0>link:4"
+  },
+  {
+   "tag": "link",
+   "attr": "href",
+   "value": "/apple-touch-icon.png",
+   "rel": "apple-touch-icon",
+   "as": "",
+   "type": "",
+   "path": "head:0>link:5"
+  },
+  {
+   "tag": "link",
+   "attr": "href",
+   "value": "/_astro/about.CwQkC-Wl.css",
+   "rel": "stylesheet",
+   "as": "",
+   "type": "",
+   "path": "head:0>link:9"
+  },
+  {
+   "tag": "script",
+   "attr": "src",
+   "value": "/_astro/page.7qqag-5g.js",
+   "rel": "",
+   "as": "",
+   "type": "module",
+   "path": "head:0>script:10"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/about/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:0>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/robots/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:0>a:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>a:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/outreach/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:0>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/resources/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:0>a:1"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:material-symbols:menu",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:1>div:0>div:0>svg:0>use:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/about/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:1>div:0>ul:1>li:0>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/robots/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:1>div:0>ul:1>li:1>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/outreach/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:1>div:0>ul:1>li:2>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/resources/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:1>div:0>ul:1>li:3>a:0"
+  },
+  {
+   "tag": "img",
+   "attr": "src",
+   "value": "/_astro/exnihilohero.D2Im_Bv0_Z2qanrb.webp",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>main:1>section:0>div:0>figure:0>img:0"
+  },
+  {
+   "tag": "img",
+   "attr": "src",
+   "value": "/_astro/exnihilologo.BEduxRny_ZYRvLn.webp",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>main:1>section:0>div:0>img:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "https://docs.google.com/forms/d/e/1FAIpQLScDP07p6hY8JLLDER6yYc0aYAKBmeJmnxOW10It-Iu0EI2hZQ/viewform?usp=dialog",
+   "rel": "noopener noreferrer",
+   "as": "",
+   "type": "",
+   "path": "body:1>main:1>section:0>div:0>a:3"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:material-symbols:arrow-forward",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>main:1>section:0>div:0>a:3>button:0>div:0>span:1>svg:0>use:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "https://docs.google.com/forms/d/e/1FAIpQLScDP07p6hY8JLLDER6yYc0aYAKBmeJmnxOW10It-Iu0EI2hZQ/viewform?usp=dialog",
+   "rel": "noopener noreferrer",
+   "as": "",
+   "type": "",
+   "path": "body:1>main:1>section:3>a:10"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:material-symbols:arrow-forward",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>main:1>section:3>a:10>button:0>div:0>span:1>svg:0>use:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>aside:0>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "https://youtube.com/@UltroRobotics",
+   "rel": "noopener noreferrer",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:0"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:simple-icons:youtube",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:0>svg:0>use:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "https://www.instagram.com/ultro_robotics10539/",
+   "rel": "noopener noreferrer",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:1"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:simple-icons:instagram",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:1>svg:0>use:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "https://github.com/BrowningUltro-10539",
+   "rel": "noopener noreferrer",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:2"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:simple-icons:github",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:2>svg:0>use:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "mailto:ultro@browning.edu",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:3"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:material-symbols:mail",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:3>svg:0>use:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "https://browning.edu",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:3>aside:0>a:0"
+  },
+  {
+   "tag": "img",
+   "attr": "src",
+   "value": "/_astro/browning_footer.CuL3guBr_ZQYg7c.webp",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:3>aside:0>a:0>img:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "https://github.com/BrowningUltro-10539/ultro.browning.edu",
+   "rel": "noopener noreferrer",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:3>aside:0>p:2>a:0"
+  }
+ ],
+ "controls": [
+  {
+   "tag": "button",
+   "type": "",
+   "name": "",
+   "id": "",
+   "value": "",
+   "for": "",
+   "required": false,
+   "disabled": false,
+   "action": "",
+   "method": ""
+  },
+  {
+   "tag": "button",
+   "type": "",
+   "name": "",
+   "id": "",
+   "value": "",
+   "for": "",
+   "required": false,
+   "disabled": false,
+   "action": "",
+   "method": ""
+  }
+ ],
+ "head": {
+  "title": "Ex Nihilo | Ultro Robotics",
+  "lang": "en",
+  "canonical": null,
+  "metas": [
+   {
+    "k": "charset",
+    "v": "UTF-8"
+   },
+   {
+    "k": "viewport",
+    "v": "width=device-width,initial-scale=1"
+   },
+   {
+    "k": "description",
+    "v": "Ex Nihilo is our brand-new, open community FIRST Tech Challenge robotics team hosted at Browning's 64th St campus. Join us!"
+   }
+  ],
+  "ld": []
+ },
+ "slots": [
+  {
+   "sel": "#fullnav > a[href=\"/\"]",
+   "path": "body:1>nav:0>a:1",
+   "tag": "svg",
+   "src": null,
+   "box": [
+    180.11,
+    78
+   ],
+   "inner": [
+    148.11,
+    66.3
+   ]
+  },
+  {
+   "sel": "footer a[aria-label=\"Main page\"]",
+   "path": "body:1>footer:2>aside:0>a:0",
+   "tag": "svg",
+   "src": null,
+   "box": [
+    56,
+    56
+   ],
+   "inner": [
+    56,
+    56
+   ]
+  }
+ ],
+ "hscroll": false,
+ "overflow": [
+  "spills-y body:1>nav:0>div:2>div:0"
+ ],
+ "docSize": [
+  1280,
+  2126
+ ],
+ "status": 200,
+ "net": {
+  "requests": [
+   "/_astro/about.css",
+   "/_astro/atkinson-hyperlegible-next-latin-400-normal.woff2",
+   "/_astro/browning_footer.webp",
+   "/_astro/exnihilohero.webp",
+   "/_astro/exnihilologo.webp",
+   "/_astro/metropolis-latin-500-normal.woff2",
+   "/_astro/metropolis-latin-800-normal.woff2",
+   "/_astro/page.js",
+   "/_astro/space-mono-latin-400-normal.woff2",
+   "/ex-nihilo/"
+  ],
+  "failed": [],
+  "console": [],
+  "pageerrors": [],
+  "bad": []
+ },
+ "route": "/ex-nihilo/",
+ "width": 1280
+}

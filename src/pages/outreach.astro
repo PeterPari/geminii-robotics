@@ -1,68 +1,33 @@
 ---
-import Marquee from "../components/Marquee.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 import Paragraph from "../components/Paragraph.astro";
 import Card from "../components/Card.astro";
 import Link from "../components/Link.astro";
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<MainLayout title="Outreach" description="From mentorship to collaboration with the community, Ultro Robotics is committed to more than just building robots.">
+<MainLayout title="Outreach" description="Geminii Robotics mentors younger students before they move into harder robotics, while connecting with the community.">
 	<Paragraph slot="subtitle">
-		Ultro is committed to more than just building robots. Our holistic
-		approach to connecting with the community enables everyone to <strong
-			class="whitespace-nowrap">engineer for humanity.</strong
-		>
+		Geminii is built around more than just building robots. Our goal is to
+		mentor younger students before they go into harder robotics to be
+		reliable and knowledgeable while connecting with the community.
 	</Paragraph>
-	<Marquee text={["IN CONSTRUCTION", "·"]} />
 	<section class="relative flex justify-center my-16 w-full">
 		<div class="flex flex-wrap justify-center content-start gap-4 w-auto">
 			<Card title="Intro to Engineering">
 				<p slot="description">
-					We created the ongoing 10<sup>th</sup> Grade curriculum class
-					<em>Intro to Engineering</em> to acquaint sophomores with robotics,
-					as well as <strong
-						>increase interest in and visibility</strong
-					> of the sport.
+					We work with the 10<sup>th</sup> Grade curriculum class
+					<em>Intro to Engineering</em> in order to help students ease
+					into robotics without being thrown into it.
 				</p>
 			</Card>
-			<Card title="FLL Mentoring">
+			<Card title="Carter Burden Network">
 				<p slot="description">
-					We mentor FLL Team 65186 Panthers to teach them the
-					iterative design process, spark joy & nurture interest in
-					the FIRST sport of robotics.
-				</p>
-			</Card>
-			<Card title="Scrimmage">
-				<p slot="description">
-					Our annual scrimmage at The Browning School hosts teams
-					eager to collaborate, exchange ideas & expand learning.
-				</p>
-			</Card>
-			<Card title="FTC Collaboration">
-				<p slot="description">
-					For the 2024-25 season, Ultro team members mentored the
-					rookie team 22053 Liberty Robotics and collaborated with
-					all-girls 13334 Spence Light Sabers.
-				</p>
-			</Card>
-			<Card title="Ultro Robotics YouTube">
-				<p slot="description">
-					In response to the struggles and lack of resources faced by
-					developing teams, we collaborated with NYC FIRST to develop
-					a video series explaining challenging concepts. <Link
-						href="https://www.youtube.com/@UltroRobotics"
-						>Visit our channel!</Link
-					>
-				</p>
-			</Card>
-			<Card title="Speaker Series">
-				<p slot="description">
-					Our ENGINEERING FOR HUMANITY speaker series connects Ultro
-					with the greater STEM community and serves as a vital part
-					of team learning.
+					Geminii is going to nursing homes through the <Link
+						href="https://www.carterburdennetwork.org/"
+						external={true}>Carter Burden Network</Link
+					> to bridge the technology gap and explain what we do to older
+					folks to spread the word of FIRST. We're also designing
+					bracelets for people with cancer.
 				</p>
 			</Card>
 		</div>

@@ -1,0 +1,307 @@
+{
+ "text": [
+  "Home",
+  "About",
+  "Updates",
+  "Donate",
+  "Login",
+  "ULTRO",
+  "FTC Team 10539",
+  "New York, New York",
+  "About Us",
+  "We are a school based team from The Browning School in New York City. Our robotics team began in 2015 when the founders, Robert, Ben, and Gabe, won a robotics competition at Johns Hopkins. With this momentum, we started FTC in 2015/2016 with FIRST RES-Q. In this year's game of Velocity Vortex, we made it to the NYC Championships. After our rookie year, we decided to rename ourselves from Browning Robotics to Ultro. Ultro is latin for",
+  "\"of its own mind\"",
+  ". Our team derives two meanings from this translation:",
+  "Our objective to accomplish the best autonomous we can to the best of our abilities.",
+  "We come up with our own ideas in order to implement them to the robot.",
+  "Updates",
+  "Sponsors",
+  "Optimus Prime (5000+)",
+  "Logo on website, robot, competition poster, and team shirt",
+  "End of year robot demonstration",
+  "End of year thank you note",
+  "R2-D2 (3000-4999)",
+  "Logo on website, robot, competition poster, and team shirt",
+  "End of year thank you note",
+  "C-3PO (1000-2999)",
+  "Logo on website, competition poster, and team shirt",
+  "End of year thank you note",
+  "BB-8 (500-999)",
+  "Logo on website and competition poster",
+  "End of year thank you email",
+  "The Iron Giant (100 - 499)",
+  "Logo on website",
+  "End of year thank you email",
+  "WALL-E (up to 99)",
+  "End of year thank you email",
+  "Login"
+ ],
+ "marquees": [],
+ "outline": [
+  [
+   "h1",
+   "ULTRO"
+  ],
+  [
+   "h1",
+   "About Us"
+  ],
+  [
+   "h1",
+   "Updates"
+  ],
+  [
+   "h1",
+   "Sponsors"
+  ],
+  [
+   "h1",
+   "Login"
+  ]
+ ],
+ "attrs": [
+  {
+   "tag": "link",
+   "attr": "href",
+   "value": "https://fonts.googleapis.com/css?family=Aldrich",
+   "rel": "stylesheet",
+   "as": "",
+   "type": "",
+   "path": "head:0>link:1"
+  },
+  {
+   "tag": "link",
+   "attr": "href",
+   "value": "https://fonts.googleapis.com/css?family=Open+Sans",
+   "rel": "stylesheet",
+   "as": "",
+   "type": "",
+   "path": "head:0>link:2"
+  },
+  {
+   "tag": "link",
+   "attr": "href",
+   "value": "css/style.css",
+   "rel": "stylesheet",
+   "as": "",
+   "type": "",
+   "path": "head:0>link:4"
+  },
+  {
+   "tag": "link",
+   "attr": "href",
+   "value": "css/horizontal.css",
+   "rel": "stylesheet",
+   "as": "",
+   "type": "",
+   "path": "head:0>link:5"
+  },
+  {
+   "tag": "img",
+   "attr": "src",
+   "value": "images/UltroLogo6.png",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>div:0>section:2>img:0"
+  },
+  {
+   "tag": "img",
+   "attr": "src",
+   "value": "images/TeamPhoto1.jpg-large",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>div:0>section:4>p:1>img:0"
+  }
+ ],
+ "controls": [
+  {
+   "tag": "label",
+   "type": "",
+   "name": "",
+   "id": "",
+   "value": "",
+   "for": "slide-1-trigger",
+   "required": false,
+   "disabled": false,
+   "action": "",
+   "method": ""
+  },
+  {
+   "tag": "label",
+   "type": "",
+   "name": "",
+   "id": "",
+   "value": "",
+   "for": "slide-2-trigger",
+   "required": false,
+   "disabled": false,
+   "action": "",
+   "method": ""
+  },
+  {
+   "tag": "label",
+   "type": "",
+   "name": "",
+   "id": "",
+   "value": "",
+   "for": "slide-3-trigger",
+   "required": false,
+   "disabled": false,
+   "action": "",
+   "method": ""
+  },
+  {
+   "tag": "label",
+   "type": "",
+   "name": "",
+   "id": "",
+   "value": "",
+   "for": "slide-4-trigger",
+   "required": false,
+   "disabled": false,
+   "action": "",
+   "method": ""
+  },
+  {
+   "tag": "label",
+   "type": "",
+   "name": "",
+   "id": "",
+   "value": "",
+   "for": "slide-5-trigger",
+   "required": false,
+   "disabled": false,
+   "action": "",
+   "method": ""
+  },
+  {
+   "tag": "input",
+   "type": "radio",
+   "name": "slides",
+   "id": "slide-1-trigger",
+   "value": "",
+   "for": "",
+   "required": false,
+   "disabled": false,
+   "action": "",
+   "method": ""
+  },
+  {
+   "tag": "input",
+   "type": "radio",
+   "name": "slides",
+   "id": "slide-2-trigger",
+   "value": "",
+   "for": "",
+   "required": false,
+   "disabled": false,
+   "action": "",
+   "method": ""
+  },
+  {
+   "tag": "input",
+   "type": "radio",
+   "name": "slides",
+   "id": "slide-3-trigger",
+   "value": "",
+   "for": "",
+   "required": false,
+   "disabled": false,
+   "action": "",
+   "method": ""
+  },
+  {
+   "tag": "input",
+   "type": "radio",
+   "name": "slides",
+   "id": "slide-4-trigger",
+   "value": "",
+   "for": "",
+   "required": false,
+   "disabled": false,
+   "action": "",
+   "method": ""
+  },
+  {
+   "tag": "input",
+   "type": "radio",
+   "name": "slides",
+   "id": "slide-5-trigger",
+   "value": "",
+   "for": "",
+   "required": false,
+   "disabled": false,
+   "action": "",
+   "method": ""
+  }
+ ],
+ "head": {
+  "title": "Ultro",
+  "lang": "en",
+  "canonical": null,
+  "metas": [
+   {
+    "k": "viewport",
+    "v": "width=device-width, initial-scale=1"
+   }
+  ],
+  "ld": []
+ },
+ "slots": [
+  {
+   "sel": ".slide-one > img",
+   "path": "body:1>div:0>section:2>img:0",
+   "tag": "img",
+   "src": "images/UltroLogo6.png",
+   "box": [
+    452.25,
+    481.5
+   ],
+   "inner": [
+    452.25,
+    481.5
+   ]
+  }
+ ],
+ "hscroll": false,
+ "overflow": [
+  "clipped-x body:1>div:0",
+  "clipped-y body:1>div:0",
+  "spills-x body:1>div:0>section:2",
+  "spills-x body:1>div:0>section:2>h1:1",
+  "spills-x body:1>div:0>section:4",
+  "spills-x body:1>div:0>section:6",
+  "spills-x body:1>div:0>section:6>h1:0",
+  "spills-x body:1>div:0>section:8",
+  "spills-x body:1>div:0>section:8>h1:0",
+  "spills-y body:1>div:0>section:2",
+  "spills-y body:1>div:0>section:4>p:1",
+  "spills-y body:1>div:0>section:8"
+ ],
+ "docSize": [
+  360,
+  800
+ ],
+ "status": 200,
+ "net": {
+  "requests": [
+   "/old/",
+   "/old/css/horizontal.css",
+   "/old/css/style.css",
+   "/old/images/Outreach.jpg",
+   "/old/images/TeamPhoto1.jpg-large",
+   "/old/images/UltroLogo6.png",
+   "https://fonts.googleapis.com/css",
+   "https://fonts.gstatic.com/s/aldrich/v22/MCoTzAn-1s3IGyJMVacY37H6D_A.woff2",
+   "https://fonts.gstatic.com/s/opensans/v44/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4gaVIUwaEQbjA.woff2"
+  ],
+  "failed": [],
+  "console": [],
+  "pageerrors": [],
+  "bad": []
+ },
+ "route": "/old/",
+ "width": 360
+}

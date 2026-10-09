@@ -5,26 +5,22 @@ type AllowedStrings = "horizontal" | "vertical";
 interface Props {
     rotation: AllowedStrings;
     className?: string;
+    id?: string;
 }
 
-const { rotation, className } = Astro.props;
+const { rotation, className, id } = Astro.props;
+
+// Second link tucks into the first so the gap matches in both orientations.
+const tuck = rotation == "vertical" ? "-mt-[1px]" : "-ml-[1px]";
 ---
 
 <nav
+    id={id}
     aria-label="Social media links"
-    class=`flex content-center text-gray-100 bg-black/20 backdrop-blur-sm rounded-full border-2 border-gray-200/30 ${(rotation == "vertical") ? "flex-col" : ""} ${className}`
+    class=`flex content-center text-gray-100 bg-black/20 backdrop-blur-sm rounded-full border-2 border-gray-200/30 ${(rotation == "vertical") ? "flex-col" : ""} ${className ?? ""}`
 >
     <a
-        href="https://youtube.com/@UltroRobotics"
-        class="m-4 hover:text-gray-400 transition-colors"
-        aria-label="YouTube"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        <Icon name="simple-icons:youtube" width="1.5em" height="1.5em" />
-    </a>
-    <a
-        href="https://www.instagram.com/ultro_robotics10539/"
+        href="https://www.instagram.com/geminii.robotics/"
         class="m-4 hover:text-gray-400 transition-colors"
         aria-label="Instagram"
         target="_blank"
@@ -33,12 +29,23 @@ const { rotation, className } = Astro.props;
         <Icon name="simple-icons:instagram" width="1.5em" height="1.5em" />
     </a>
     <a
-        href="https://github.com/BrowningUltro-10539"
-        class="m-4 hover:text-gray-400 transition-colors"
-        aria-label="GitHub"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="mailto:geminii-robotics@browning.edu"
+        class={`m-4 ${tuck} hover:text-gray-400 transition-colors`}
+        aria-label="Email"
     >
-        <Icon name="simple-icons:github" width="1.5em" height="1.5em" />
+        <svg
+            viewBox="0 0 24 24"
+            width="1.5em"
+            height="1.5em"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+        >
+            <rect x="1.1" y="3.1" width="21.8" height="17.8" rx="4.6"></rect>
+            <path d="M5.2 8.4 12 13.4l6.8-5"></path>
+        </svg>
     </a>
 </nav>

@@ -1,0 +1,495 @@
+{
+ "text": [
+  "ABOUT US",
+  "Ultro began as Browning Robotics in 2015 when the founders, Robert, Ben, and Gabe, won a robotics competition at Johns Hopkins. With this momentum, we started FTC in 2015/2016 with FIRST RES-Q.",
+  "History",
+  "2015",
+  "Rookie Season",
+  "Browning Robotics kicks off its rookie season, FIRST RES-Q. We end up making it to the finals on our very first qualifier!",
+  "2016",
+  "Ultro Robotics",
+  "Browning Robotics gets renamed to Ultro - a testament to our student-driven, autonomous designs.",
+  "2017",
+  "NYC Championships",
+  "Ultro makes it to NYC Championships for the first time in our sophomore season, Velocity Vortex.",
+  "2020",
+  "Worlds",
+  "Ultro makes it through NYC Championships undefeated, winning Inspire 2",
+  "nd",
+  "and the Control Award. The FTC World Championship was unfortunately cancelled due to COVID-19.",
+  "2025",
+  "10 Years",
+  "To commemorate our 10-year anniversary, Ultro unveils a refreshed website and identity, and launches community team",
+  "Ex Nihilo.",
+  "Sponsors",
+  "Our affiliation with an all-boys independent school engenders a misconception that we have unlimited resources and support.",
+  "Ultro is entirely self-funded.",
+  "Our finances are also handled by the students to increase our fiscal responsibility and truly be a team",
+  "of its own mind.",
+  "Thank you to our past sponsors:",
+  "337 EAST 64TH STREET",
+  "NEW YORK, NY 10065",
+  "Ultro Robotics is the Browning School's premier FTC robotics team.",
+  "This website is",
+  "open source!"
+ ],
+ "marquees": [
+  [
+   "IN CONSTRUCTION",
+   "·"
+  ]
+ ],
+ "outline": [
+  [
+   "h1",
+   "ABOUT US"
+  ],
+  [
+   "h2",
+   "History"
+  ],
+  [
+   "h2",
+   "Sponsors"
+  ]
+ ],
+ "attrs": [
+  {
+   "tag": "link",
+   "attr": "href",
+   "value": "/favicon-96x96.png",
+   "rel": "icon",
+   "as": "",
+   "type": "image/png",
+   "path": "head:0>link:2"
+  },
+  {
+   "tag": "link",
+   "attr": "href",
+   "value": "/favicon.svg",
+   "rel": "icon",
+   "as": "",
+   "type": "image/svg+xml",
+   "path": "head:0>link:3"
+  },
+  {
+   "tag": "link",
+   "attr": "href",
+   "value": "/favicon.ico",
+   "rel": "shortcut icon",
+   "as": "",
+   "type": "",
+   "path": "head:0>link:4"
+  },
+  {
+   "tag": "link",
+   "attr": "href",
+   "value": "/apple-touch-icon.png",
+   "rel": "apple-touch-icon",
+   "as": "",
+   "type": "",
+   "path": "head:0>link:5"
+  },
+  {
+   "tag": "link",
+   "attr": "href",
+   "value": "/_astro/about.CwQkC-Wl.css",
+   "rel": "stylesheet",
+   "as": "",
+   "type": "",
+   "path": "head:0>link:8"
+  },
+  {
+   "tag": "script",
+   "attr": "src",
+   "value": "/_astro/page.7qqag-5g.js",
+   "rel": "",
+   "as": "",
+   "type": "module",
+   "path": "head:0>script:10"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/about/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:0>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/robots/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:0>a:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>a:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/outreach/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:0>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/resources/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:0>a:1"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:material-symbols:menu",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:1>div:0>div:0>svg:0>use:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/about/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:1>div:0>ul:1>li:0>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/robots/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:1>div:0>ul:1>li:1>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/outreach/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:1>div:0>ul:1>li:2>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/resources/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:1>div:0>ul:1>li:3>a:0"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:material-symbols:circle",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>main:1>section:3>div:1>ul:0>li:0>div:0>svg:0>use:1"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:material-symbols:circle",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>main:1>section:3>div:1>ul:0>li:1>div:1>svg:0>use:0"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:material-symbols:circle",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>main:1>section:3>div:1>ul:0>li:2>div:1>svg:0>use:0"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:material-symbols:circle",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>main:1>section:3>div:1>ul:0>li:3>div:1>svg:0>use:0"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:material-symbols:circle",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>main:1>section:3>div:1>ul:0>li:4>div:1>svg:0>use:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/ex-nihilo/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>main:1>section:3>div:1>ul:0>li:4>div:2>p:2>a:0"
+  },
+  {
+   "tag": "img",
+   "attr": "src",
+   "value": "/_astro/SendCutSend.BlUFPING_1Jf97k.webp",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>main:1>section:4>div:1>div:2>div:0>img:0"
+  },
+  {
+   "tag": "img",
+   "attr": "src",
+   "value": "/_astro/EdgeChem.DHAfHwP9_ryvDM.webp",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>main:1>section:4>div:1>div:2>div:0>img:1"
+  },
+  {
+   "tag": "img",
+   "attr": "src",
+   "value": "/_astro/goBILDA.DdfR-lMO_kFMmg.webp",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>main:1>section:4>div:1>div:2>div:0>img:2"
+  },
+  {
+   "tag": "img",
+   "attr": "src",
+   "value": "/_astro/MaxBotix.Bpy1hZQV_dAt4x.webp",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>main:1>section:4>div:1>div:2>div:0>img:3"
+  },
+  {
+   "tag": "img",
+   "attr": "src",
+   "value": "/_astro/ServoCity.Csvovfm7_1Ic2Jz.webp",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>main:1>section:4>div:1>div:2>div:0>img:4"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>aside:0>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "https://youtube.com/@UltroRobotics",
+   "rel": "noopener noreferrer",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:0"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:simple-icons:youtube",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:0>svg:0>use:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "https://www.instagram.com/ultro_robotics10539/",
+   "rel": "noopener noreferrer",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:1"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:simple-icons:instagram",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:1>svg:0>use:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "https://github.com/BrowningUltro-10539",
+   "rel": "noopener noreferrer",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:2"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:simple-icons:github",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:2>svg:0>use:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "mailto:ultro@browning.edu",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:3"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:material-symbols:mail",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:3>svg:0>use:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "https://browning.edu",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:3>aside:0>a:0"
+  },
+  {
+   "tag": "img",
+   "attr": "src",
+   "value": "/_astro/browning_footer.CuL3guBr_ZQYg7c.webp",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:3>aside:0>a:0>img:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "https://github.com/BrowningUltro-10539/ultro.browning.edu",
+   "rel": "noopener noreferrer",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:3>aside:0>p:2>a:0"
+  }
+ ],
+ "controls": [],
+ "head": {
+  "title": "About Us | Ultro Robotics",
+  "lang": "en",
+  "canonical": null,
+  "metas": [
+   {
+    "k": "charset",
+    "v": "UTF-8"
+   },
+   {
+    "k": "viewport",
+    "v": "width=device-width,initial-scale=1"
+   },
+   {
+    "k": "description",
+    "v": "We began as Browning Robotics in 2015 when our founders won a robotics competition at Johns Hopkins. Learn more about Ultro Robotics, our history, and our sponsors."
+   }
+  ],
+  "ld": []
+ },
+ "slots": [
+  {
+   "sel": "#fullnav > a[href=\"/\"]",
+   "path": "body:1>nav:0>a:1",
+   "tag": "svg",
+   "src": null,
+   "box": [
+    180.11,
+    78
+   ],
+   "inner": [
+    148.11,
+    66.3
+   ]
+  },
+  {
+   "sel": "footer a[aria-label=\"Main page\"]",
+   "path": "body:1>footer:2>aside:0>a:0",
+   "tag": "svg",
+   "src": null,
+   "box": [
+    56,
+    56
+   ],
+   "inner": [
+    56,
+    56
+   ]
+  }
+ ],
+ "hscroll": true,
+ "overflow": [
+  "spills-x body:1>main:1",
+  "spills-x body:1>main:1>section:0>div:0",
+  "spills-x body:1>main:1>section:0>div:0>h1:0",
+  "spills-x body:1>main:1>section:4",
+  "spills-x body:1>main:1>section:4>div:1"
+ ],
+ "docSize": [
+  572,
+  2458
+ ],
+ "status": 200,
+ "net": {
+  "requests": [
+   "/_astro/EdgeChem.webp",
+   "/_astro/MaxBotix.webp",
+   "/_astro/SendCutSend.webp",
+   "/_astro/ServoCity.webp",
+   "/_astro/about.css",
+   "/_astro/atkinson-hyperlegible-next-latin-400-normal.woff2",
+   "/_astro/goBILDA.webp",
+   "/_astro/metropolis-latin-500-normal.woff2",
+   "/_astro/metropolis-latin-800-normal.woff2",
+   "/_astro/page.js",
+   "/_astro/space-mono-latin-400-normal.woff2",
+   "/about/"
+  ],
+  "failed": [],
+  "console": [],
+  "pageerrors": [],
+  "bad": []
+ },
+ "route": "/about/",
+ "width": 360
+}

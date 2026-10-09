@@ -1,89 +1,31 @@
 ---
-import { Image } from "astro:assets";
 import Paragraph from "../components/Paragraph.astro";
-import Timeline, { type TimelineItem } from "../components/Timeline.astro";
+import Button from "../components/Button.astro";
 import MainLayout from "../layouts/MainLayout.astro";
-
-import sendCutSendImage from "../assets/sponsors/SendCutSend.png";
-import edgeChemImage from "../assets/sponsors/EdgeChem.png";
-import goBildaImage from "../assets/sponsors/goBILDA.png";
-import maxBotixImage from "../assets/sponsors/MaxBotix.png";
-import servoCityImage from "../assets/sponsors/ServoCity.png";
-import Marquee from "../components/Marquee.astro";
-
-const timeline: TimelineItem[] = [
-	{
-		date: "2015",
-		headline: "Rookie Season",
-		description:
-			"Browning Robotics kicks off its rookie season, FIRST RES-Q. We end up making it to the finals on our very first qualifier!",
-	},
-	{
-		date: "2016",
-		headline: "Ultro Robotics",
-		description:
-			"Browning Robotics gets renamed to Ultro - a testament to our student-driven, autonomous designs.",
-	},
-	{
-		date: "2017",
-		headline: "NYC Championships",
-		description:
-			"Ultro makes it to NYC Championships for the first time in our sophomore season, Velocity Vortex.",
-	},
-	{
-		date: "2020",
-		headline: "Worlds",
-		description:
-			"Ultro makes it through NYC Championships undefeated, winning Inspire 2<sup>nd</sup> and the Control Award. The FTC World Championship was unfortunately cancelled due to COVID-19.",
-	},
-	{
-		date: "2025",
-		headline: "10 Years",
-		description:
-			"To commemorate our 10-year anniversary, Ultro unveils a refreshed website and identity, and launches community team <a href=\"/ex-nihilo/\" class=\"text-ultro-red-500 hover:text-ultro-red-800 transition-colors underline\">Ex Nihilo.</a>",
-	},
-];
 ---
 
-<MainLayout title="About Us" description="We began as Browning Robotics in 2015 when our founders won a robotics competition at Johns Hopkins. Learn more about Ultro Robotics, our history, and our sponsors.">
+<MainLayout title="About Us" description="Geminii Robotics was established in 2026 as an affiliate team of Ultro Robotics, founded by twins Nate and Brandon. Learn more about our team and sponsorship.">
 	<Paragraph slot="subtitle">
-		Ultro began as Browning Robotics in 2015 when the founders, Robert, Ben,
-		and Gabe, won a robotics competition at Johns Hopkins. With this
-		momentum, we started FTC in 2015/2016 with FIRST RES-Q.
+		Geminii was established in 2026 as an affiliate team of Ultro Robotics.
+		The team was founded by twins Nate and Brandon, hence the name Geminii,
+		meaning “twins” in Latin. The team centers around training the next
+		generation of engineers and leaders for Ultro, and we are excited to see
+		how the team performs in our first FTC season.
 	</Paragraph>
-	<Marquee text={["IN CONSTRUCTION", "·"]} />
-	<section class="flex flex-col items-center justify-center py-8">
-		<h2 class="text-white text-4xl font-display font-extrabold m-4">
-			History
-		</h2>
-		<div class="max-w-9/10 w-224">
-			<Timeline entries={timeline} />
-		</div>
-	</section>
+	<hr class="mx-auto w-9/10 max-w-144 border-t-2 border-geminii-600" />
 	<section class="flex flex-col items-center justify-center py-8">
 		<h2 class="text-white text-4xl font-display font-extrabold m-4">
 			Sponsors
 		</h2>
 		<div class="max-w-9/10 text-center mb-10 flex flex-col items-center justify-center">
 			<Paragraph className="mb-4">
-				Our affiliation with an all-boys independent school engenders a
-				misconception that we have unlimited resources and support.
-				<strong>Ultro is entirely self-funded.</strong> Our finances are
-				also handled by the students to increase our fiscal responsibility
-				and truly be a team <strong>of its own mind.</strong>
+				While Geminii is affiliated with the Browning School,
+				<strong>we are entirely self-funded.</strong> Our finances are
+				also handled by the students to increase our accountability and
+				fiscal responsibility. Please contact us if you would like to
+				sponsor us.
 			</Paragraph>
-			<Paragraph className="mb-4">
-				Thank you to our past sponsors:
-			</Paragraph>
-			<div class="card bg-gray-200 w-196 shadow-sm">
-				<div class="flex flex-row justify-center items-center w-fit px-8 gap-4">
-					<Image src={sendCutSendImage} alt="SendCutSend" class="min-w-24 max-w-1/5" />
-					<Image src={edgeChemImage} alt="EdgeChem" class="min-w-24 max-w-1/5" />
-					<Image src={goBildaImage} alt="goBILDA" class="min-w-24 max-w-1/5" />
-					<Image src={maxBotixImage} alt="MaxBotix" class="min-w-24 max-w-1/5" />
-					<Image src={servoCityImage} alt="ServoCity" class="min-w-24 max-w-1/5" />
-				</div>
-			</div>
+			<Button text="SPONSOR US" href="mailto:geminii-robotics@browning.edu" />
 		</div>
 	</section>
 </MainLayout>

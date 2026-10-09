@@ -14,8 +14,29 @@ const { title, expandedNav, description = "" } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="shortcut icon" href="/favicon.ico" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="preload" href="/assets/fonts/Arvo-Regular.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="/assets/fonts/Arvo-Bold.woff2" as="font" type="font/woff2" crossorigin />
 		<meta name="description" content={description} />
 		<title>{title}</title>
+		{expandedNav && (
+			<script is:inline>
+				// Home intro gate: runs before first paint so nav/content never flash.
+				// Plays once per tab session, skipped for reduced motion.
+				try {
+					if (
+						!sessionStorage.getItem("introSeen") &&
+						!matchMedia("(prefers-reduced-motion: reduce)").matches
+					) {
+						sessionStorage.setItem("introSeen", "1");
+						document.documentElement.classList.add("intro-pending");
+						// Safety net: never leave the page hidden if the intro script fails.
+						setTimeout(function () {
+							document.documentElement.classList.remove("intro-pending");
+						}, 6000);
+					}
+				} catch (e) {}
+			</script>
+		)}
 		<slot name="head" />
 	</head>
 	<body>

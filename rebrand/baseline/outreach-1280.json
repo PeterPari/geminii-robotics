@@ -1,0 +1,412 @@
+{
+ "text": [
+  "About",
+  "Robots",
+  "Outreach",
+  "Resources",
+  "OUTREACH",
+  "Ultro is committed to more than just building robots. Our holistic approach to connecting with the community enables everyone to",
+  "engineer for humanity.",
+  "INTRO TO ENGINEERING",
+  "We created the ongoing 10",
+  "th",
+  "Grade curriculum class",
+  "Intro to Engineering",
+  "to acquaint sophomores with robotics, as well as",
+  "increase interest in and visibility",
+  "of the sport.",
+  "FLL MENTORING",
+  "We mentor FLL Team 65186 Panthers to teach them the iterative design process, spark joy & nurture interest in the FIRST sport of robotics.",
+  "SCRIMMAGE",
+  "Our annual scrimmage at The Browning School hosts teams eager to collaborate, exchange ideas & expand learning.",
+  "FTC COLLABORATION",
+  "For the 2024-25 season, Ultro team members mentored the rookie team 22053 Liberty Robotics and collaborated with all-girls 13334 Spence Light Sabers.",
+  "ULTRO ROBOTICS YOUTUBE",
+  "In response to the struggles and lack of resources faced by developing teams, we collaborated with NYC FIRST to develop a video series explaining challenging concepts.",
+  "Visit our channel!",
+  "SPEAKER SERIES",
+  "Our ENGINEERING FOR HUMANITY speaker series connects Ultro with the greater STEM community and serves as a vital part of team learning.",
+  "337 EAST 64TH STREET",
+  "NEW YORK, NY 10065",
+  "Ultro Robotics is the Browning School's premier FTC robotics team.",
+  "This website is",
+  "open source!"
+ ],
+ "marquees": [
+  [
+   "IN CONSTRUCTION",
+   "·"
+  ]
+ ],
+ "outline": [
+  [
+   "h1",
+   "OUTREACH"
+  ],
+  [
+   "h3",
+   "INTRO TO ENGINEERING"
+  ],
+  [
+   "h3",
+   "FLL MENTORING"
+  ],
+  [
+   "h3",
+   "SCRIMMAGE"
+  ],
+  [
+   "h3",
+   "FTC COLLABORATION"
+  ],
+  [
+   "h3",
+   "ULTRO ROBOTICS YOUTUBE"
+  ],
+  [
+   "h3",
+   "SPEAKER SERIES"
+  ]
+ ],
+ "attrs": [
+  {
+   "tag": "link",
+   "attr": "href",
+   "value": "/favicon-96x96.png",
+   "rel": "icon",
+   "as": "",
+   "type": "image/png",
+   "path": "head:0>link:2"
+  },
+  {
+   "tag": "link",
+   "attr": "href",
+   "value": "/favicon.svg",
+   "rel": "icon",
+   "as": "",
+   "type": "image/svg+xml",
+   "path": "head:0>link:3"
+  },
+  {
+   "tag": "link",
+   "attr": "href",
+   "value": "/favicon.ico",
+   "rel": "shortcut icon",
+   "as": "",
+   "type": "",
+   "path": "head:0>link:4"
+  },
+  {
+   "tag": "link",
+   "attr": "href",
+   "value": "/apple-touch-icon.png",
+   "rel": "apple-touch-icon",
+   "as": "",
+   "type": "",
+   "path": "head:0>link:5"
+  },
+  {
+   "tag": "link",
+   "attr": "href",
+   "value": "/_astro/about.CwQkC-Wl.css",
+   "rel": "stylesheet",
+   "as": "",
+   "type": "",
+   "path": "head:0>link:9"
+  },
+  {
+   "tag": "script",
+   "attr": "src",
+   "value": "/_astro/page.7qqag-5g.js",
+   "rel": "",
+   "as": "",
+   "type": "module",
+   "path": "head:0>script:10"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/about/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:0>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/robots/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:0>a:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>a:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/outreach/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:0>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/resources/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:0>a:1"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:material-symbols:menu",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:1>div:0>div:0>svg:0>use:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/about/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:1>div:0>ul:1>li:0>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/robots/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:1>div:0>ul:1>li:1>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/outreach/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:1>div:0>ul:1>li:2>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/resources/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>nav:0>div:2>div:1>div:0>ul:1>li:3>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "https://www.youtube.com/@UltroRobotics",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>main:1>section:3>div:0>div:4>div:1>p:1>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "/",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>aside:0>a:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "https://youtube.com/@UltroRobotics",
+   "rel": "noopener noreferrer",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:0"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:simple-icons:youtube",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:0>svg:0>use:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "https://www.instagram.com/ultro_robotics10539/",
+   "rel": "noopener noreferrer",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:1"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:simple-icons:instagram",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:1>svg:0>use:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "https://github.com/BrowningUltro-10539",
+   "rel": "noopener noreferrer",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:2"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:simple-icons:github",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:2>svg:0>use:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "mailto:ultro@browning.edu",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:3"
+  },
+  {
+   "tag": "use",
+   "attr": "href",
+   "value": "#ai:material-symbols:mail",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:2>nav:1>a:3>svg:0>use:1"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "https://browning.edu",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:3>aside:0>a:0"
+  },
+  {
+   "tag": "img",
+   "attr": "src",
+   "value": "/_astro/browning_footer.CuL3guBr_ZQYg7c.webp",
+   "rel": "",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:3>aside:0>a:0>img:0"
+  },
+  {
+   "tag": "a",
+   "attr": "href",
+   "value": "https://github.com/BrowningUltro-10539/ultro.browning.edu",
+   "rel": "noopener noreferrer",
+   "as": "",
+   "type": "",
+   "path": "body:1>footer:3>aside:0>p:2>a:0"
+  }
+ ],
+ "controls": [],
+ "head": {
+  "title": "Outreach | Ultro Robotics",
+  "lang": "en",
+  "canonical": null,
+  "metas": [
+   {
+    "k": "charset",
+    "v": "UTF-8"
+   },
+   {
+    "k": "viewport",
+    "v": "width=device-width,initial-scale=1"
+   },
+   {
+    "k": "description",
+    "v": "From mentorship to collaboration with the community, Ultro Robotics is committed to more than just building robots."
+   }
+  ],
+  "ld": []
+ },
+ "slots": [
+  {
+   "sel": "#fullnav > a[href=\"/\"]",
+   "path": "body:1>nav:0>a:1",
+   "tag": "svg",
+   "src": null,
+   "box": [
+    180.11,
+    78
+   ],
+   "inner": [
+    148.11,
+    66.3
+   ]
+  },
+  {
+   "sel": "footer a[aria-label=\"Main page\"]",
+   "path": "body:1>footer:2>aside:0>a:0",
+   "tag": "svg",
+   "src": null,
+   "box": [
+    56,
+    56
+   ],
+   "inner": [
+    56,
+    56
+   ]
+  }
+ ],
+ "hscroll": false,
+ "overflow": [
+  "spills-y body:1>nav:0>div:2>div:0"
+ ],
+ "docSize": [
+  1280,
+  1430
+ ],
+ "status": 200,
+ "net": {
+  "requests": [
+   "/_astro/about.css",
+   "/_astro/atkinson-hyperlegible-next-latin-400-normal.woff2",
+   "/_astro/browning_footer.webp",
+   "/_astro/metropolis-latin-500-normal.woff2",
+   "/_astro/metropolis-latin-800-normal.woff2",
+   "/_astro/page.js",
+   "/_astro/space-mono-latin-400-normal.woff2",
+   "/outreach/"
+  ],
+  "failed": [],
+  "console": [],
+  "pageerrors": [],
+  "bad": []
+ },
+ "route": "/outreach/",
+ "width": 1280
+}

@@ -1,0 +1,25 @@
+{
+ "route_list": [
+  "/",
+  "/about/",
+  "/ex-nihilo/",
+  "/old/",
+  "/outreach/",
+  "/resources/",
+  "/robots/"
+ ],
+ "endpoints": [
+  "/robots.txt",
+  "/sitemap-0.xml",
+  "/sitemap-index.xml"
+ ],
+ "browser": "155.0.8059.39",
+ "captured": "2026-10-08 22:16:32",
+ "git_head": "a6e601f021463bdaf409450100d31f9d0c31ea89",
+ "site_captured_from": "git archive of a6e601f (unedited site)",
+ "endpoint_status": {
+  "/robots.txt": 200,
+  "/sitemap-0.xml": 200,
+  "/sitemap-index.xml": 200
+ }
+}

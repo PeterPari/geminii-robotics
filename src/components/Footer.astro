@@ -1,75 +1,43 @@
 ---
-import { Icon } from "astro-icon/components";
 import Link from "./Link.astro";
+import Socials from "./Socials.astro";
 import { Image } from "astro:assets";
-import browningFooter from "../assets/browning_footer.png";
-import UltroSmall from "../assets/ultro_small_dark.svg";
+import browningFooter from "../assets/browning-62-64-alt-white.svg";
+import browningFooterColor from "../assets/browning-62-64-alt-color.svg";
 ---
 
 <footer
-  class="footer sm:footer-horizontal bg-black text-black-content items-center px-4 border-t-2 border-gray-200/30 gap-2"
+  class="bg-black text-black-content px-4 py-4 border-t-2 border-gray-200/30 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-[1fr_auto_1fr] items-center gap-4 xl:gap-8"
 >
-  <aside class="grid-flow-col items-center">
-    <a href="/" aria-label="Main page"><UltroSmall height="4em" width="4em" /></a>
-    <address class="font-mono not-italic p-2 pl-4 m-4 border-l-2 border-white h-min">
-      337 EAST 64TH STREET<br />NEW YORK, NY 10065
-    </address>
-  </aside>
-  <nav class="grid-flow-col gap-4 sm:place-self-center sm:justify-self-end">
-    <a
-      href="https://youtube.com/@UltroRobotics"
-      class="m-2 hover:text-gray-400 transition-colors"
-      aria-label="YouTube"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <Icon name="simple-icons:youtube" width="2em" height="2em" />
-    </a>
-    <a
-      href="https://www.instagram.com/ultro_robotics10539/"
-      class="m-2 hover:text-gray-400 transition-colors"
-      aria-label="Instagram"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <Icon name="simple-icons:instagram" width="2em" height="2em" />
-    </a>
-    <a
-      href="https://github.com/BrowningUltro-10539"
-      class="m-2 hover:text-gray-400 transition-colors"
-      aria-label="GitHub"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <Icon name="simple-icons:github" width="2em" height="2em" />
-    </a>
-    <a
-      href="mailto:ultro@browning.edu"
-      class="m-2 hover:text-gray-400 transition-colors"
-      aria-label="Email"
-    >
-      <Icon name="material-symbols:mail" width="2em" height="2em" />
-    </a>
-  </nav>
-</footer>
-<footer
-  class="footer footer-horizontal footer-center bg-black text-black-content p-10"
->
-  <aside>
-    <a href="https://browning.edu"
+  <div class="order-3 xl:order-none flex items-center gap-4">
+    <a href="https://browning.edu" class="group relative shrink-0"
       ><Image
         src={browningFooter}
         alt="The Browning School logo"
-        class="max-h-48 w-auto"
+        class="h-14 sm:h-16 w-auto"
+      /><Image
+        src={browningFooterColor}
+        alt=""
+        aria-hidden="true"
+        class="absolute inset-0 h-full w-full opacity-0 transition-opacity duration-500 ease-in-out motion-reduce:transition-none group-hover:opacity-100 group-focus-visible:opacity-100"
       /></a
     >
-    <p class="text-sm">
-      Ultro Robotics is the Browning School's premier FTC robotics team.
-    </p>
-    <p class="text-sm">
-      This website is <Link
-        href="https://github.com/BrowningUltro-10539/ultro.browning.edu"
-        external={true}>open source!</Link>
-    </p>
-  </aside>
+    <address class="font-mono not-italic text-sm sm:text-base whitespace-nowrap pl-4 border-l-2 border-white self-stretch flex items-center">
+      337 EAST 64TH STREET<br />NEW YORK, NY 10065
+    </address>
+  </div>
+  <a href="/" aria-label="Main page" class="order-1 xl:order-none justify-self-start xl:justify-self-center"><img src="/assets/brand/wordmark-full-color-on-dark.svg" alt="GEMINII" title="GEMINII" aria-label="GEMINII" width="170" height="48" class="h-16 sm:h-20 w-auto" /></a>
+  <div class="contents xl:flex xl:items-center xl:justify-end xl:gap-6">
+    <div class="order-4 xl:order-none sm:text-right sm:justify-self-end max-w-sm space-y-1">
+      <h2 class="text-teal-400 text-sm font-bold uppercase tracking-widest">Affiliation</h2>
+      <p class="text-base leading-relaxed">
+        Geminii Robotics is the <Link href="https://browning.edu" external={true}>Browning School</Link>'s secondary FTC robotics team, affiliated with <Link href="https://ultro.browning.edu" external={true}>Ultro Robotics</Link>.
+      </p>
+    </div>
+    <Socials
+      rotation="horizontal"
+      id="footer-socials"
+      className="order-2 xl:order-none text-base shrink-0 justify-self-start sm:justify-self-end"
+    />
+  </div>
 </footer>

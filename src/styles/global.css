@@ -4,28 +4,71 @@
 }
 /* Could more be excluded? */
 
-@import "@fontsource/metropolis/500.css";
-@import "@fontsource/metropolis/800.css";
-@import "@fontsource/space-mono";
-@import "@fontsource/atkinson-hyperlegible-next";
+/* GEMINII typeface: Arvo Regular 400 and Bold 700, self-hosted (SIL OFL 1.1, see /assets/fonts/OFL.txt).
+   Rules copied from the brand kit's css/fonts.css; only the url() paths differ. */
+@font-face {
+  font-family: "Arvo";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/Arvo-Regular.woff2") format("woff2");
+}
 
+@font-face {
+  font-family: "Arvo";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/assets/fonts/Arvo-Bold.woff2") format("woff2");
+}
+
+/* GEMINII tokens (values from the brand kit's tokens/tokens.css) */
+:root {
+    --gm-black: #000000;
+    --gm-teal: #00c7c5;
+    --gm-white: #ffffff;
+    --gm-font-family: "Arvo", "Rockwell", "Roboto Slab", Georgia, serif;
+    --gm-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* Palette mapping. Class names: geminii-50…950.
+   Roles: the accent (500-700) = teal; light tints = white; dark section tints = black. */
 @theme {
-    --color-ultro: var(--color-ultro-red-600);
-    --color-ultro-red-50: oklch(97.1% 0.013 14.285);
-    --color-ultro-red-100: oklch(93.7% 0.03048 14.622);
-    --color-ultro-red-200: oklch(88.7% 0.05897 15.239);
-    --color-ultro-red-300: oklch(81.1% 0.10945 16.476);
-    --color-ultro-red-400: oklch(70.8% 0.18493 19.121);
-    --color-ultro-red-500: oklch(64.2% 0.22942 22.236);
-    --color-ultro-red-600: oklch(58.3% 0.2359 24.23);
-    --color-ultro-red-700: oklch(50.95% 0.20618 24.423);
-    --color-ultro-red-800: oklch(44.7% 0.17245 23.804);
-    --color-ultro-red-900: oklch(39.75% 0.13872 22.628);
-    --color-ultro-red-950: oklch(25.8% 0.092 22.947);
+    --color-geminii: var(--color-geminii-600);
+    --color-geminii-50: var(--gm-white);
+    --color-geminii-100: var(--gm-white);
+    --color-geminii-200: var(--gm-white);
+    --color-geminii-300: var(--gm-white);
+    --color-geminii-400: var(--gm-white);
+    --color-geminii-500: var(--gm-teal);
+    --color-geminii-600: var(--gm-teal);
+    --color-geminii-700: var(--gm-teal);
+    --color-geminii-800: var(--gm-white);
+    --color-geminii-900: var(--gm-black);
+    --color-geminii-950: var(--gm-black);
 
-    --font-sans: 'Atkinson Hyperlegible Next', 'sans-serif';
-    --font-mono: 'Space Mono', 'monospace';
-    --font-display: 'Metropolis', 'sans-serif';
+    /* Tailwind grays used by this site: text and surfaces become white, hover text becomes teal (on black) */
+    --color-gray-100: var(--gm-white);
+    --color-gray-200: var(--gm-white);
+    --color-gray-300: var(--gm-teal);
+    --color-gray-400: var(--gm-teal);
+    --color-slate-500: var(--gm-white);
+
+    /* Arvo only. font-mono is a design face on this site (headings, labels), not a code face. */
+    --font-sans: var(--gm-font-family);
+    --font-mono: var(--gm-font-family);
+    --font-display: var(--gm-font-family);
+
+    /* Arvo has Regular 400 and Bold 700: below 600 is 400, 600 and above is 700 */
+    --font-weight-thin: 400;
+    --font-weight-extralight: 400;
+    --font-weight-light: 400;
+    --font-weight-normal: 400;
+    --font-weight-medium: 400;
+    --font-weight-semibold: 700;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 700;
+    --font-weight-black: 700;
 }
 
 
@@ -34,26 +77,26 @@
     default: true;
     prefersdark: true;
     color-scheme: "dark";
-    --color-base-100: oklch(44.7% 0.17245 23.804);
-    --color-base-200: oklch(25.8% 0.092 22.947);
-    --color-base-300: oklch(39.75% 0.13872 22.628);
-    --color-base-content: oklch(100% 0 0);
-    --color-primary: #e6002a;
-    --color-primary-content: oklch(0.971 0.013 14.285);
-    --color-secondary: #af0524;
-    --color-secondary-content: oklch(94% 0.028 342.258);
-    --color-accent: oklch(88.7% 0.05897 15.239);
-    --color-accent-content: oklch(0.258 0.092 22.947);
-    --color-neutral: oklch(21% 0.006 56.043);
-    --color-neutral-content: oklch(98% 0.001 106.423);
-    --color-info: oklch(74% 0.16 232.661);
-    --color-info-content: oklch(29% 0.066 243.157);
-    --color-success: oklch(76% 0.177 163.223);
-    --color-success-content: oklch(37% 0.077 168.94);
-    --color-warning: oklch(82% 0.189 84.429);
-    --color-warning-content: oklch(41% 0.112 45.904);
-    --color-error: oklch(71% 0.194 13.428);
-    --color-error-content: oklch(27% 0.105 12.094);
+    --color-base-100: var(--gm-teal);
+    --color-base-200: var(--gm-black);
+    --color-base-300: var(--gm-white);
+    --color-base-content: var(--gm-white);
+    --color-primary: var(--gm-teal);
+    --color-primary-content: var(--gm-black);
+    --color-secondary: var(--gm-white);
+    --color-secondary-content: var(--gm-black);
+    --color-accent: var(--gm-white);
+    --color-accent-content: var(--gm-black);
+    --color-neutral: var(--gm-black);
+    --color-neutral-content: var(--gm-white);
+    --color-info: var(--gm-white);
+    --color-info-content: var(--gm-black);
+    --color-success: var(--gm-white);
+    --color-success-content: var(--gm-black);
+    --color-warning: var(--gm-white);
+    --color-warning-content: var(--gm-black);
+    --color-error: var(--gm-white);
+    --color-error-content: var(--gm-black);
     --radius-selector: 2rem;
     --radius-field: 0rem;
     --radius-box: 0.25rem;
@@ -63,4 +106,176 @@
     --depth: 0;
     --noise: 0;
 }
-  
+
+/* GEMINII pass 1 overrides. Unlayered on purpose: they win over the generated Tailwind and
+   vendored daisyUI rules, which are not edited. Colors, type and logo fit only. */
+
+/* page surface: black (the browser's dark canvas is not a palette color) */
+html {
+    background-color: var(--gm-black);
+    font-synthesis: none;
+}
+
+/* Arvo has no italic */
+*,
+::before,
+::after {
+    font-style: normal;
+}
+
+b,
+strong,
+th {
+    font-weight: 700;
+}
+
+code,
+kbd,
+samp,
+pre {
+    font-family: var(--gm-font-mono);
+}
+
+/* opacity-based colors become the solid palette color for the surface */
+.bg-black\/20,
+.bg-black\/40,
+.bg-black\/60 {
+    background-color: var(--gm-black);
+}
+
+.border-b-black\/60 {
+    border-bottom-color: var(--gm-black);
+}
+
+.border-gray-200\/30 {
+    border-color: var(--gm-white);
+}
+
+.border-b-gray-200\/30 {
+    border-bottom-color: var(--gm-white);
+}
+
+/* the tinted button glow becomes a black shadow (black-only shadows may stay) */
+.shadow-geminii-600\/25 {
+    --tw-shadow-color: rgb(0 0 0 / 0.25);
+}
+
+/* logo slot: the layout sets the height, keep the kit file's aspect ratio */
+#fullnav > a > img {
+    width: auto;
+}
+
+/* buttons: teal fill with black text; on hover the fill hands over to the surface, text turns white */
+button.button {
+    color: var(--gm-black);
+}
+
+button.button:hover {
+    color: var(--gm-white);
+}
+
+button.button:focus {
+    --tw-ring-color: var(--gm-white);
+}
+
+/* cards sit on teal: text and links are black, links keep their underline */
+.card.image-full > .card-body,
+.card.image-full a.underline {
+    color: var(--gm-black);
+}
+
+.card.image-full a.underline {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: text-decoration-thickness 150ms ease-out;
+}
+
+.card.image-full a.underline:hover {
+    text-decoration-thickness: 2px;
+}
+
+.card-title {
+    font-weight: 700;
+}
+
+/* nav menu button: hover and focus fill with teal and the icon turns black; pressed fills with white */
+.hover\:bg-gray-200\/30:hover,
+.focus-within\:bg-gray-200\/30:focus-within {
+    background-color: var(--gm-teal);
+    color: var(--gm-black);
+}
+
+.active\:bg-gray-200\/30:active {
+    background-color: var(--gm-white);
+    color: var(--gm-black);
+}
+
+/* dropdown menu sits on teal: black items, black fill with white text for hover and focus, white fill for press */
+.menu a {
+    color: var(--gm-black);
+}
+
+.menu a:hover,
+.menu a:focus-visible {
+    background-color: var(--gm-black);
+    color: var(--gm-white);
+    box-shadow: inset 0 1px #00000003, inset 0 -1px #00000003;
+}
+
+.menu a:active {
+    background-color: var(--gm-white);
+    color: var(--gm-black);
+}
+
+/* keyboard focus ring: teal on black surfaces, black on teal surfaces */
+:focus-visible {
+    outline-color: var(--gm-teal);
+}
+
+.card :focus-visible,
+.menu :focus-visible {
+    outline-color: var(--gm-black);
+}
+
+/* Arvo is wider than the face it replaces: page headings may break inside a word rather than spill
+   out of the viewport at 360 px (font sizes are unchanged) */
+main > section > div > h1 {
+    overflow-wrap: anywhere;
+}
+
+/* home intro: wordmark alone, breathes, then shrinks into the nav (see NavigationBar.astro) */
+html.intro-pending {
+    overflow: hidden;
+}
+
+html.intro-pending #fullnav,
+html.intro-pending main,
+html.intro-pending footer {
+    visibility: hidden;
+}
+
+html.intro-reveal #fullnav,
+html.intro-reveal main,
+html.intro-reveal footer {
+    animation: intro-fade 450ms ease-out both;
+}
+
+@keyframes intro-fade {
+    from {
+        opacity: 0;
+    }
+}
+
+.intro-logo {
+    position: fixed;
+    z-index: 50;
+    margin: 0;
+    pointer-events: none;
+    will-change: transform;
+    transform-origin: center;
+}
+
+/* home: footer socials are only a landing spot for the hero pill's scroll morph (see index.astro) */
+html.socials-morph #footer-socials {
+    visibility: hidden;
+}
