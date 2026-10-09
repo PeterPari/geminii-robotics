@@ -7,14 +7,14 @@ import browningFooterColor from "../assets/browning-62-64-alt-color.svg";
 ---
 
 <footer
-  class="bg-black text-black-content px-4 py-4 border-t-2 border-gray-200/30 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-[1fr_auto_1fr] items-center gap-4 xl:gap-8"
+  class="bg-black text-black-content px-4 py-4 max-sm:px-6 max-sm:pt-10 max-sm:pb-[max(2rem,env(safe-area-inset-bottom))] border-t-2 border-gray-200/30 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-[1fr_auto_1fr] items-center gap-4 max-sm:gap-8 xl:gap-8"
 >
-  <div class="order-3 xl:order-none flex items-center gap-4">
+  <div class="order-3 max-sm:order-4 xl:order-none flex items-center gap-4 max-sm:flex-col max-sm:gap-5 max-sm:border-t max-sm:border-gray-200/20 max-sm:pt-8">
     <a href="https://browning.edu" class="group relative shrink-0"
       ><Image
         src={browningFooter}
         alt="The Browning School logo"
-        class="h-14 sm:h-16 w-auto"
+        class="h-12 sm:h-16 w-auto"
       /><Image
         src={browningFooterColor}
         alt=""
@@ -22,22 +22,22 @@ import browningFooterColor from "../assets/browning-62-64-alt-color.svg";
         class="absolute inset-0 h-full w-full opacity-0 transition-opacity duration-500 ease-in-out motion-reduce:transition-none group-hover:opacity-100 group-focus-visible:opacity-100"
       /></a
     >
-    <address class="font-mono not-italic text-sm sm:text-base whitespace-nowrap pl-4 border-l-2 border-white self-stretch flex items-center">
+    <address class="font-mono not-italic text-xs max-sm:tracking-widest max-sm:text-white/70 max-sm:text-center sm:text-base whitespace-nowrap sm:pl-4 sm:border-l-2 border-white sm:self-stretch flex items-center">
       337 EAST 64TH STREET<br />NEW YORK, NY 10065
     </address>
   </div>
-  <a href="/" aria-label="Main page" class="order-1 xl:order-none justify-self-start xl:justify-self-center"><img src="/assets/brand/wordmark-full-color-on-dark.svg" alt="GEMINII" title="GEMINII" aria-label="GEMINII" width="170" height="48" class="h-16 sm:h-20 w-auto" /></a>
+  <a href="/" aria-label="Main page" class="order-1 xl:order-none justify-self-start max-sm:justify-self-center xl:justify-self-center"><img src="/assets/brand/wordmark-full-color-on-dark.svg" alt="GEMINII" title="GEMINII" aria-label="GEMINII" width="170" height="48" class="h-14 sm:h-20 w-auto" /></a>
   <div class="contents xl:flex xl:items-center xl:justify-end xl:gap-6">
-    <div class="order-4 xl:order-none sm:text-right sm:justify-self-end max-w-sm space-y-1">
+    <div class="order-4 max-sm:order-2 xl:order-none max-sm:text-center max-sm:justify-self-center sm:text-right sm:justify-self-end max-w-sm max-sm:max-w-xs space-y-1 max-sm:space-y-2">
       <h2 class="text-teal-400 text-sm font-bold uppercase tracking-widest">Affiliation</h2>
-      <p class="text-base leading-relaxed">
+      <p class="text-base max-sm:text-sm max-sm:text-white/80 leading-relaxed">
         Geminii Robotics is the <Link href="https://browning.edu" external={true}>Browning School</Link>'s secondary FTC robotics team, affiliated with <Link href="https://ultro.browning.edu" external={true}>Ultro Robotics</Link>.
       </p>
     </div>
     <Socials
       rotation="horizontal"
       id="footer-socials"
-      className="order-2 xl:order-none text-base shrink-0 justify-self-start sm:justify-self-end"
+      className="order-2 max-sm:order-3 xl:order-none text-base shrink-0 justify-self-start max-sm:justify-self-center sm:justify-self-end"
     />
   </div>
 </footer>

@@ -1,0 +1,131 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Paragraph from "../components/Paragraph.astro";
+import Link from "../components/Link.astro";
+---
+
+<MainLayout title="Giving" description="Support Geminii Robotics with an online gift. Gifts are processed by the Browning School; include the note 'For Robotics'.">
+	<Paragraph slot="subtitle">
+		Geminii is a team of students building something from scratch, with no
+		sponsor behind us. Every gift, big or small, goes straight into the work.
+	</Paragraph>
+	<section class="flex flex-col items-center px-4 pt-0 pb-8 gap-10">
+		<hr class="-mt-10 w-full max-w-150 border-t-2 border-geminii-600" />
+
+		<div class="w-full max-w-150 flex flex-col gap-4">
+			<h2 class="text-white text-4xl font-display font-extrabold">Why give</h2>
+			<Paragraph className="max-w-none">
+				We’re in our very first season, and everything we have, we’ve raised
+				ourselves. Our students even run the team’s finances, so every dollar
+				you give is one they’ll look after and answer for.
+			</Paragraph>
+			<Paragraph className="max-w-none">
+				Your gift pays for parts, tools, and the trip to compete. It also lets
+				us keep showing up for others: mentoring younger students in Intro to
+				Engineering, visiting nursing homes with the Carter Burden Network, and
+				designing bracelets for people with cancer.
+			</Paragraph>
+			<Paragraph className="max-w-none">
+				We’re trying to <strong>engineer for humanity.</strong> Thank you for
+				helping us do it.
+			</Paragraph>
+		</div>
+
+		<hr class="w-full max-w-150 border-t-2 border-geminii-600" />
+
+		<div class="w-full max-w-150 flex flex-col gap-4">
+			<div>
+				<span class="font-mono font-bold text-geminii-600 text-base">01</span>
+				<h2 class="text-white text-4xl font-display font-extrabold">Add the note</h2>
+			</div>
+			<div class="bg-geminii-600 text-black p-6 flex flex-col gap-4" role="note">
+				<p class="text-base">
+					In the <strong>“Gift notes or Class notes”</strong> box on the form
+					below, type exactly:
+				</p>
+				<div class="flex flex-col sm:flex-row sm:items-stretch gap-3">
+					<code
+						id="giving-note"
+						class="flex-1 flex items-center justify-center font-mono font-bold text-xl text-white bg-black border-3 border-black px-4 py-2"
+						>For Robotics</code
+					>
+					<button
+						id="copy-note"
+						type="button"
+						class="cursor-pointer font-mono border-3 border-black bg-transparent px-6 py-2 text-base text-black transition-colors hover:bg-black hover:text-white focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-black"
+						>Copy note</button
+					>
+				</div>
+				<span id="copy-status" class="sr-only" role="status" aria-live="polite"></span>
+			</div>
+		</div>
+
+		<div class="w-full max-w-150 flex flex-col gap-4">
+			<div>
+				<span class="font-mono font-bold text-geminii-600 text-base">02</span>
+				<h2 class="text-white text-4xl font-display font-extrabold">Make your gift</h2>
+			</div>
+			<div class="border-3 border-geminii-600 min-h-128">
+				<p id="form-loading" class="p-6 text-center text-white">Loading donation form…</p>
+				<div id="blackbaud-donation-form_b30357cf-687c-4c3a-b3d8-d6384edfacd8" class="w-full"></div>
+			</div>
+		</div>
+
+		<hr class="w-full max-w-150 border-t-2 border-geminii-600" />
+
+		<p class="text-center text-white text-xl font-display font-bold max-w-150">
+			However you give, thank you. It means more to us than we can say.
+			<span class="block mt-2 text-base font-normal">— The students of Geminii</span>
+		</p>
+
+		<Paragraph className="text-center text-sm">
+			Gifts are processed by the Browning School. If the form does not load,
+			give at <Link href="https://browning.edu/make-an-online-gift" external={true}>browning.edu/make-an-online-gift</Link>
+			(remember the note), or email
+			<Link href="mailto:geminii-robotics@browning.edu">geminii-robotics@browning.edu</Link>.
+		</Paragraph>
+	</section>
+</MainLayout>
+
+<script is:inline src="https://sky.blackbaudcdn.net/static/donor-form-loader/2/main.js"></script>
+<script is:inline>
+	BBDonorFormLoader.newBlackbaudDonationFormZoned(
+		"renxt",
+		"p-ZwRnGG--JEeq5DAgeksOpA",
+		"b30357cf-687c-4c3a-b3d8-d6384edfacd8",
+		"usa",
+	);
+</script>
+<script>
+	const formBox = document.getElementById("blackbaud-donation-form_b30357cf-687c-4c3a-b3d8-d6384edfacd8");
+	const hideLoading = () => document.getElementById("form-loading")?.remove();
+	if (formBox?.childElementCount) {
+		hideLoading();
+	} else if (formBox) {
+		const obs = new MutationObserver(() => {
+			hideLoading();
+			obs.disconnect();
+		});
+		obs.observe(formBox, { childList: true });
+	}
+
+	const btn = document.getElementById("copy-note");
+	const status = document.getElementById("copy-status");
+	const note = "For Robotics";
+	btn?.addEventListener("click", async () => {
+		let ok = false;
+		try {
+			await navigator.clipboard.writeText(note);
+			ok = true;
+		} catch {
+			const range = document.createRange();
+			range.selectNodeContents(document.getElementById("giving-note")!);
+			const sel = window.getSelection();
+			sel?.removeAllRanges();
+			sel?.addRange(range);
+		}
+		btn.textContent = ok ? "Copied!" : "Press Ctrl/Cmd+C to copy";
+		if (status) status.textContent = ok ? "Copied to clipboard" : "Text selected, copy it manually";
+		setTimeout(() => (btn.textContent = "Copy note"), 2500);
+	});
+</script>

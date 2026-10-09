@@ -198,9 +198,21 @@ button.button:focus {
     font-weight: 700;
 }
 
-/* nav menu button: hover and focus fill with teal and the icon turns black; pressed fills with white */
-.hover\:bg-gray-200\/30:hover,
-.focus-within\:bg-gray-200\/30:focus-within {
+/* nav menu button: hover (pointer devices only, so taps don't leave a sticky fill) and keyboard focus
+   fill with teal and the icon turns black; pressed fills with white */
+#menu-button {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) {
+    .hover\:bg-gray-200\/30:hover {
+        background-color: var(--gm-teal);
+        color: var(--gm-black);
+    }
+}
+
+#menu-button:focus-visible {
     background-color: var(--gm-teal);
     color: var(--gm-black);
 }
@@ -208,6 +220,88 @@ button.button:focus {
 .active\:bg-gray-200\/30:active {
     background-color: var(--gm-white);
     color: var(--gm-black);
+}
+
+/* hamburger <-> close icon swap: stacked, opacity/transform only */
+.menu-icons {
+    display: grid;
+}
+
+.menu-icons > svg {
+    grid-area: 1 / 1;
+    transition: opacity 150ms ease-out, transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.menu-icons .menu-icon-close {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.6);
+}
+
+#menu-button[aria-expanded="true"] .menu-icon-open {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.6);
+}
+
+#menu-button[aria-expanded="true"] .menu-icon-close {
+    opacity: 1;
+    transform: none;
+}
+
+/* mobile menu panel: compositor-only open/close, state driven by [data-open] (see NavigationBar.astro) */
+#mobile-menu {
+    transform-origin: top right;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-6px) scale(0.97);
+    transition:
+        opacity 130ms ease-out,
+        transform 130ms ease-out,
+        visibility 0s linear 130ms;
+    will-change: transform, opacity;
+}
+
+#mobile-menu[data-open] {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    transition:
+        opacity 140ms ease-out,
+        transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        visibility 0s;
+}
+
+#mobile-menu > li {
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 90ms ease-out, transform 90ms ease-out;
+}
+
+#mobile-menu[data-open] > li {
+    opacity: 1;
+    transform: none;
+    transition: opacity 160ms ease-out, transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#mobile-menu[data-open] > li:nth-child(2) { transition-delay: 20ms; }
+#mobile-menu[data-open] > li:nth-child(3) { transition-delay: 40ms; }
+
+#mobile-menu a {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #mobile-menu,
+    #mobile-menu[data-open],
+    #mobile-menu > li,
+    #mobile-menu[data-open] > li,
+    .menu-icons > svg {
+        transform: none;
+        transition-duration: 1ms;
+        transition-delay: 0s;
+    }
 }
 
 /* dropdown menu sits on teal: black items, black fill with white text for hover and focus, white fill for press */

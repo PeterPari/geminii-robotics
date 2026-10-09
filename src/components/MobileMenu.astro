@@ -1,0 +1,79 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+    items: { title: string; href: string }[];
+    currentPath: string;
+}
+
+const { items, currentPath } = Astro.props;
+---
+
+<div id="mobile-menu-wrap" class="relative lg:hidden">
+    <button
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open menu"
+        id="menu-button"
+        class="btn btn-ghost hover:bg-gray-200/30 active:bg-gray-200/30 px-4 py-8 m-2 border-none">
+        <span class="menu-icons" aria-hidden="true">
+            <Icon name="material-symbols:menu" class="menu-icon-open" width="2.5em" height="2.5em" />
+            <Icon name="material-symbols:close" class="menu-icon-close" width="2.5em" height="2.5em" />
+        </span>
+    </button>
+    <ul
+        id="mobile-menu"
+        inert
+        class="menu menu-lg bg-base-100 rounded-box absolute right-0 z-20 mt-1 mr-2 w-52 p-2 shadow">
+        {
+            items.map((item) => (
+                <li>
+                    <a href={item.href} aria-current={currentPath === item.href ? "page" : undefined}>{item.title}</a>
+                </li>
+            ))
+        }
+    </ul>
+</div>
+
+<script>
+    // Mobile menu: click-driven toggle (no :focus reliance, which is flaky on iOS).
+    const wrap = document.getElementById("mobile-menu-wrap");
+    const button = document.getElementById("menu-button") as HTMLButtonElement | null;
+    const menu = document.getElementById("mobile-menu") as HTMLElement | null;
+
+    if (wrap && button && menu) {
+        const setOpen = (open: boolean) => {
+            if (menu.hasAttribute("data-open") === open) return;
+            menu.toggleAttribute("data-open", open);
+            menu.toggleAttribute("inert", !open);
+            button.setAttribute("aria-expanded", String(open));
+            button.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        };
+
+        button.addEventListener("click", () => setOpen(!menu.hasAttribute("data-open")));
+
+        // Outside close fires on touch-down so it feels instant.
+        document.addEventListener("pointerdown", (e) => {
+            if (!wrap.contains(e.target as Node)) setOpen(false);
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && menu.hasAttribute("data-open")) {
+                setOpen(false);
+                button.focus();
+            }
+        });
+
+        menu.addEventListener("click", (e) => {
+            if ((e.target as Element).closest("a")) setOpen(false);
+        });
+
+        window.matchMedia("(min-width: 1024px)").addEventListener("change", (e) => {
+            if (e.matches) setOpen(false);
+        });
+
+        // Back/forward cache restore should not show a stale open menu.
+        window.addEventListener("pageshow", () => setOpen(false));
+    }
+</script>
