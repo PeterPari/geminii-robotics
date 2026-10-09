@@ -1,0 +1,46 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const { text, href, external = false } = Astro.props;
+
+const externalProperties = {
+    "target": "_blank",
+    "rel": "noopener noreferrer"
+}
+---
+
+<a href={href} class="inline-block" {...(external ? externalProperties : {})}>
+    <!-- why do i have to add cursor-pointer? it should do it on its own, right? -->
+    <button
+        class="button cursor-pointer relative flex flex-row justify-center items-center border-3 font-mono transition-all border-ultro-red-600 bg-ultro-red-600 px-8 py-3 text-base text-white hover:bg-transparent focus:ring-3 focus:outline-hidden shadow-lg hover:shadow-none shadow-ultro-red-600/25 w-full"
+    >
+        <div class="flex items-center justify-center transition-all duration-200">
+            <span class="inline-block transition-all duration-200">{text}</span>
+
+            <span class="size-6 ml-0 transition-all duration-200 w-0 overflow-hidden arrow-forward">
+                <Icon width=24 height=24 name="material-symbols:arrow-forward" />
+            </span>
+        </div>
+    </button>
+</a>
+
+<script>
+    const button = document.querySelectorAll("button.button");
+    button.forEach(button => {
+        const icon = button.querySelector("span.arrow-forward");
+        button.addEventListener('mouseover', () => {
+            if (icon) {
+                icon.classList.remove("w-0", "ml-0");
+                icon.classList.add("w-6", "ml-2");
+            }
+        });
+
+        button.addEventListener('mouseout', () => {
+            if (icon) {
+                icon.classList.add("w-0", "ml-0");
+                icon.classList.remove("w-6", "ml-2");
+            }
+        });
+    });
+
+</script>

@@ -1,0 +1,151 @@
+html,
+body {
+	font-family: 'Open Sans', sans-serif;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+.wrap {
+	height: 100%;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	background: #120103;
+	color: #fff;
+	text-align: center;
+}
+
+header {
+	font-family: 'Aldrich', sans-serif;
+	background: #27C0BD;
+	box-shadow: 0 .5em 1em #111;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 900;
+	width: 100%;
+}
+
+header label {
+	color: #D5D5D5;
+	cursor: pointer;
+	display: inline-block;
+	line-height: 4.25em;
+	font-size: 1em;
+	font-weight: bold;
+	padding: 0 1em;
+}
+
+header label:hover {
+	background: #D5D5D5;
+	color: #27C0BD;
+
+}
+
+p {
+	font-size: 3.5em;
+	margin: 0;
+}
+.slide {
+	box-shadow: inset 0 0 0 1000px rgba(0,0,0,.7);
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 100%;
+	z-index: 10;
+	padding: 8em 1em 0;
+	background-color: #120103;
+	background-position: 50% 50%;
+	background-size: cover;
+	transition: left 0s .75s;
+}
+
+.slide h1 {
+	font-family: 'Aldrich', sans-serif;
+	font-size: 7em;
+	opacity: 0;
+	transform: translateY(100%);
+	transition: transform .5s .5s, opacity .5s;
+	margin: 100px 0 0 0;
+}
+.slide-one {
+	background-image: url('../images/TeamPhoto1.jpg-large');
+}
+.slide-one img {
+	float: left;
+	margin: 0 0 0 100px;
+}
+.slide-two {
+	background-image: url('../images/Outreach.jpg');
+	text-align: justify;
+	text-justify: inter-word;
+	float: center;
+}
+.slide-two p{
+	font-size: 1em;
+	width: 50em; 
+    border: 0px solid #000000;
+    word-wrap: break-word;
+    margin: auto;
+    padding: 10px;
+}
+.slide-two li{
+	font-size: 1em;
+	width: 50em; 
+    border: 0px solid #000000;
+    word-wrap: break-word;
+    margin: auto;
+    padding: 10px;
+}
+.slide-two img {
+	float: right;
+	margin: 0 0 10px 10px;
+	overflow: auto;
+} s
+.slide-two h1 {
+	margin: auto;
+}
+.slide-three {
+	background-color: yellow; 
+}
+.slide-four {
+	background-color: #27C0BD;
+}
+}
+.slide-four p{
+	font-size: 1em;
+	width: 50em; 
+    border: 0px solid #000000;
+    word-wrap: break-word;
+    margin: auto;
+    padding: 10px;
+}
+.slide-four li{
+	font-size: 1em;
+	width: 50em; 
+    border: 0px solid #000000;
+    word-wrap: break-word;
+    margin: auto;
+    padding: 10px;
+}
+.slide-five {
+	background-color: red;
+}
+.TeamPhoto {
+	float: right;
+	margin: 0;
+}
+[id^="slide"]:checked + .slide {
+	left: 0;
+	z-index: 100;
+	transition: left .65s ease-out;
+
+}
+[id^="slide"]:checked + .slide h1{
+	opacity: 1;
+	transform: translateY(0);
+	transition: all .5s .5s;
+
+}

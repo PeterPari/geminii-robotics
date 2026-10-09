@@ -1,0 +1,49 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+# This workflow will install Deno then run `deno lint` and `deno test`.
+# For more information see: https://github.com/denoland/setup-deno
+
+name: Build and deploy to prod
+
+on:
+  push:
+    branches: ["prod"]
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: prod-deploy
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2  # v1.1.2
+        with:
+          deno-version: v2.x
+
+      - name: Install project dependencies
+        run: deno install
+
+      - name: Build site
+        run: deno task build
+      
+      - name: Configure SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+
+      - name: Deploy over SSH
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 5
+          max_attempts: 3
+          command: scp -o StrictHostKeyChecking=no -r ./dist/* ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:~/ultro.browning.edu/public

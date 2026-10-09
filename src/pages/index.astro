@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/Button.astro";
+import Marquee from "../components/Marquee.astro";
+import Paragraph from "../components/Paragraph.astro";
+import Link from "../components/Link.astro";
+import Socials from "../components/Socials.astro";
+import Picture from "astro/components/Picture.astro";
+import landingGraphic from "../assets/robotics.webp";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Ultro Robotics 10539",
+  alternateName: ["Ultro Robotics", "Ultro 10539", "Ultro"],
+  url: Astro.site,
+}
+---
+
+<BaseLayout
+	title="Ultro Robotics | FTC Team 10539"
+	expandedNav="true"
+	description="Ultro Robotics is The Browning School's premier FIRST Tech Challenge robotics team. We are a student-led team that aims to engineer for humanity."
+>
+	<script type="application/ld+json" slot="head" set:html={JSON.stringify(structuredData)} />
+	<div
+		id="landing"
+		class="flex flex-col h-dvh w-dvw bg-gradient-to-b from-black from-30% to-ultro-red-950 to-90%"
+	>
+		<div class="flex items-center justify-center mt-48">
+			<Marquee text={["IN CONSTRUCTION", "·"]} classes="mt-48" />
+		</div>
+		<Socials rotation="vertical" className="absolute bottom-6 right-6" />
+	</div>
+	<section
+		class="bg-radial-[at_50%_100%] from-ultro-red-900 to-ultro-red-950 to-65% p-10 flex justify-center items-center"
+	>
+		<div
+			id="about"
+			class="flex flex-col justify-center items-center text-center w-9/10 space-y-8"
+		>
+			<h2 class="text-white text-4xl font-display font-extrabold">
+				What is Ultro?
+			</h2>
+			<Paragraph>
+				Team Ultro (meaning "of its own mind") is a <strong
+					>FIRST Tech Challenge</strong
+				> (FTC) robotics team based in <Link
+					href="https://browning.edu"
+					external={true}>The Browning School</Link
+				>, a New York City all-boys school.
+			</Paragraph>
+			<Paragraph>
+				With our <strong>student-led</strong>, innovative designs and
+				high-performing autonomous projects, our ultimate goal is to use
+				our FTC-learned skills to <strong class="whitespace-nowrap"
+					>engineer for humanity.</strong
+				>
+			</Paragraph>
+			<Button text="ABOUT US" href="/about/" />
+		</div>
+	</section>
+</BaseLayout>

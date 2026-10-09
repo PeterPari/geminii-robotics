@@ -1,0 +1,95 @@
+---
+interface Props {
+    text: Array<string>;
+    classes?: string;
+}
+
+const { text, classes = "bg-black" } = Astro.props;
+---
+
+<!-- TODO: optimize DOM manipulation -->
+
+<div
+    class={`marquee flex w-full overflow-hidden gap-2 relative select-none ${classes}`}
+>
+    <div
+        class="marquee1 scroll flex shrink-0 justify-around min-w-1/1 marquee-content gap-2"
+    >
+        {
+            text.map((item) => (
+                <span class="font-mono text-3xl whitespace-preline text-white">
+                    {item}
+                </span>
+            ))
+        }
+    </div>
+    <div
+        class="scroll flex shrink-0 justify-around min-w-1/1 marquee-content gap-2"
+    >
+        {
+            text.map((item) => (
+                <span class="font-mono text-3xl whitespace-preline text-white">
+                    {item}
+                </span>
+            ))
+        }
+    </div>
+</div>
+
+<style>
+    @keyframes scroll {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(calc(-100% - 0.5rem));
+        }
+    }
+
+    .scroll {
+        animation: scroll 10s linear infinite;
+    }
+</style>
+
+<script>
+    const marquee = document.querySelectorAll("div.marquee");
+    marquee.forEach((element) => {
+        /* 
+            Find width of text elements.
+            
+            It would be nice if there was a way to calculate this from the server end,
+            but at least this accounts for different font rendering/is adaptable to
+            other fonts.
+        */
+        let marqueeElements = 1;
+        const combinedWidth = [
+            ...element.querySelectorAll("div.marquee1 > span"),
+        ].reduce(
+            (total, span) => total + span.getBoundingClientRect().width,
+            0,
+        );
+        const initialContent = element.querySelector("div")?.innerHTML;
+
+        function refreshElements() {
+            let targetElements = Math.ceil(window.innerWidth / combinedWidth);
+            const marqueeItems = element.querySelectorAll("div");
+            if (
+                marqueeItems &&
+                initialContent &&
+                targetElements !== marqueeElements
+            ) {
+                marqueeItems.forEach((item) => {
+                    item.innerHTML = initialContent.repeat(targetElements)
+                });
+                marqueeElements = targetElements;
+            }
+            // Equal case means do nothing.
+        }
+
+        // "Hydrate" on load
+        document.addEventListener("DOMContentLoaded", refreshElements);
+
+        // Update on resize
+        window.addEventListener("resize", refreshElements);
+    });
+</script>

@@ -1,0 +1,44 @@
+---
+import { Icon } from "astro-icon/components";
+
+type AllowedStrings = "horizontal" | "vertical";
+interface Props {
+    rotation: AllowedStrings;
+    className?: string;
+}
+
+const { rotation, className } = Astro.props;
+---
+
+<nav
+    aria-label="Social media links"
+    class=`flex content-center text-gray-100 bg-black/20 backdrop-blur-sm rounded-full border-2 border-gray-200/30 ${(rotation == "vertical") ? "flex-col" : ""} ${className}`
+>
+    <a
+        href="https://youtube.com/@UltroRobotics"
+        class="m-4 hover:text-gray-400 transition-colors"
+        aria-label="YouTube"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        <Icon name="simple-icons:youtube" width="1.5em" height="1.5em" />
+    </a>
+    <a
+        href="https://www.instagram.com/ultro_robotics10539/"
+        class="m-4 hover:text-gray-400 transition-colors"
+        aria-label="Instagram"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        <Icon name="simple-icons:instagram" width="1.5em" height="1.5em" />
+    </a>
+    <a
+        href="https://github.com/BrowningUltro-10539"
+        class="m-4 hover:text-gray-400 transition-colors"
+        aria-label="GitHub"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        <Icon name="simple-icons:github" width="1.5em" height="1.5em" />
+    </a>
+</nav>

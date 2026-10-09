@@ -1,0 +1,75 @@
+---
+import { Icon } from "astro-icon/components";
+import Link from "./Link.astro";
+import { Image } from "astro:assets";
+import browningFooter from "../assets/browning_footer.png";
+import UltroSmall from "../assets/ultro_small_dark.svg";
+---
+
+<footer
+  class="footer sm:footer-horizontal bg-black text-black-content items-center px-4 border-t-2 border-gray-200/30 gap-2"
+>
+  <aside class="grid-flow-col items-center">
+    <a href="/" aria-label="Main page"><UltroSmall height="4em" width="4em" /></a>
+    <address class="font-mono not-italic p-2 pl-4 m-4 border-l-2 border-white h-min">
+      337 EAST 64TH STREET<br />NEW YORK, NY 10065
+    </address>
+  </aside>
+  <nav class="grid-flow-col gap-4 sm:place-self-center sm:justify-self-end">
+    <a
+      href="https://youtube.com/@UltroRobotics"
+      class="m-2 hover:text-gray-400 transition-colors"
+      aria-label="YouTube"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Icon name="simple-icons:youtube" width="2em" height="2em" />
+    </a>
+    <a
+      href="https://www.instagram.com/ultro_robotics10539/"
+      class="m-2 hover:text-gray-400 transition-colors"
+      aria-label="Instagram"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Icon name="simple-icons:instagram" width="2em" height="2em" />
+    </a>
+    <a
+      href="https://github.com/BrowningUltro-10539"
+      class="m-2 hover:text-gray-400 transition-colors"
+      aria-label="GitHub"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Icon name="simple-icons:github" width="2em" height="2em" />
+    </a>
+    <a
+      href="mailto:ultro@browning.edu"
+      class="m-2 hover:text-gray-400 transition-colors"
+      aria-label="Email"
+    >
+      <Icon name="material-symbols:mail" width="2em" height="2em" />
+    </a>
+  </nav>
+</footer>
+<footer
+  class="footer footer-horizontal footer-center bg-black text-black-content p-10"
+>
+  <aside>
+    <a href="https://browning.edu"
+      ><Image
+        src={browningFooter}
+        alt="The Browning School logo"
+        class="max-h-48 w-auto"
+      /></a
+    >
+    <p class="text-sm">
+      Ultro Robotics is the Browning School's premier FTC robotics team.
+    </p>
+    <p class="text-sm">
+      This website is <Link
+        href="https://github.com/BrowningUltro-10539/ultro.browning.edu"
+        external={true}>open source!</Link>
+    </p>
+  </aside>
+</footer>

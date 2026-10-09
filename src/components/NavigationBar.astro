@@ -1,0 +1,143 @@
+---
+import UltroDark from "../assets/ultro_dark.svg";
+import { Icon } from "astro-icon/components";
+
+interface NavItem {
+    title: string;
+    href: string;
+}
+
+const { expandedNav = false } = Astro.props;
+
+const navHeight = 20;
+const expandedHeight = expandedNav ? 48 : 20;
+
+/*
+    PLEASE ASTRO FIX THIS
+    const tailwindNavHeight = `h-${navHeight.toString()}`;
+    const tailwindExpandedHeight = `h-${expandedHeight.toString()}`;
+*/
+const tailwindNavHeight = "h-20";
+const tailwindExpandedHeight = expandedNav ? "h-48" : "h-20";
+
+const leftNavItems: NavItem[] = [
+    { title: "About", href: "/about/" },
+    { title: "Robots", href: "/robots/" },
+];
+
+const rightNavItems: NavItem[] = [
+    { title: "Outreach", href: "/outreach/" },
+    { title: "Resources", href: "/resources/" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav
+    id="fullnav"
+    {...expandedNav && {
+        "data-navheight": navHeight.toString(),
+        "data-expandedheight": expandedHeight.toString()
+    }}
+    class={`bg-black/60 font-display font-medium max-sm:h-20 ${tailwindExpandedHeight} backdrop-blur-sm flex ${expandedNav ? "fixed inset-x-0 border-b-black/60" : "sticky border-b-gray-200/30"} max-lg:items-center max-lg:justify-center top-0 w-full transition-colors duration-100 z-10 border-b-2 shadow-sm`}
+>
+    <div
+        class={`text-white text-lg ${tailwindNavHeight} flex flex-1 items-center justify-end`}
+    >
+        {
+            leftNavItems.map((item) => (
+                <a
+                    href={item.href}
+                    class={`px-6 py-4 hidden lg:inline ${currentPath === item.href ? "font-extrabold text-white" : "hover:text-gray-300 transition-colors"}`}
+                >
+                    {item.title}
+                </a>
+            ))
+        }
+    </div>
+    <a href="/" class="flex-none flex items-center justify-center h-full max-w-full px-4" aria-label="Ultro logo">
+        <UltroDark width="100%" height="100%" class="h-17/20" />
+    </a>
+    <div
+        class={`text-white text-lg ${tailwindNavHeight} flex flex-1 items-center justify-between`}
+    >
+        <div class="justify-self-start">
+            {
+                rightNavItems.map((item) => (
+                    <a
+                        href={item.href}
+                        class={`px-6 py-4 hidden lg:inline ${currentPath === item.href ? "font-extrabold text-white" : "hover:text-gray-300"}`}
+                    >
+                        {item.title}
+                    </a>
+                ))
+            }
+        </div>
+        <div class="justify-self-end">
+            <div class="dropdown dropdown-end">
+                <div 
+                    tabindex="0"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu"
+                    aria-label="Open menu"
+                    role="button"
+                    id="menu-button"
+                    class="btn btn-ghost lg:hidden hover:bg-gray-200/30 focus-within:bg-gray-200/30 focus-active:bg-gray-200/30 active:bg-gray-200/30 px-4 py-8 m-2 border-none">
+                    <Icon name="material-symbols:menu" width="2.5em" height="2.5em" aria-hidden="true" />
+                </div>
+                <ul
+                    role="menu"
+                    tabindex="0"
+                    id="mobile-menu"
+                    aria-labelledby="menu-button"
+                    class="menu menu-lg dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                    {
+                        leftNavItems.concat(rightNavItems).map((item) => (
+                            <li role="none">
+                                <a role="menuitem" href={item.href}>{item.title}</a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+{expandedNav && (
+    <script>
+        const navbar = document.getElementById("fullnav");
+
+        const logoMin = parseInt(navbar?.dataset?.navheight ?? "20");
+        const logoMax = parseInt(navbar?.dataset?.expandedheight ?? "48");
+
+        const scrollScale = 0.25 * parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+        let ticking = false;
+
+        window.addEventListener("scroll", () => {
+            // Sync animation with repaints
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrollPosition = window.scrollY;
+                    const logoSize = Math.max(
+                        logoMin * scrollScale,
+                        logoMax * scrollScale - scrollPosition,
+                    );
+
+                    if (navbar) navbar.style.height = `${logoSize}px`;
+                    if (logoMax * scrollScale - scrollPosition <= logoMin * scrollScale) {
+                        navbar?.classList.add("border-b-gray-200/30");
+                        navbar?.classList.remove("bg-black/40");
+                    } else {
+                        navbar?.classList.add("bg-black/40");
+                        navbar?.classList.remove("border-b-gray-200/30");
+                    }
+                    ticking = false;
+                });
+
+                ticking = true;
+            }
+        });
+    </script>
+)}
