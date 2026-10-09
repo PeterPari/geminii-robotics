@@ -1,0 +1,8 @@
+fonttools>=4.50
+brotli>=1.1
+uharfbuzz>=0.40
+playwright>=1.40
+cairosvg>=2.7
+pypdf>=4
+pillow
+numpy

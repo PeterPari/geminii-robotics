@@ -1,0 +1,799 @@
+/* GEMINII components. Geometry and states follow kit pages 11 and 12.
+   Classes carry the gm- prefix. Requires tokens.css, fonts.css, base.css. */
+
+/* ================================================================== button
+   Sizes: 56 high (52 small). Radius 4. Border 2. Label: Bold 16, uppercase, +12% tracking.
+   States: default, hover (bar + label lifts 2 px), pressed (colors invert), focus (double ring),
+   disabled (dashed outline, Regular). */
+.gm-btn,
+.gm-btn--primary {
+  --btn-bg: var(--gm-btn-primary-bg);
+  --btn-fg: var(--gm-btn-primary-fg);
+  --btn-bd: var(--gm-btn-primary-border);
+  --btn-pbg: var(--gm-btn-primary-pressed-bg);
+  --btn-pfg: var(--gm-btn-primary-pressed-fg);
+  --btn-pbd: var(--gm-btn-primary-pressed-border);
+  --btn-bar: var(--gm-btn-primary-bar);
+}
+
+.gm-btn--secondary {
+  --btn-bg: var(--gm-btn-secondary-bg);
+  --btn-fg: var(--gm-btn-secondary-fg);
+  --btn-bd: var(--gm-btn-secondary-border);
+  --btn-pbg: var(--gm-btn-secondary-pressed-bg);
+  --btn-pfg: var(--gm-btn-secondary-pressed-fg);
+  --btn-pbd: var(--gm-btn-secondary-pressed-border);
+  --btn-bar: var(--gm-btn-secondary-bar);
+}
+
+.gm-btn--tertiary {
+  --btn-bg: var(--gm-btn-tertiary-bg);
+  --btn-fg: var(--gm-btn-tertiary-fg);
+  --btn-bd: var(--gm-btn-tertiary-border);
+  --btn-pbg: var(--gm-btn-tertiary-pressed-bg);
+  --btn-pfg: var(--gm-btn-tertiary-pressed-fg);
+  --btn-pbd: var(--gm-btn-tertiary-pressed-border);
+  --btn-bar: var(--gm-btn-tertiary-bar);
+}
+
+.gm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625em;
+  min-height: var(--gm-button-height);
+  padding: 0 var(--gm-button-pad-x);
+  border: var(--gm-border-base) solid var(--btn-bd);
+  border-radius: var(--gm-radius-md);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.25;
+  font-weight: var(--gm-weight-bold);
+  letter-spacing: var(--gm-tracking-button);
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: var(--gm-inset-shadow, 0 0 #0000), var(--gm-ring-shadow, 0 0 #0000);
+  transition:
+    background-color var(--gm-duration-fast) var(--gm-ease),
+    color var(--gm-duration-fast) var(--gm-ease),
+    padding var(--gm-duration-fast) var(--gm-ease);
+}
+
+.gm-btn--sm {
+  min-height: var(--gm-button-height-sm);
+}
+
+.gm-btn--block {
+  display: flex;
+  width: 100%;
+}
+
+.gm-btn > svg {
+  flex: none;
+  width: 1.25em;
+  height: 1.25em;
+}
+
+/* hover */
+@media (hover: hover) {
+  .gm-btn:where(:not(:disabled, [aria-disabled="true"])):hover {
+    --gm-inset-shadow: inset 0 calc(-1 * var(--gm-button-bar)) 0 var(--btn-bar);
+    padding-bottom: 4px;
+    text-decoration: none;
+  }
+}
+
+.gm-btn.is-hover {
+  --gm-inset-shadow: inset 0 calc(-1 * var(--gm-button-bar)) 0 var(--btn-bar);
+  padding-bottom: 4px;
+}
+
+/* pressed: colors invert, no bar */
+.gm-btn:where(:not(:disabled, [aria-disabled="true"])):active,
+.gm-btn.is-pressed {
+  --gm-inset-shadow: 0 0 #0000;
+  padding-bottom: 0;
+  background: var(--btn-pbg);
+  color: var(--btn-pfg);
+  border-color: var(--btn-pbd);
+}
+
+/* disabled: dashed outline, Regular label, no fill */
+.gm-btn:disabled,
+.gm-btn[aria-disabled="true"],
+.gm-btn.is-disabled {
+  --gm-inset-shadow: 0 0 #0000;
+  padding-bottom: 0;
+  background: transparent;
+  color: var(--gm-fg);
+  border-color: var(--gm-fg);
+  border-style: dashed;
+  font-weight: var(--gm-weight-regular);
+  cursor: not-allowed;
+}
+
+/* ================================================================== text field
+   56 high, border 2, radius 4. Placeholder Regular, entered value Bold.
+   Error: border reads 4 (inset shadow, no layout shift) + error icon + message. Disabled: dashed. */
+.gm-field {
+  display: grid;
+  align-content: start;
+  gap: var(--gm-space-2);
+  min-width: 0;
+}
+
+.gm-label {
+  font-size: var(--gm-text-label-size);
+  line-height: var(--gm-text-label-line);
+  font-weight: var(--gm-weight-bold);
+  letter-spacing: var(--gm-text-label-tracking);
+  text-transform: uppercase;
+}
+
+.gm-field__control {
+  position: relative;
+}
+
+.gm-input,
+.gm-textarea,
+.gm-select > select {
+  display: block;
+  width: 100%;
+  min-height: var(--gm-field-height);
+  padding: 0 var(--gm-field-pad-x);
+  border: var(--gm-border-base) solid var(--gm-fg);
+  border-radius: var(--gm-radius-md);
+  background: var(--gm-bg);
+  color: var(--gm-fg);
+  font-family: inherit;
+  font-size: var(--gm-text-body-size);
+  line-height: var(--gm-text-body-line);
+  font-weight: var(--gm-weight-regular);
+  appearance: none;
+  -webkit-appearance: none;
+  box-shadow: var(--gm-inset-shadow, 0 0 #0000), var(--gm-ring-shadow, 0 0 #0000);
+}
+
+.gm-textarea {
+  min-height: 9rem;
+  padding-block: var(--gm-space-3);
+  resize: vertical;
+}
+
+.gm-input::placeholder,
+.gm-textarea::placeholder {
+  color: var(--gm-fg);
+  opacity: 1;
+  font-weight: var(--gm-weight-regular);
+}
+
+.gm-input:focus,
+.gm-textarea:focus,
+.gm-input.is-focus,
+.gm-input[placeholder]:not(:placeholder-shown),
+.gm-textarea[placeholder]:not(:placeholder-shown),
+.gm-select > select {
+  font-weight: var(--gm-weight-bold);
+}
+
+.gm-input[aria-invalid="true"],
+.gm-textarea[aria-invalid="true"],
+.gm-select > select[aria-invalid="true"] {
+  --gm-inset-shadow: inset 0 0 0 var(--gm-border-base) var(--gm-fg);
+  padding-right: calc(var(--gm-field-pad-x) * 2 + var(--gm-control-size));
+}
+
+.gm-input:disabled,
+.gm-textarea:disabled,
+.gm-select > select:disabled {
+  background: transparent;
+  border-style: dashed;
+  cursor: not-allowed;
+  font-weight: var(--gm-weight-regular);
+}
+
+.gm-field__icon {
+  position: absolute;
+  top: 50%;
+  right: var(--gm-field-pad-x);
+  width: var(--gm-control-size);
+  height: var(--gm-control-size);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.gm-field__message,
+.gm-field__help {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.gm-field__message {
+  font-weight: var(--gm-weight-bold);
+}
+
+.gm-select {
+  position: relative;
+}
+
+.gm-select > select {
+  padding-right: calc(var(--gm-field-pad-x) * 2 + 9px);
+  cursor: pointer;
+}
+
+.gm-select::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: calc(var(--gm-field-pad-x) + 2px);
+  width: 9px;
+  height: 9px;
+  border: solid var(--gm-fg);
+  border-width: 0 var(--gm-border-base) var(--gm-border-base) 0;
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+
+/* ================================================================== controls: checkbox, radio, switch
+   Markup: <label class="gm-check"><input type="checkbox"><span class="gm-check__box"></span>Label</label>
+   The native input stays in the DOM (keyboard, forms, screen readers); the sibling span draws it. */
+.gm-check,
+.gm-radio,
+.gm-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gm-space-3);
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.gm-check > input,
+.gm-radio > input,
+.gm-switch > input {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: var(--gm-control-size);
+  height: var(--gm-control-size);
+  margin: 0;
+  opacity: 0;
+  transform: translateY(-50%);
+  cursor: inherit;
+}
+
+.gm-check__box,
+.gm-radio__dot {
+  position: relative;
+  flex: none;
+  width: var(--gm-control-size);
+  height: var(--gm-control-size);
+  border: var(--gm-border-base) solid var(--gm-fg);
+  background: var(--gm-bg);
+}
+
+.gm-check__box {
+  border-radius: var(--gm-radius-sm);
+}
+
+.gm-radio__dot {
+  border-radius: 50%;
+}
+
+.gm-check > input:checked + .gm-check__box {
+  background: var(--gm-fg);
+}
+
+.gm-check__box::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 2px;
+  width: 7px;
+  height: 14px;
+  border: solid var(--gm-bg);
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  visibility: hidden;
+}
+
+.gm-check > input:checked + .gm-check__box::after {
+  visibility: visible;
+}
+
+.gm-radio__dot::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: var(--gm-fg);
+  visibility: hidden;
+}
+
+.gm-radio > input:checked + .gm-radio__dot::after {
+  visibility: visible;
+}
+
+.gm-switch__track {
+  position: relative;
+  flex: none;
+  width: var(--gm-switch-w);
+  height: var(--gm-switch-h);
+  border: var(--gm-border-base) solid var(--gm-fg);
+  border-radius: var(--gm-radius-pill);
+  background: var(--gm-bg);
+  transition: background-color var(--gm-duration-fast) var(--gm-ease);
+}
+
+.gm-switch__track::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  width: var(--gm-switch-knob);
+  height: var(--gm-switch-knob);
+  margin-top: calc(var(--gm-switch-knob) / -2);
+  border-radius: 50%;
+  background: var(--gm-knob-off);
+  transition: transform var(--gm-duration-fast) var(--gm-ease);
+}
+
+.gm-switch > input:checked + .gm-switch__track {
+  background: var(--gm-accent);
+  border-color: var(--gm-switch-on-edge);
+}
+
+.gm-switch > input:checked + .gm-switch__track::after {
+  background: var(--gm-black);
+  transform: translateX(calc(var(--gm-switch-w) - var(--gm-switch-knob) - 2 * var(--gm-border-base) - 8px));
+}
+
+/* focus: ring around the drawn control */
+.gm-check__box,
+.gm-radio__dot,
+.gm-switch__track {
+  box-shadow: var(--gm-ring-shadow, 0 0 #0000);
+}
+
+.gm-check > input:focus-visible + .gm-check__box,
+.gm-radio > input:focus-visible + .gm-radio__dot,
+.gm-switch > input:focus-visible + .gm-switch__track {
+  --gm-ring-shadow:
+    0 0 0 var(--gm-ring-gap-w) var(--gm-ring-gap),
+    0 0 0 calc(var(--gm-ring-gap-w) + var(--gm-ring-ink-w)) var(--gm-fg);
+  outline: var(--gm-ring-teal-w) solid var(--gm-focus-outer);
+  outline-offset: var(--gm-ring-teal-offset);
+}
+
+.gm-check > input:focus-visible,
+.gm-radio > input:focus-visible,
+.gm-switch > input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.gm-check > input:disabled ~ *,
+.gm-radio > input:disabled ~ *,
+.gm-switch > input:disabled ~ * {
+  cursor: not-allowed;
+}
+
+.gm-check > input:disabled + .gm-check__box,
+.gm-radio > input:disabled + .gm-radio__dot,
+.gm-switch > input:disabled + .gm-switch__track {
+  border-style: dashed;
+  background: transparent;
+}
+
+.gm-check > input:disabled + .gm-check__box::after {
+  border-color: var(--gm-fg);
+}
+
+.gm-check:has(> input:disabled),
+.gm-radio:has(> input:disabled),
+.gm-switch:has(> input:disabled) {
+  cursor: not-allowed;
+}
+
+/* ================================================================== navigation
+   Header bar: 92 high (72 on small screens), 2 px rule. Items: 16, uppercase, +12% tracking.
+   Current item is Bold with a 4 px teal underline. Below 960 px the menu collapses (needs js/brand.js);
+   without JavaScript it stays open. */
+.gm-nav {
+  position: relative;
+  background: var(--gm-bg);
+  color: var(--gm-fg);
+  border-bottom: var(--gm-border-base) solid var(--gm-fg);
+}
+
+.gm-nav--boxed {
+  border: var(--gm-border-base) solid var(--gm-fg);
+}
+
+.gm-nav__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gm-space-4);
+  min-height: var(--gm-nav-height);
+  padding-block: var(--gm-space-3);
+}
+
+.gm-nav__brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.gm-nav__brand img,
+.gm-nav__brand svg {
+  width: 160px;
+  height: auto;
+}
+
+@media (min-width: 960px) {
+  .gm-nav__brand img,
+  .gm-nav__brand svg {
+    width: 190px;
+  }
+}
+
+.gm-nav__toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--gm-button-height-sm);
+  height: var(--gm-button-height-sm);
+  padding: 0;
+  border: var(--gm-border-base) solid var(--gm-fg);
+  border-radius: var(--gm-radius-md);
+  background: transparent;
+  color: var(--gm-fg);
+  cursor: pointer;
+}
+
+.gm-nav__toggle svg {
+  width: 24px;
+  height: 24px;
+}
+
+.gm-nav__menu {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--gm-space-4);
+  flex-basis: 100%;
+  padding-bottom: var(--gm-space-4);
+}
+
+.gm-nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gm-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gm-nav__list li + li {
+  margin-top: 0;
+}
+
+.gm-nav__link {
+  display: inline-block;
+  padding-block: var(--gm-space-2);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: var(--gm-weight-regular);
+  letter-spacing: var(--gm-tracking-nav);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.gm-nav__link[aria-current],
+.gm-nav__link.is-current {
+  font-weight: var(--gm-weight-bold);
+  text-decoration-line: underline;
+  text-decoration-thickness: var(--gm-border-strong);
+  text-decoration-color: var(--gm-accent-line);
+  text-underline-offset: 0.55em;
+}
+
+@media (hover: hover) {
+  .gm-nav__link:hover {
+    text-decoration-line: underline;
+    text-decoration-thickness: var(--gm-border-strong);
+    text-decoration-color: var(--gm-accent-line);
+    text-underline-offset: 0.55em;
+  }
+}
+
+.gm-nav__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gm-space-3);
+}
+
+/* collapsed menu below 960 px, only when JavaScript is running */
+@media (max-width: 959.98px) {
+  .js .gm-nav__toggle {
+    display: inline-flex;
+  }
+
+  .js .gm-nav__menu:not(.is-open) {
+    display: none;
+  }
+}
+
+@media (min-width: 960px) {
+  .gm-nav__menu {
+    flex: 1 1 auto;
+    flex-basis: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0;
+    padding-left: var(--gm-space-12);
+  }
+
+  .gm-nav__list {
+    flex-direction: row;
+    gap: var(--gm-space-12);
+  }
+}
+
+/* ================================================================== tabs
+   Active tab: Bold with a 5 px teal underline the width of the label. */
+.gm-tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gm-space-2) var(--gm-space-10);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gm-tab {
+  padding: var(--gm-space-2) 0;
+  border: 0;
+  border-bottom: 5px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--gm-fg);
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: var(--gm-weight-regular);
+  letter-spacing: var(--gm-tracking-nav);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.gm-tab[aria-selected="true"] {
+  font-weight: var(--gm-weight-bold);
+  border-bottom-color: var(--gm-accent-line);
+}
+
+@media (hover: hover) {
+  .gm-tab:hover {
+    border-bottom-color: var(--gm-accent-line);
+  }
+}
+
+.gm-tabpanel {
+  padding-top: var(--gm-space-6);
+}
+
+/* ================================================================== card
+   Square corners, 2 px edge. Variants: white, teal, black. Each variant re-scopes the theme
+   (see tokens.css), so buttons, links and focus rings inside it follow the card colors. */
+.gm-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gm-space-4);
+  padding: var(--gm-space-6);
+  border: var(--gm-border-base) solid var(--gm-fg);
+  border-radius: var(--gm-radius-none);
+  background: var(--gm-bg);
+  color: var(--gm-fg);
+}
+
+.gm-card--white { border-color: var(--gm-edge-white); }
+.gm-card--teal { border-color: var(--gm-edge-teal); }
+.gm-card--black { border-color: var(--gm-edge-black); }
+
+.gm-card__title {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: var(--gm-weight-bold);
+  letter-spacing: var(--gm-tracking-label);
+  text-transform: uppercase;
+}
+
+.gm-card__body > * + * {
+  margin-top: var(--gm-space-3);
+}
+
+/* Small solid chip link at the foot of a card. */
+.gm-card__link {
+  align-self: flex-start;
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 var(--gm-space-5);
+  border-radius: var(--gm-radius-md);
+  background: var(--gm-fg);
+  color: var(--gm-bg);
+  font-size: var(--gm-text-label-size);
+  font-weight: var(--gm-weight-bold);
+  letter-spacing: var(--gm-tracking-button);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+a.gm-card__link:hover {
+  text-decoration: none;
+}
+
+/* ================================================================== tag
+   Pill, 38 high, Label type. Plain .gm-tag is an outline in the current surface colors. */
+.gm-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--gm-tag-height);
+  padding: 0 var(--gm-tag-pad-x);
+  border: var(--gm-border-base) solid var(--gm-fg);
+  border-radius: var(--gm-radius-pill);
+  background: transparent;
+  color: var(--gm-fg);
+  font-size: var(--gm-text-label-size);
+  line-height: 1;
+  font-weight: var(--gm-weight-bold);
+  letter-spacing: var(--gm-tracking-tag);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.gm-tag--white { background: var(--gm-bg); border-color: var(--gm-edge-white); }
+.gm-tag--teal { background: var(--gm-bg); border-color: var(--gm-edge-teal); }
+.gm-tag--black { background: var(--gm-bg); border-color: var(--gm-edge-black); }
+
+/* ================================================================== avatar
+   Profile mark circle: white Gemini glyph on teal. */
+.gm-avatar {
+  display: inline-block;
+  flex: none;
+  width: var(--gm-avatar-size, 48px);
+  height: var(--gm-avatar-size, 48px);
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--gm-teal);
+}
+
+.gm-avatar > img,
+.gm-avatar > svg {
+  width: 100%;
+  height: 100%;
+}
+
+.gm-avatar--sm { --gm-avatar-size: 32px; }
+.gm-avatar--lg { --gm-avatar-size: 64px; }
+.gm-avatar--xl { --gm-avatar-size: 112px; }
+
+/* ================================================================== notice
+   Status is carried by the icon and the heading, never by color alone. Error gets the heavy 4 px edge. */
+.gm-notice {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--gm-space-3) var(--gm-space-4);
+  align-items: start;
+  padding: var(--gm-space-4) var(--gm-space-6);
+  border: var(--gm-border-base) solid var(--gm-fg);
+  border-radius: var(--gm-radius-md);
+  background: var(--gm-bg);
+  color: var(--gm-fg);
+}
+
+.gm-notice--error {
+  box-shadow: inset 0 0 0 var(--gm-border-base) var(--gm-fg);
+}
+
+.gm-notice__icon {
+  width: var(--gm-control-size);
+  height: var(--gm-control-size);
+}
+
+.gm-notice__title {
+  font-weight: var(--gm-weight-bold);
+}
+
+/* ================================================================== table */
+.gm-table-wrap {
+  overflow-x: auto;
+}
+
+.gm-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.gm-table th,
+.gm-table td {
+  padding: var(--gm-space-3) var(--gm-space-4);
+  border-bottom: var(--gm-border-base) solid var(--gm-fg);
+  vertical-align: top;
+}
+
+.gm-table th {
+  font-size: var(--gm-text-label-size);
+  line-height: var(--gm-text-label-line);
+  font-weight: var(--gm-weight-bold);
+  letter-spacing: var(--gm-text-label-tracking);
+  text-transform: uppercase;
+  border-bottom-width: var(--gm-border-heavy);
+}
+
+/* ================================================================== hero + footer */
+.gm-hero {
+  padding-block: var(--gm-space-16);
+}
+
+@media (min-width: 960px) {
+  .gm-hero {
+    padding-block: var(--gm-space-32);
+  }
+}
+
+.gm-hero > .gm-container > * + * {
+  margin-top: var(--gm-space-6);
+}
+
+.gm-hero__lead {
+  max-width: var(--gm-measure);
+}
+
+.gm-footer {
+  border-top: var(--gm-border-base) solid var(--gm-fg);
+  background: var(--gm-bg);
+  color: var(--gm-fg);
+  padding-block: var(--gm-space-12);
+}
+
+.gm-footer__grid {
+  display: grid;
+  gap: var(--gm-space-8);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+}
+
+.gm-footer__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gm-footer__list {
+  margin-top: var(--gm-space-3);
+}
+
+.gm-footer__list li + li {
+  margin-top: var(--gm-space-2);
+}
+
+.gm-footer__legal {
+  margin-top: var(--gm-space-8);
+  font-size: var(--gm-text-label-size);
+  line-height: var(--gm-text-label-line);
+}
+
+.gm-nav__inner--boxed {
+  padding-inline: var(--gm-space-6);
+}

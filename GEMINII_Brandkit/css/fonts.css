@@ -1,0 +1,19 @@
+/* GEMINII fonts. Arvo Regular 400 and Bold 700, self-hosted (SIL OFL 1.1, see ../fonts/OFL.txt).
+   Paths are relative to this file: keep css/ and fonts/ as siblings.
+   Preload both files in <head> to avoid a late swap:
+   <link rel="preload" href="fonts/Arvo-Regular.woff2" as="font" type="font/woff2" crossorigin> */
+@font-face {
+  font-family: "Arvo";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/Arvo-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Arvo";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/Arvo-Bold.woff2") format("woff2");
+}

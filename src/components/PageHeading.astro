@@ -9,7 +9,7 @@ const { heading, className } = Astro.props;
 
 <section class={`py-24 ${className} flex flex-col items-center justify-center`}>
     <div class="text-center w-4/5 max-w-144 space-y-8">
-        {heading && <h1 class="font-mono font-bold text-white text-8xl" set:html={heading} />}
+        {heading && <h1 class="font-mono font-bold text-white whitespace-nowrap text-5xl sm:text-7xl md:text-8xl" set:html={heading} />}
         <slot />
     </div>
 </section>

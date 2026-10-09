@@ -1,5 +1,4 @@
 ---
-import UltroDark from "../assets/ultro_dark.svg";
 import { Icon } from "astro-icon/components";
 
 interface NavItem {
@@ -22,12 +21,10 @@ const tailwindExpandedHeight = expandedNav ? "h-48" : "h-20";
 
 const leftNavItems: NavItem[] = [
     { title: "About", href: "/about/" },
-    { title: "Robots", href: "/robots/" },
 ];
 
 const rightNavItems: NavItem[] = [
     { title: "Outreach", href: "/outreach/" },
-    { title: "Resources", href: "/resources/" },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -55,8 +52,11 @@ const currentPath = Astro.url.pathname;
             ))
         }
     </div>
-    <a href="/" class="flex-none flex items-center justify-center h-full max-w-full px-4" aria-label="Ultro logo">
-        <UltroDark width="100%" height="100%" class="h-17/20" />
+    <a href="/" class={`group flex-none flex items-center justify-center ${tailwindNavHeight} max-w-full`} aria-label="GEMINII logo">
+        <span class="relative inline-block">
+            <img id="nav-wordmark" fetchpriority="high" src="/assets/brand/wordmark-white.svg" data-color-src="/assets/brand/wordmark-full-color-on-dark.svg" alt="GEMINII" title="GEMINII" aria-label="GEMINII" width="170" height="48" class="h-12 w-auto block" />
+            <img src="/assets/brand/wordmark-full-color-on-dark.svg" alt="" aria-hidden="true" width="170" height="48" class="absolute inset-0 h-12 w-auto opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 group-focus-visible:opacity-100" />
+        </span>
     </a>
     <div
         class={`text-white text-lg ${tailwindNavHeight} flex flex-1 items-center justify-between`}
@@ -105,6 +105,101 @@ const currentPath = Astro.url.pathname;
 </nav>
 
 {expandedNav && (
+    <script>
+        // Home intro: centered wordmark breathes (slow grow), then shrinks into the nav slot.
+        const BREATHE_MS = 1800;
+        const SHRINK_MS = 500;
+        const REVEAL_MS = 450; // matches intro-fade in global.css
+        const BREATHE_GROW = 1.12;
+        const START_WIDTH = 0.7; // fraction of viewport width, capped below
+        const START_MAX_PX = 560;
+
+        const root = document.documentElement;
+
+        async function playIntro() {
+            const navLogo = document.getElementById("nav-wordmark") as HTMLImageElement | null;
+            if (!navLogo) return finish();
+
+            // Intro plays in full color; the nav slot itself is white (see markup).
+            const colorSrc = navLogo.dataset.colorSrc ?? navLogo.src;
+            const colorImg = new Image();
+            colorImg.src = colorSrc;
+
+            await Promise.all([
+                navLogo.decode().catch(() => {}),
+                colorImg.decode().catch(() => {}),
+                document.fonts?.ready ?? Promise.resolve(),
+            ]);
+
+            const target = navLogo.getBoundingClientRect();
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+
+            const dx = vw / 2 - (target.left + target.width / 2);
+            const dy = vh / 2 - (target.top + target.height / 2);
+            const base = Math.min(vw * START_WIDTH, START_MAX_PX) / target.width;
+            const peak = base * BREATHE_GROW;
+
+            // Lay the clone out at its largest size and only scale DOWN from there.
+            // Scaling a small-layout image up makes browsers stretch a low-res raster (blurry).
+            const W = target.width * peak;
+            const H = target.height * peak;
+            const at = (s: number) => `translate(${dx}px, ${dy}px) scale(${s / peak})`;
+
+            const clone = document.createElement("img");
+            clone.src = colorSrc;
+            clone.alt = "";
+            clone.setAttribute("aria-hidden", "true");
+            clone.className = "intro-logo";
+            Object.assign(clone.style, {
+                left: `${target.left + target.width / 2 - W / 2}px`,
+                top: `${target.top + target.height / 2 - H / 2}px`,
+                width: `${W}px`,
+                height: `${H}px`,
+                transform: at(base),
+            });
+            document.body.appendChild(clone);
+            await clone.decode().catch(() => {});
+
+            const breathe = clone.animate(
+                [{ transform: at(base) }, { transform: at(peak) }],
+                { duration: BREATHE_MS, easing: "ease-in-out", fill: "forwards" },
+            );
+            await breathe.finished;
+
+            const shrink = clone.animate(
+                [
+                    { transform: at(peak) },
+                    { transform: `translate(0px, 0px) scale(${1 / peak})` },
+                ],
+                { duration: SHRINK_MS, easing: "cubic-bezier(0.7, 0, 0.2, 1)", fill: "forwards" },
+            );
+            await shrink.finished;
+
+            // Reveal page under the clone; as the text fades in, the clone fades out
+            // to the white nav logo beneath it, then gets dropped.
+            root.classList.remove("intro-pending");
+            root.classList.add("intro-reveal");
+            clone.animate([{ opacity: 1 }, { opacity: 0 }], {
+                duration: REVEAL_MS,
+                easing: "ease-out",
+                fill: "forwards",
+            });
+            setTimeout(() => {
+                clone.remove();
+                root.classList.remove("intro-reveal");
+            }, REVEAL_MS + 10);
+        }
+
+        function finish() {
+            root.classList.remove("intro-pending");
+        }
+
+        if (root.classList.contains("intro-pending")) {
+            window.scrollTo(0, 0);
+            playIntro().catch(finish);
+        }
+    </script>
     <script>
         const navbar = document.getElementById("fullnav");
 

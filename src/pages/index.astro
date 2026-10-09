@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Button from "../components/Button.astro";
-import Marquee from "../components/Marquee.astro";
 import Paragraph from "../components/Paragraph.astro";
 import Link from "../components/Link.astro";
 import Socials from "../components/Socials.astro";
@@ -11,53 +10,162 @@ import landingGraphic from "../assets/robotics.webp";
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Ultro Robotics 10539",
-  alternateName: ["Ultro Robotics", "Ultro 10539", "Ultro"],
+  name: "Geminii Robotics 73845",
+  alternateName: ["Geminii Robotics", "Geminii 73845", "Geminii"],
   url: Astro.site,
 }
 ---
 
 <BaseLayout
-	title="Ultro Robotics | FTC Team 10539"
+	title="Geminii Robotics ♊︎ FTC 73845"
 	expandedNav="true"
-	description="Ultro Robotics is The Browning School's premier FIRST Tech Challenge robotics team. We are a student-led team that aims to engineer for humanity."
+	description="Geminii Robotics is a FIRST Tech Challenge robotics team based at The Browning School. We are a student-led team that aims to engineer for humanity."
 >
 	<script type="application/ld+json" slot="head" set:html={JSON.stringify(structuredData)} />
 	<div
 		id="landing"
-		class="flex flex-col h-dvh w-dvw bg-gradient-to-b from-black from-30% to-ultro-red-950 to-90%"
-	>
-		<div class="flex items-center justify-center mt-48">
-			<Marquee text={["IN CONSTRUCTION", "·"]} classes="mt-48" />
-		</div>
-		<Socials rotation="vertical" className="absolute bottom-6 right-6" />
-	</div>
-	<section
-		class="bg-radial-[at_50%_100%] from-ultro-red-900 to-ultro-red-950 to-65% p-10 flex justify-center items-center"
+		class="relative flex flex-col items-center justify-center min-h-dvh w-dvw px-6 pt-48 pb-24 bg-gradient-to-b from-black from-30% to-geminii-950 to-90%"
 	>
 		<div
 			id="about"
 			class="flex flex-col justify-center items-center text-center w-9/10 space-y-8"
 		>
 			<h2 class="text-white text-4xl font-display font-extrabold">
-				What is Ultro?
+				What is Geminii?
 			</h2>
 			<Paragraph>
-				Team Ultro (meaning "of its own mind") is a <strong
-					>FIRST Tech Challenge</strong
-				> (FTC) robotics team based in <Link
-					href="https://browning.edu"
-					external={true}>The Browning School</Link
-				>, a New York City all-boys school.
+				Geminii Robotics is a <strong>FIRST Tech Challenge</strong> (FTC)
+				robotics team based at <Link href="https://browning.edu" external={true}>The Browning School</Link>, a New York City all-boys school.
 			</Paragraph>
 			<Paragraph>
 				With our <strong>student-led</strong>, innovative designs and
-				high-performing autonomous projects, our ultimate goal is to use
-				our FTC-learned skills to <strong class="whitespace-nowrap"
-					>engineer for humanity.</strong
+				high-performing autonomous projects, our ultimate goal is to use the
+				skills we learned in FTC to <strong
+					class="whitespace-nowrap">engineer for humanity.</strong
 				>
 			</Paragraph>
 			<Button text="ABOUT US" href="/about/" />
 		</div>
-	</section>
+		<Socials rotation="vertical" id="home-socials" className="fixed bottom-6 right-6 z-10" />
+	</div>
+	<script>
+		// Scroll-linked morph: the vertical pill turns landscape and settles into the
+		// footer's pill (#footer-socials), which is hidden once this script runs.
+		type Box = { x: number; y: number; w: number; h: number };
+
+		const overlay = document.getElementById("home-socials");
+		const target = document.getElementById("footer-socials");
+
+		if (overlay && target) {
+			const root = document.documentElement;
+			root.classList.add("socials-morph");
+
+			const links = Array.from(overlay.querySelectorAll("a"));
+			const targetLinks = Array.from(target.querySelectorAll("a"));
+
+			const box = (el: Element): Box => {
+				const r = el.getBoundingClientRect();
+				return { x: r.left, y: r.top, w: r.width, h: r.height };
+			};
+			const lerp = (a: Box, b: Box, p: number): Box => ({
+				x: a.x + (b.x - a.x) * p,
+				y: a.y + (b.y - a.y) * p,
+				w: a.w + (b.w - a.w) * p,
+				h: a.h + (b.h - a.h) * p,
+			});
+
+			let restPill: Box;
+			let restLinks: Box[];
+			let ticking = false;
+			let progress = 0;
+			const DOWN_DIST = 240; // px from page bottom where the morph into the footer pill runs
+			const UP_RETURN = 260; // px of scroll-up, after the footer pill leaves the viewport, to return home
+			const smooth = (x: number) => {
+				const c = Math.min(1, Math.max(0, x));
+				return c * c * (3 - 2 * c);
+			};
+
+			function reset() {
+				overlay!.removeAttribute("style");
+				links.forEach((a) => a.removeAttribute("style"));
+			}
+
+			function measure() {
+				reset();
+				restPill = box(overlay!);
+				restLinks = links.map(box);
+			}
+
+			function update() {
+				const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+				const s = Math.max(0, maxScroll - window.scrollY); // distance from page bottom
+				const footerPill = box(target!);
+				// Footer pill's top leaves the viewport once s >= sOff.
+				const sOff = window.innerHeight - (footerPill.y - s);
+				// Hysteresis: progress is held inside a band so it stays home until near
+				// the bottom while scrolling down, and rides the footer pill until it is
+				// off-screen while scrolling up.
+				// Clamp both ramps to the scrollable range so short pages still reach home at the top.
+				const downDist = Math.max(1, Math.min(DOWN_DIST, maxScroll * 0.8));
+				const upEnd = Math.min(sOff + UP_RETURN, maxScroll);
+				const upStart = Math.min(sOff, upEnd * 0.5);
+				const lo = smooth(1 - s / downDist); // scrolling down: late start
+				const hi = 1 - smooth((s - upStart) / Math.max(1, upEnd - upStart)); // scrolling up: late release
+				progress = Math.min(hi, Math.max(lo, progress));
+				const p = progress;
+
+				if (p === 0) {
+					reset();
+					return;
+				}
+
+				// Never let the overlay leave the screen: while scrolling up, the footer pill
+				// drops below the viewport before progress releases, so clamp its target to the
+				// same bottom gap the resting pill has.
+				const bottomGap = window.innerHeight - (restPill.y + restPill.h);
+				const dy = Math.min(0, window.innerHeight - bottomGap - footerPill.h - footerPill.y);
+				const pill = lerp(restPill, { ...footerPill, y: footerPill.y + dy }, p);
+				Object.assign(overlay!.style, {
+					display: "block",
+					right: "auto",
+					bottom: "auto",
+					left: `${pill.x}px`,
+					top: `${pill.y}px`,
+					width: `${pill.w}px`,
+					height: `${pill.h}px`,
+				});
+
+				// Absolute children sit inside the border, so offset by it.
+				links.forEach((a, i) => {
+					const t = box(targetLinks[i]);
+					const l = lerp(restLinks[i], { ...t, y: t.y + dy }, p);
+					Object.assign(a.style, {
+						position: "absolute",
+						margin: "0",
+						left: `${l.x - pill.x - overlay!.clientLeft}px`,
+						top: `${l.y - pill.y - overlay!.clientTop}px`,
+						width: `${l.w}px`,
+						height: `${l.h}px`,
+					});
+				});
+			}
+
+			function schedule() {
+				if (ticking) return;
+				ticking = true;
+				requestAnimationFrame(() => {
+					update();
+					ticking = false;
+				});
+			}
+
+			window.addEventListener("scroll", schedule, { passive: true });
+			window.addEventListener("resize", () => {
+				measure();
+				schedule();
+			});
+			measure();
+			update();
+		}
+	</script>
 </BaseLayout>

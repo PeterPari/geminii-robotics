@@ -1,0 +1,201 @@
+{
+  "name": "GEMINII",
+  "version": "1.0.0",
+  "year": 2026,
+  "colors": {
+    "black": {
+      "hex": "#000000",
+      "role": "primary"
+    },
+    "teal": {
+      "hex": "#00c7c5",
+      "role": "secondary"
+    },
+    "white": {
+      "hex": "#ffffff",
+      "role": "tertiary"
+    }
+  },
+  "contrast": [
+    {
+      "fg": "#000000",
+      "bg": "#ffffff",
+      "ratio": 21.0,
+      "wcag": "AAA"
+    },
+    {
+      "fg": "#ffffff",
+      "bg": "#000000",
+      "ratio": 21.0,
+      "wcag": "AAA"
+    },
+    {
+      "fg": "#000000",
+      "bg": "#00c7c5",
+      "ratio": 9.98,
+      "wcag": "AAA"
+    },
+    {
+      "fg": "#00c7c5",
+      "bg": "#000000",
+      "ratio": 9.98,
+      "wcag": "AAA"
+    },
+    {
+      "fg": "#ffffff",
+      "bg": "#00c7c5",
+      "ratio": 2.11,
+      "wcag": "FAIL"
+    },
+    {
+      "fg": "#00c7c5",
+      "bg": "#ffffff",
+      "ratio": 2.11,
+      "wcag": "FAIL"
+    }
+  ],
+  "typeface": {
+    "family": "Arvo",
+    "weights": {
+      "regular": 400,
+      "bold": 700
+    },
+    "designer": "Anton Koovit",
+    "license": "SIL OFL 1.1",
+    "files": [
+      "fonts/Arvo-Regular.woff2",
+      "fonts/Arvo-Bold.woff2"
+    ],
+    "fallback": [
+      "\"Arvo\"",
+      "\"Rockwell\"",
+      "\"Roboto Slab\"",
+      "Georgia",
+      "serif"
+    ]
+  },
+  "typeScale": {
+    "display": {
+      "maxPx": 120,
+      "linePx": 120,
+      "weight": 700,
+      "uppercase": true,
+      "tracking": 0.0,
+      "minPx": 48
+    },
+    "h1": {
+      "maxPx": 72,
+      "linePx": 80,
+      "weight": 700,
+      "uppercase": true,
+      "tracking": 0.0,
+      "minPx": 36
+    },
+    "h2": {
+      "maxPx": 48,
+      "linePx": 56,
+      "weight": 700,
+      "uppercase": true,
+      "tracking": 0.0,
+      "minPx": 28
+    },
+    "h3": {
+      "maxPx": 32,
+      "linePx": 40,
+      "weight": 700,
+      "uppercase": false,
+      "tracking": 0.0,
+      "minPx": 24
+    },
+    "body-lg": {
+      "maxPx": 24,
+      "linePx": 36,
+      "weight": 400,
+      "uppercase": false,
+      "tracking": 0.0,
+      "minPx": 20
+    },
+    "body": {
+      "maxPx": 18,
+      "linePx": 28,
+      "weight": 400,
+      "uppercase": false,
+      "tracking": 0.0,
+      "minPx": 18
+    },
+    "label": {
+      "maxPx": 14,
+      "linePx": 20,
+      "weight": 700,
+      "uppercase": true,
+      "tracking": 0.14,
+      "minPx": 14
+    }
+  },
+  "logo": {
+    "clearSpace": "1X, X = gem flat-to-flat width",
+    "clearSpaceRatioOfWordmarkWidth": 0.0607,
+    "aspectRatio": 3.5389,
+    "minWidth": {
+      "wordmark": {
+        "px": 160,
+        "mm": 40
+      },
+      "icon": {
+        "px": 24,
+        "mm": 8
+      }
+    },
+    "files": {
+      "svg": "logos/svg/",
+      "png": "logos/png/",
+      "sprite": "logos/sprite.svg"
+    },
+    "versions": {
+      "fullColorOnBlack": "wordmark-full-color-on-dark.svg",
+      "fullColorOnWhite": "wordmark-full-color-on-light.svg",
+      "oneColorWhiteOnBlack": "wordmark-white.svg",
+      "oneColorBlackOnWhiteOrTeal": "wordmark-black.svg"
+    }
+  },
+  "surfaces": [
+    "light",
+    "dark",
+    "teal"
+  ],
+  "radius": {
+    "none": 0,
+    "sm": 3,
+    "md": 4,
+    "pill": 9999
+  },
+  "borderPx": {
+    "hairline": 1,
+    "base": 2,
+    "heavy": 3,
+    "strong": 4,
+    "accent": 6
+  },
+  "breakpointsPx": {
+    "sm": 640,
+    "md": 960,
+    "lg": 1280,
+    "xl": 1920
+  },
+  "files": {
+    "tokensCss": "tokens/tokens.css",
+    "tokensJson": "tokens/tokens.json",
+    "bundle": "css/brand.min.css",
+    "starter": "web/starter/",
+    "styleGuide": "web/starter/styleguide.html",
+    "brief": "AI_BRIEF.md"
+  },
+  "rules": [
+    "Exactly three colors: black, teal, white. No tints or shades.",
+    "Teal text works on black only. White on teal and teal on white fail contrast.",
+    "Arvo Regular and Bold only. Bold uppercase is primary, Regular sentence case is secondary.",
+    "Flat interface: no shadows, 2 px borders, 4 px radius on buttons and fields, square cards.",
+    "Focus is a double ring. Disabled is dashed. Status is an icon plus a heading, never color alone.",
+    "Logo: never stretch, rotate, outline, recolor, crop or move the gem. Keep 1X clear space."
+  ]
+}

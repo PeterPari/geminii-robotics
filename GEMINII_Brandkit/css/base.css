@@ -1,0 +1,422 @@
+/* GEMINII base: reset, typography, links, focus, layout, utilities.
+   Requires tokens.css and fonts.css (brand.css bundles all four files). */
+
+/* ------------------------------------------------------------------ reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  background: var(--gm-bg);
+  color: var(--gm-fg);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--gm-bg);
+  color: var(--gm-fg);
+  font-family: var(--gm-font-family);
+  font-size: var(--gm-text-body-size);
+  line-height: var(--gm-text-body-line);
+  font-weight: var(--gm-weight-regular);
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6,
+p, ul, ol, dl, dd, figure, blockquote, pre, fieldset {
+  margin: 0;
+}
+
+fieldset {
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+img, video, canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+svg {
+  max-width: 100%;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+  margin: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ------------------------------------------------------------------ type */
+.gm-display, h1, .gm-h1, h2, .gm-h2, h3, .gm-h3 {
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.gm-display {
+  font-size: var(--gm-text-display-size);
+  line-height: var(--gm-text-display-line);
+  font-weight: var(--gm-text-display-weight);
+  letter-spacing: var(--gm-text-display-tracking);
+  text-transform: uppercase;
+}
+
+h1, .gm-h1 {
+  font-size: var(--gm-text-h1-size);
+  line-height: var(--gm-text-h1-line);
+  font-weight: var(--gm-text-h1-weight);
+  letter-spacing: var(--gm-text-h1-tracking);
+  text-transform: uppercase;
+}
+
+h2, .gm-h2 {
+  font-size: var(--gm-text-h2-size);
+  line-height: var(--gm-text-h2-line);
+  font-weight: var(--gm-text-h2-weight);
+  letter-spacing: var(--gm-text-h2-tracking);
+  text-transform: uppercase;
+}
+
+h3, .gm-h3 {
+  font-size: var(--gm-text-h3-size);
+  line-height: var(--gm-text-h3-line);
+  font-weight: var(--gm-text-h3-weight);
+  letter-spacing: var(--gm-text-h3-tracking);
+  text-transform: none;
+}
+
+.gm-body-lg {
+  font-size: var(--gm-text-body-lg-size);
+  line-height: var(--gm-text-body-lg-line);
+  font-weight: var(--gm-text-body-lg-weight);
+}
+
+.gm-body {
+  font-size: var(--gm-text-body-size);
+  line-height: var(--gm-text-body-line);
+  font-weight: var(--gm-text-body-weight);
+}
+
+/* Label: Bold 14, uppercase, +14% tracking. Also the default for h4 to h6. */
+.gm-label-text, h4, h5, h6 {
+  font-size: var(--gm-text-label-size);
+  line-height: var(--gm-text-label-line);
+  font-weight: var(--gm-text-label-weight);
+  letter-spacing: var(--gm-text-label-tracking);
+  text-transform: uppercase;
+}
+
+strong, b {
+  font-weight: var(--gm-weight-bold);
+}
+
+/* Arvo italic is not part of the kit. Emphasis is Bold. */
+em, i, cite, dfn {
+  font-style: normal;
+  font-weight: var(--gm-weight-bold);
+}
+
+small, .gm-small {
+  font-size: var(--gm-text-label-size);
+  line-height: var(--gm-text-label-line);
+}
+
+code, kbd, samp, pre {
+  font-family: var(--gm-font-mono);
+  font-size: 0.9375rem;
+}
+
+pre {
+  overflow-x: auto;
+  padding: var(--gm-space-4);
+  border: var(--gm-border-base) solid var(--gm-fg);
+  border-radius: var(--gm-radius-md);
+}
+
+ul, ol {
+  padding-left: 1.25em;
+}
+
+li + li {
+  margin-top: var(--gm-space-2);
+}
+
+hr {
+  height: 0;
+  margin: 0;
+  border: 0;
+  border-top: var(--gm-border-base) solid var(--gm-fg);
+}
+
+/* ------------------------------------------------------------------ links */
+a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: var(--gm-border-base);
+  text-decoration-color: currentColor;
+  text-underline-offset: 0.25em;
+  transition: text-decoration-color var(--gm-duration-fast) var(--gm-ease);
+}
+
+@media (hover: hover) {
+  a:hover {
+    text-decoration-thickness: var(--gm-border-strong);
+    text-decoration-color: var(--gm-accent-line);
+  }
+}
+
+a.is-hover {
+  text-decoration-thickness: var(--gm-border-strong);
+  text-decoration-color: var(--gm-accent-line);
+}
+
+/* ------------------------------------------------------------------ focus
+   Double ring: ink ring, then teal ring. The outline stays visible in forced-colors mode.
+   Components that need an inset shadow set --gm-inset-shadow and keep it while focused. */
+/* Every focusable element composes its box-shadow from two variables, so state shadows (hover bar, error edge)
+   and the focus ring never override each other. Components that set box-shadow must keep both variables. */
+:where(a, button, input, select, textarea, summary, [tabindex]) {
+  box-shadow: var(--gm-inset-shadow, 0 0 #0000), var(--gm-ring-shadow, 0 0 #0000);
+  /* custom properties inherit: reset so a focused container never rings its children */
+  --gm-ring-shadow: initial;
+  --gm-inset-shadow: initial;
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus {
+  outline: none;
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible,
+.is-focus {
+  --gm-ring-shadow:
+    0 0 0 var(--gm-ring-gap-w) var(--gm-ring-gap),
+    0 0 0 calc(var(--gm-ring-gap-w) + var(--gm-ring-ink-w)) var(--gm-fg);
+  outline: var(--gm-ring-teal-w) solid var(--gm-focus-outer);
+  outline-offset: var(--gm-ring-teal-offset);
+}
+
+a:focus-visible,
+a.is-focus {
+  border-radius: 2px;
+}
+
+/* ------------------------------------------------------------------ surfaces */
+.gm-surface-light,
+.gm-surface-dark,
+.gm-surface-teal {
+  background: var(--gm-bg);
+  color: var(--gm-fg);
+}
+
+/* ------------------------------------------------------------------ layout */
+.gm-container {
+  width: 100%;
+  max-width: calc(var(--gm-content-max) + 2 * var(--gm-margin));
+  margin-inline: auto;
+  padding-inline: var(--gm-margin);
+}
+
+.gm-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.gm-section {
+  padding-block: var(--gm-space-12);
+}
+
+@media (min-width: 960px) {
+  .gm-section {
+    padding-block: var(--gm-space-24);
+  }
+}
+
+.gm-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gm-gutter);
+}
+
+.gm-grid > * {
+  grid-column: span 12;
+  min-width: 0;
+}
+
+@media (min-width: 960px) {
+  .gm-grid > .gm-span-1 { grid-column: span 1; }
+  .gm-grid > .gm-span-2 { grid-column: span 2; }
+  .gm-grid > .gm-span-3 { grid-column: span 3; }
+  .gm-grid > .gm-span-4 { grid-column: span 4; }
+  .gm-grid > .gm-span-5 { grid-column: span 5; }
+  .gm-grid > .gm-span-6 { grid-column: span 6; }
+  .gm-grid > .gm-span-7 { grid-column: span 7; }
+  .gm-grid > .gm-span-8 { grid-column: span 8; }
+  .gm-grid > .gm-span-9 { grid-column: span 9; }
+  .gm-grid > .gm-span-10 { grid-column: span 10; }
+  .gm-grid > .gm-span-11 { grid-column: span 11; }
+  .gm-grid > .gm-span-12 { grid-column: span 12; }
+}
+
+/* Auto-fitting grid for cards and tiles. */
+.gm-cards {
+  display: grid;
+  gap: var(--gm-gutter);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+
+.gm-stack > * + * {
+  margin-top: var(--gm-stack-gap, var(--gm-space-4));
+}
+
+.gm-stack--sm { --gm-stack-gap: var(--gm-space-2); }
+.gm-stack--lg { --gm-stack-gap: var(--gm-space-6); }
+.gm-stack--xl { --gm-stack-gap: var(--gm-space-8); }
+
+.gm-form {
+  max-width: 36rem;
+}
+
+.gm-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gm-cluster-gap, var(--gm-space-4));
+}
+
+.gm-cluster--sm { --gm-cluster-gap: var(--gm-space-2); }
+.gm-cluster--lg { --gm-cluster-gap: var(--gm-space-6); }
+
+.gm-prose {
+  max-width: var(--gm-measure);
+}
+
+.gm-prose > * + * {
+  margin-top: var(--gm-space-4);
+}
+
+.gm-prose > :is(h1, h2, h3) {
+  margin-top: var(--gm-space-8);
+}
+
+/* Teal accent bar: 72 x 6. */
+.gm-rule {
+  display: block;
+  width: var(--gm-rule-w);
+  height: var(--gm-rule-h);
+  margin: 0;
+  border: 0;
+  background: var(--gm-accent-line);
+}
+
+.gm-section-header {
+  display: grid;
+  gap: var(--gm-space-4);
+  margin-bottom: var(--gm-space-8);
+}
+
+.gm-section-header__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--gm-space-4);
+}
+
+.gm-eyebrow {
+  font-size: var(--gm-text-label-size);
+  line-height: var(--gm-text-label-line);
+  font-weight: var(--gm-weight-bold);
+  letter-spacing: var(--gm-tracking-chrome);
+  text-transform: uppercase;
+}
+
+.gm-counter {
+  font-size: var(--gm-text-label-size);
+  line-height: var(--gm-text-label-line);
+  letter-spacing: var(--gm-tracking-chrome);
+  text-transform: uppercase;
+}
+
+.gm-gradient {
+  background: var(--gm-gradient);
+}
+
+/* Logo that follows the surface: render all three, CSS shows the one for the current theme.
+   dark: full color on black. light: full color on white. teal: one-color black. */
+.gm-logo--on-dark { display: var(--gm-logo-on-dark-display); }
+.gm-logo--on-light { display: var(--gm-logo-on-light-display); }
+.gm-logo--on-teal { display: var(--gm-logo-on-teal-display); }
+
+/* ------------------------------------------------------------------ utilities */
+.gm-visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.gm-skip-link {
+  position: absolute;
+  left: var(--gm-space-4);
+  top: calc(-1 * var(--gm-space-16));
+  z-index: var(--gm-z-toast);
+  padding: var(--gm-space-3) var(--gm-space-4);
+  background: var(--gm-fg);
+  color: var(--gm-bg);
+  font-weight: var(--gm-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--gm-tracking-button);
+}
+
+.gm-skip-link:focus {
+  top: var(--gm-space-4);
+}
+
+.gm-nowrap { white-space: nowrap; }
+.gm-upper { text-transform: uppercase; }
+.gm-center { text-align: center; }
+
+/* ------------------------------------------------------------------ motion + print */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  html, body, .gm-surface-dark, .gm-surface-teal {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .gm-nav, .gm-skip-link, .gm-btn {
+    display: none !important;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+  }
+}

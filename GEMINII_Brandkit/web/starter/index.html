@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GEMINII</title>
+  <meta name="description" content="[Page description, 150 to 160 characters]">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="light dark">
+  <link rel="canonical" href="https://example.com/">
+
+  <!-- Icons: files are in the site root -->
+  <link rel="icon" href="favicon.ico" sizes="48x48">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Open Graph and Twitter: replace example.com with the production origin. Image URLs must be absolute. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GEMINII">
+  <meta property="og:title" content="GEMINII">
+  <meta property="og:description" content="[Page description]">
+  <meta property="og:url" content="https://example.com/">
+  <meta property="og:image" content="https://example.com/assets/social/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="GEMINII wordmark on black">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Fonts: self-hosted, preloaded -->
+  <link rel="preload" href="assets/fonts/Arvo-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Arvo-Bold.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Theme init runs before first paint. Then the stylesheet. -->
+  <script src="assets/js/theme-init.js"></script>
+  <link rel="stylesheet" href="assets/css/brand.min.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "GEMINII",
+    "url": "https://example.com/",
+    "logo": "https://example.com/assets/logos/png/profile-mark-square-512w.png"
+  }
+  </script>
+</head>
+<body>
+  <a class="gm-skip-link" href="#main">Skip to content</a>
+
+  <div class="gm-page">
+    <header class="gm-nav">
+      <div class="gm-container">
+        <div class="gm-nav__inner">
+          <a class="gm-nav__brand" href="./">
+            <img class="gm-logo--on-dark" src="assets/logos/svg/wordmark-full-color-on-dark.svg" alt="GEMINII" width="190" height="54">
+            <img class="gm-logo--on-light" src="assets/logos/svg/wordmark-full-color-on-light.svg" alt="GEMINII" width="190" height="54">
+          </a>
+          <button class="gm-nav__toggle" type="button" data-gm-nav-toggle="gm-menu" aria-expanded="false" aria-controls="gm-menu">
+            <svg aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#menu"></use></svg>
+            <span class="gm-visually-hidden">Menu</span>
+          </button>
+          <nav class="gm-nav__menu" id="gm-menu" aria-label="Primary">
+            <ul class="gm-nav__list">
+              <li><a class="gm-nav__link" href="./" aria-current="page">[Item one]</a></li>
+              <li><a class="gm-nav__link" href="#section-one">[Item two]</a></li>
+              <li><a class="gm-nav__link" href="#contact">[Item three]</a></li>
+            </ul>
+            <div class="gm-nav__actions">
+              <button class="gm-btn gm-btn--tertiary gm-btn--sm" type="button" data-gm-theme-toggle aria-pressed="false">Dark mode</button>
+              <a class="gm-btn gm-btn--secondary gm-btn--sm" href="#contact">[Action]</a>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="gm-hero gm-surface-dark" aria-labelledby="hero-title">
+        <div class="gm-container">
+          <p class="gm-eyebrow">[Eyebrow]</p>
+          <h1 class="gm-display" id="hero-title">[Headline]</h1>
+          <p class="gm-body-lg gm-hero__lead">[Supporting sentence]</p>
+          <div class="gm-cluster">
+            <a class="gm-btn gm-btn--primary" href="#contact">[Primary action]</a>
+            <a class="gm-btn gm-btn--tertiary" href="#section-one">[Secondary action]</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="gm-section" id="section-one" aria-labelledby="section-one-title">
+        <div class="gm-container">
+          <header class="gm-section-header">
+            <div class="gm-section-header__meta">
+              <span class="gm-eyebrow">[01 Section]</span>
+              <span class="gm-counter">01 / 03</span>
+            </div>
+            <span class="gm-rule" aria-hidden="true"></span>
+            <h2 id="section-one-title">[Section title]</h2>
+          </header>
+          <div class="gm-cards">
+            <article class="gm-card gm-card--white">
+              <h3 class="gm-card__title">[Card title]</h3>
+              <div class="gm-card__body"><p>[Card text]</p></div>
+              <a class="gm-card__link" href="#">[Link]</a>
+            </article>
+            <article class="gm-card gm-card--teal">
+              <h3 class="gm-card__title">[Card title]</h3>
+              <div class="gm-card__body"><p>[Card text]</p></div>
+              <a class="gm-card__link" href="#">[Link]</a>
+            </article>
+            <article class="gm-card gm-card--black">
+              <h3 class="gm-card__title">[Card title]</h3>
+              <div class="gm-card__body"><p>[Card text]</p></div>
+              <a class="gm-card__link" href="#">[Link]</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="gm-section gm-surface-teal" aria-labelledby="cta-title">
+        <div class="gm-container gm-stack gm-stack--lg">
+          <h2 id="cta-title">[Call to action]</h2>
+          <a class="gm-btn gm-btn--primary" href="#contact">[Primary action]</a>
+        </div>
+      </section>
+
+      <section class="gm-section" id="contact" aria-labelledby="contact-title">
+        <div class="gm-container">
+          <header class="gm-section-header">
+            <div class="gm-section-header__meta">
+              <span class="gm-eyebrow">[03 Section]</span>
+              <span class="gm-counter">03 / 03</span>
+            </div>
+            <span class="gm-rule" aria-hidden="true"></span>
+            <h2 id="contact-title">[Form title]</h2>
+          </header>
+          <!-- action="#" is a placeholder: point it at the form endpoint -->
+          <form class="gm-form gm-stack gm-stack--lg" action="#" method="post">
+            <div class="gm-field">
+              <label class="gm-label" for="f-name">[Label]</label>
+              <input class="gm-input" id="f-name" name="name" type="text" placeholder="[Placeholder]" autocomplete="name" required>
+            </div>
+            <div class="gm-field">
+              <label class="gm-label" for="f-email">[Label]</label>
+              <input class="gm-input" id="f-email" name="email" type="email" placeholder="[Placeholder]" autocomplete="email" required>
+            </div>
+            <div class="gm-field">
+              <label class="gm-label" for="f-message">[Label]</label>
+              <textarea class="gm-textarea" id="f-message" name="message" placeholder="[Placeholder]"></textarea>
+            </div>
+            <label class="gm-check"><input type="checkbox" name="consent"><span class="gm-check__box"></span>[Checkbox label]</label>
+            <div><button class="gm-btn gm-btn--primary" type="submit">[Submit]</button></div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="gm-footer gm-surface-dark">
+      <div class="gm-container">
+        <div class="gm-footer__grid">
+          <div>
+            <img src="assets/logos/svg/wordmark-full-color-on-dark.svg" alt="GEMINII" width="190" height="54">
+          </div>
+          <nav aria-label="Footer">
+            <h2 class="gm-label-text">[Column title]</h2>
+            <ul class="gm-footer__list">
+              <li><a href="#">[Link]</a></li>
+              <li><a href="#">[Link]</a></li>
+            </ul>
+          </nav>
+        </div>
+        <p class="gm-footer__legal">&copy; [Year] GEMINII</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="assets/js/brand.js" defer></script>
+</body>
+</html>
