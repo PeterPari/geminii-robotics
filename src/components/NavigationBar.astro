@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon/components";
+import MobileMenu from "./MobileMenu.astro";
 
 interface NavItem {
     title: string;
@@ -26,6 +26,8 @@ const leftNavItems: NavItem[] = [
 const rightNavItems: NavItem[] = [
     { title: "Outreach", href: "/outreach/" },
 ];
+
+const givingItem: NavItem = { title: "Giving", href: "/giving/" };
 
 const currentPath = Astro.url.pathname;
 ---
@@ -73,33 +75,15 @@ const currentPath = Astro.url.pathname;
                 ))
             }
         </div>
-        <div class="justify-self-end">
-            <div class="dropdown dropdown-end">
-                <div 
-                    tabindex="0"
-                    aria-expanded="false"
-                    aria-controls="mobile-menu"
-                    aria-label="Open menu"
-                    role="button"
-                    id="menu-button"
-                    class="btn btn-ghost lg:hidden hover:bg-gray-200/30 focus-within:bg-gray-200/30 focus-active:bg-gray-200/30 active:bg-gray-200/30 px-4 py-8 m-2 border-none">
-                    <Icon name="material-symbols:menu" width="2.5em" height="2.5em" aria-hidden="true" />
-                </div>
-                <ul
-                    role="menu"
-                    tabindex="0"
-                    id="mobile-menu"
-                    aria-labelledby="menu-button"
-                    class="menu menu-lg dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                    {
-                        leftNavItems.concat(rightNavItems).map((item) => (
-                            <li role="none">
-                                <a role="menuitem" href={item.href}>{item.title}</a>
-                            </li>
-                        ))
-                    }
-                </ul>
-            </div>
+        <div class="justify-self-end flex items-center">
+            <a
+                href={givingItem.href}
+                class="hidden lg:inline-block mr-6 border-3 border-geminii-600 bg-geminii-600 px-6 py-2 text-base text-black hover:bg-transparent hover:text-white transition-colors focus:ring-3 focus:ring-white focus:outline-hidden"
+                aria-current={currentPath === givingItem.href ? "page" : undefined}
+            >
+                {givingItem.title}
+            </a>
+            <MobileMenu items={[...leftNavItems, ...rightNavItems, givingItem]} currentPath={currentPath} />
         </div>
     </div>
 </nav>
