@@ -46,7 +46,7 @@ const structuredData = {
 			</Paragraph>
 			<Button text="ABOUT US" href="/about/" />
 		</div>
-		<Socials rotation="vertical" id="home-socials" className="fixed bottom-6 right-6 z-10" />
+		<Socials rotation="vertical" id="home-socials" className="fixed bottom-6 right-6 z-10 will-change-transform" />
 	</div>
 	<script>
 		// Scroll-linked morph: the vertical pill turns landscape and settles into the
@@ -63,6 +63,8 @@ const structuredData = {
 			const links = Array.from(overlay.querySelectorAll("a"));
 			const targetLinks = Array.from(target.querySelectorAll("a"));
 
+			// All geometry is read once in measure() (footer boxes in document space), so
+			// update() never touches layout: it only writes transform/size per frame.
 			const box = (el: Element): Box => {
 				const r = el.getBoundingClientRect();
 				return { x: r.left, y: r.top, w: r.width, h: r.height };
@@ -74,8 +76,16 @@ const structuredData = {
 				h: a.h + (b.h - a.h) * p,
 			});
 
-			let restPill: Box;
-			let restLinks: Box[];
+			let restPill: Box; // viewport x/size; y is derived from bottomGap + innerHeight
+			let restLinks: Box[]; // relative to the pill's outer top-left
+			let bottomGap = 0;
+			let borderX = 0;
+			let borderY = 0;
+			let footerPill: Box; // document space
+			let footerLinks: Box[]; // document space
+			let docHeight = 0;
+			let docWidth = 0;
+			let morphing = false;
 			let ticking = false;
 			let progress = 0;
 			const DOWN_DIST = 240; // px from page bottom where the morph into the footer pill runs
@@ -86,22 +96,39 @@ const structuredData = {
 			};
 
 			function reset() {
+				morphing = false;
 				overlay!.removeAttribute("style");
 				links.forEach((a) => a.removeAttribute("style"));
 			}
 
 			function measure() {
 				reset();
-				restPill = box(overlay!);
-				restLinks = links.map(box);
+				const sx = window.scrollX;
+				const sy = window.scrollY;
+				const inDoc = (b: Box): Box => ({ ...b, x: b.x + sx, y: b.y + sy });
+				const pill = box(overlay!);
+				restPill = pill;
+				restLinks = links.map((a) => {
+					const b = box(a);
+					return { ...b, x: b.x - pill.x, y: b.y - pill.y };
+				});
+				bottomGap = window.innerHeight - (pill.y + pill.h);
+				// Absolute children sit inside the border, so offset by it.
+				borderX = overlay!.clientLeft;
+				borderY = overlay!.clientTop;
+				footerPill = inDoc(box(target!));
+				footerLinks = targetLinks.map((a) => inDoc(box(a)));
+				docHeight = document.documentElement.scrollHeight;
+				docWidth = window.innerWidth;
 			}
 
 			function update() {
-				const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-				const s = Math.max(0, maxScroll - window.scrollY); // distance from page bottom
-				const footerPill = box(target!);
+				const vh = window.innerHeight;
+				const scrollY = window.scrollY;
+				const maxScroll = docHeight - vh;
+				const s = Math.max(0, maxScroll - scrollY); // distance from page bottom
 				// Footer pill's top leaves the viewport once s >= sOff.
-				const sOff = window.innerHeight - (footerPill.y - s);
+				const sOff = vh - (footerPill.y - maxScroll);
 				// Hysteresis: progress is held inside a band so it stays home until near
 				// the bottom while scrolling down, and rides the footer pill until it is
 				// off-screen while scrolling up.
@@ -115,38 +142,34 @@ const structuredData = {
 				const p = progress;
 
 				if (p === 0) {
-					reset();
+					if (morphing) reset();
 					return;
+				}
+
+				if (!morphing) {
+					morphing = true;
+					Object.assign(overlay!.style, { display: "block", right: "auto", bottom: "auto", left: "0", top: "0" });
+					links.forEach((a) => Object.assign(a.style, { position: "absolute", margin: "0", left: "0", top: "0" }));
 				}
 
 				// Never let the overlay leave the screen: while scrolling up, the footer pill
 				// drops below the viewport before progress releases, so clamp its target to the
 				// same bottom gap the resting pill has.
-				const bottomGap = window.innerHeight - (restPill.y + restPill.h);
-				const dy = Math.min(0, window.innerHeight - bottomGap - footerPill.h - footerPill.y);
-				const pill = lerp(restPill, { ...footerPill, y: footerPill.y + dy }, p);
-				Object.assign(overlay!.style, {
-					display: "block",
-					right: "auto",
-					bottom: "auto",
-					left: `${pill.x}px`,
-					top: `${pill.y}px`,
-					width: `${pill.w}px`,
-					height: `${pill.h}px`,
-				});
+				const footerY = footerPill.y - scrollY;
+				const dy = Math.min(0, vh - bottomGap - footerPill.h - footerY);
+				const rest: Box = { ...restPill, y: vh - bottomGap - restPill.h };
+				const pill = lerp(rest, { ...footerPill, y: footerY + dy }, p);
+				overlay!.style.transform = `translate3d(${pill.x}px, ${pill.y}px, 0)`;
+				overlay!.style.width = `${pill.w}px`;
+				overlay!.style.height = `${pill.h}px`;
 
-				// Absolute children sit inside the border, so offset by it.
 				links.forEach((a, i) => {
-					const t = box(targetLinks[i]);
-					const l = lerp(restLinks[i], { ...t, y: t.y + dy }, p);
-					Object.assign(a.style, {
-						position: "absolute",
-						margin: "0",
-						left: `${l.x - pill.x - overlay!.clientLeft}px`,
-						top: `${l.y - pill.y - overlay!.clientTop}px`,
-						width: `${l.w}px`,
-						height: `${l.h}px`,
-					});
+					const r = restLinks[i];
+					const f = footerLinks[i];
+					const l = lerp({ ...r, x: rest.x + r.x, y: rest.y + r.y }, { ...f, y: f.y - scrollY + dy }, p);
+					a.style.transform = `translate3d(${l.x - pill.x - borderX}px, ${l.y - pill.y - borderY}px, 0)`;
+					a.style.width = `${l.w}px`;
+					a.style.height = `${l.h}px`;
 				});
 			}
 
@@ -159,13 +182,24 @@ const structuredData = {
 				});
 			}
 
-			window.addEventListener("scroll", schedule, { passive: true });
-			window.addEventListener("resize", () => {
+			// Re-measure synchronously (before paint) so the pill never flashes at rest.
+			function remeasure() {
 				measure();
-				schedule();
+				update();
+			}
+
+			window.addEventListener("scroll", schedule, { passive: true });
+			// Mobile browsers fire height-only resizes as the toolbar collapses mid-scroll;
+			// update() reads innerHeight itself, so only a width change needs a re-measure.
+			window.addEventListener("resize", () => {
+				if (window.innerWidth !== docWidth) remeasure();
+				else schedule();
 			});
-			measure();
-			update();
+			// Late layout shifts (fonts, images) move the footer target.
+			new ResizeObserver(() => {
+				if (document.documentElement.scrollHeight !== docHeight) remeasure();
+			}).observe(document.body);
+			remeasure();
 		}
 	</script>
 </BaseLayout>
