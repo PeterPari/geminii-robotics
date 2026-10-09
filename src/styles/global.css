@@ -374,3 +374,10 @@ html.socials-morph:not(.socials-docked) #footer-socials,
 html.socials-morph.socials-docked #home-socials {
     visibility: hidden;
 }
+
+/* Safari smears backdrop blur on frames that are fading or moving; skip it for the handoff. */
+html.socials-animating #home-socials,
+html.socials-animating #footer-socials {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+}
