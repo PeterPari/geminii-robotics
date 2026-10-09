@@ -49,10 +49,10 @@ const structuredData = {
 		<Socials rotation="vertical" id="home-socials" className="fixed bottom-6 right-6 z-10 will-change-transform" />
 	</div>
 	<script>
-		// Scroll-linked morph: the vertical pill turns landscape and settles into the
-		// footer's pill (#footer-socials), which is hidden once this script runs.
-		type Box = { x: number; y: number; w: number; h: number };
-
+		// Handoff: the floating pill glides into the footer's pill (#footer-socials) once
+		// that pill is fully on screen, and back out once it has left the screen. The
+		// animation is time-based and only touches transform/opacity, so it runs on the
+		// compositor instead of chasing the scroll position from the main thread.
 		const overlay = document.getElementById("home-socials");
 		const target = document.getElementById("footer-socials");
 
@@ -60,146 +60,76 @@ const structuredData = {
 			const root = document.documentElement;
 			root.classList.add("socials-morph");
 
-			const links = Array.from(overlay.querySelectorAll("a"));
-			const targetLinks = Array.from(target.querySelectorAll("a"));
+			const DURATION = 450;
+			const EASING = "cubic-bezier(.2, .8, .2, 1)";
+			const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-			// All geometry is read once in measure() (footer boxes in document space), so
-			// update() never touches layout: it only writes transform/size per frame.
-			const box = (el: Element): Box => {
-				const r = el.getBoundingClientRect();
-				return { x: r.left, y: r.top, w: r.width, h: r.height };
-			};
-			const lerp = (a: Box, b: Box, p: number): Box => ({
-				x: a.x + (b.x - a.x) * p,
-				y: a.y + (b.y - a.y) * p,
-				w: a.w + (b.w - a.w) * p,
-				h: a.h + (b.h - a.h) * p,
-			});
+			let docked = false;
+			let running: Animation[] = [];
 
-			let restPill: Box; // viewport x/size; y is derived from bottomGap + innerHeight
-			let restLinks: Box[]; // relative to the pill's outer top-left
-			let bottomGap = 0;
-			let borderX = 0;
-			let borderY = 0;
-			let footerPill: Box; // document space
-			let footerLinks: Box[]; // document space
-			let docHeight = 0;
-			let docWidth = 0;
-			let morphing = false;
-			let ticking = false;
-			let progress = 0;
-			const DOWN_DIST = 240; // px from page bottom where the morph into the footer pill runs
-			const UP_RETURN = 260; // px of scroll-up, after the footer pill leaves the viewport, to return home
-			const smooth = (x: number) => {
-				const c = Math.min(1, Math.max(0, x));
-				return c * c * (3 - 2 * c);
+			// Transform that lays `from`'s box over `to`'s box (both centred origins).
+			const flip = (from: DOMRect, to: DOMRect) => {
+				const dx = to.left + to.width / 2 - (from.left + from.width / 2);
+				const dy = to.top + to.height / 2 - (from.top + from.height / 2);
+				return `translate(${dx}px, ${dy}px) scale(${to.width / from.width}, ${to.height / from.height})`;
 			};
 
-			function reset() {
-				morphing = false;
-				overlay!.removeAttribute("style");
-				links.forEach((a) => a.removeAttribute("style"));
+			// Final state is pure CSS: the state class decides which pill is visible.
+			function settle() {
+				root.classList.toggle("socials-docked", docked);
+				running.forEach((a) => a.cancel());
+				running = [];
+				overlay!.style.visibility = "";
+				target!.style.visibility = "";
 			}
 
-			function measure() {
-				reset();
-				const sx = window.scrollX;
-				const sy = window.scrollY;
-				const inDoc = (b: Box): Box => ({ ...b, x: b.x + sx, y: b.y + sy });
-				const pill = box(overlay!);
-				restPill = pill;
-				restLinks = links.map((a) => {
-					const b = box(a);
-					return { ...b, x: b.x - pill.x, y: b.y - pill.y };
-				});
-				bottomGap = window.innerHeight - (pill.y + pill.h);
-				// Absolute children sit inside the border, so offset by it.
-				borderX = overlay!.clientLeft;
-				borderY = overlay!.clientTop;
-				footerPill = inDoc(box(target!));
-				footerLinks = targetLinks.map((a) => inDoc(box(a)));
-				docHeight = document.documentElement.scrollHeight;
-				docWidth = window.innerWidth;
-			}
+			function set(next: boolean, animate: boolean) {
+				if (next === docked) return;
+				docked = next;
 
-			function update() {
-				const vh = window.innerHeight;
-				const scrollY = window.scrollY;
-				const maxScroll = docHeight - vh;
-				const s = Math.max(0, maxScroll - scrollY); // distance from page bottom
-				// Footer pill's top leaves the viewport once s >= sOff.
-				const sOff = vh - (footerPill.y - maxScroll);
-				// Hysteresis: progress is held inside a band so it stays home until near
-				// the bottom while scrolling down, and rides the footer pill until it is
-				// off-screen while scrolling up.
-				// Clamp both ramps to the scrollable range so short pages still reach home at the top.
-				const downDist = Math.max(1, Math.min(DOWN_DIST, maxScroll * 0.8));
-				const upEnd = Math.min(sOff + UP_RETURN, maxScroll);
-				const upStart = Math.min(sOff, upEnd * 0.5);
-				const lo = smooth(1 - s / downDist); // scrolling down: late start
-				const hi = 1 - smooth((s - upStart) / Math.max(1, upEnd - upStart)); // scrolling up: late release
-				progress = Math.min(hi, Math.max(lo, progress));
-				const p = progress;
-
-				if (p === 0) {
-					if (morphing) reset();
+				// Changed direction mid-flight: run the same animation back instead of jumping.
+				if (running.length) {
+					running.forEach((a) => a.reverse());
+					return;
+				}
+				if (!animate || reduceMotion.matches) {
+					settle();
 					return;
 				}
 
-				if (!morphing) {
-					morphing = true;
-					Object.assign(overlay!.style, { display: "block", right: "auto", bottom: "auto", left: "0", top: "0" });
-					links.forEach((a) => Object.assign(a.style, { position: "absolute", margin: "0", left: "0", top: "0" }));
-				}
-
-				// Never let the overlay leave the screen: while scrolling up, the footer pill
-				// drops below the viewport before progress releases, so clamp its target to the
-				// same bottom gap the resting pill has.
-				const footerY = footerPill.y - scrollY;
-				const dy = Math.min(0, vh - bottomGap - footerPill.h - footerY);
-				const rest: Box = { ...restPill, y: vh - bottomGap - restPill.h };
-				const pill = lerp(rest, { ...footerPill, y: footerY + dy }, p);
-				overlay!.style.transform = `translate3d(${pill.x}px, ${pill.y}px, 0)`;
-				overlay!.style.width = `${pill.w}px`;
-				overlay!.style.height = `${pill.h}px`;
-
-				links.forEach((a, i) => {
-					const r = restLinks[i];
-					const f = footerLinks[i];
-					const l = lerp({ ...r, x: rest.x + r.x, y: rest.y + r.y }, { ...f, y: f.y - scrollY + dy }, p);
-					a.style.transform = `translate3d(${l.x - pill.x - borderX}px, ${l.y - pill.y - borderY}px, 0)`;
-					a.style.width = `${l.w}px`;
-					a.style.height = `${l.h}px`;
-				});
+				const from = overlay!.getBoundingClientRect();
+				const to = target!.getBoundingClientRect();
+				// Keyframes are written for docking and swapped for undocking (rather than
+				// `direction: "reverse"`, which would also flip the easing to an ease-in).
+				const path = (home: Keyframe, away: Keyframe) => (docked ? [home, away] : [away, home]);
+				const opts: KeyframeAnimationOptions = { duration: DURATION, easing: EASING, fill: "both" };
+				overlay!.style.visibility = "visible";
+				target!.style.visibility = "visible";
+				running = [
+					overlay!.animate(
+						path({ transform: "none", opacity: 1 }, { transform: flip(from, to), opacity: 0 }),
+						opts,
+					),
+					target!.animate(
+						path({ transform: flip(to, from), opacity: 0 }, { transform: "none", opacity: 1 }),
+						opts,
+					),
+				];
+				running[0].onfinish = settle;
 			}
 
-			function schedule() {
-				if (ticking) return;
-				ticking = true;
-				requestAnimationFrame(() => {
-					update();
-					ticking = false;
-				});
-			}
-
-			// Re-measure synchronously (before paint) so the pill never flashes at rest.
-			function remeasure() {
-				measure();
-				update();
-			}
-
-			window.addEventListener("scroll", schedule, { passive: true });
-			// Mobile browsers fire height-only resizes as the toolbar collapses mid-scroll;
-			// update() reads innerHeight itself, so only a width change needs a re-measure.
-			window.addEventListener("resize", () => {
-				if (window.innerWidth !== docWidth) remeasure();
-				else schedule();
-			});
-			// Late layout shifts (fonts, images) move the footer target.
-			new ResizeObserver(() => {
-				if (document.documentElement.scrollHeight !== docHeight) remeasure();
-			}).observe(document.body);
-			remeasure();
+			// Dock once the footer pill is fully visible, undock once it is fully gone:
+			// the gap between the two is the hysteresis band. The first callback
+			// reflects the load position, so it snaps without animating.
+			let first = true;
+			new IntersectionObserver(
+				([entry]) => {
+					if (entry.intersectionRatio >= 0.99) set(true, !first);
+					else if (!entry.isIntersecting) set(false, !first);
+					first = false;
+				},
+				{ threshold: [0, 0.99] },
+			).observe(target);
 		}
 	</script>
 </BaseLayout>

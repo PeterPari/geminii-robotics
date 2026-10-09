@@ -369,7 +369,8 @@ html.intro-reveal footer {
     transform-origin: center;
 }
 
-/* home: footer socials are only a landing spot for the hero pill's scroll morph (see index.astro) */
-html.socials-morph #footer-socials {
+/* home: only one socials pill shows at a time; the hero pill hands off to the footer pill (see index.astro) */
+html.socials-morph:not(.socials-docked) #footer-socials,
+html.socials-morph.socials-docked #home-socials {
     visibility: hidden;
 }
