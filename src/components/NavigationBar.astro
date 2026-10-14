@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import MobileMenu from "./MobileMenu.astro";
 
 interface NavItem {
@@ -78,10 +79,13 @@ const currentPath = Astro.url.pathname;
         <div class="justify-self-end flex items-center">
             <a
                 href={givingItem.href}
-                class="hidden lg:inline-block mr-6 border-3 border-geminii-600 bg-geminii-600 px-6 py-2 text-base text-black hover:bg-transparent hover:text-white transition-colors focus:ring-3 focus:ring-white focus:outline-hidden"
+                class="group hidden lg:flex items-center mr-6 border-3 border-geminii-600 bg-geminii-600 px-6 py-2 font-mono text-base text-black hover:bg-transparent hover:text-white shadow-lg hover:shadow-none shadow-geminii-600/25 transition-all focus:outline-hidden focus-visible:ring-3 focus-visible:ring-white"
                 aria-current={currentPath === givingItem.href ? "page" : undefined}
             >
-                {givingItem.title}
+                <span>{givingItem.title}</span>
+                <span class="size-6 w-0 ml-0 overflow-hidden transition-all duration-200 group-hover:w-6 group-hover:ml-2 group-focus-visible:w-6 group-focus-visible:ml-2" aria-hidden="true">
+                    <Icon width=24 height=24 name="material-symbols:arrow-forward" />
+                </span>
             </a>
             <MobileMenu items={[...leftNavItems, ...rightNavItems, givingItem]} currentPath={currentPath} />
         </div>
