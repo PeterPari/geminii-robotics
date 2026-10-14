@@ -2,9 +2,6 @@
   "version": "5",
   "specifiers": {
     "npm:@astrojs/sitemap@^3.4.1": "3.4.1",
-    "npm:@fontsource/atkinson-hyperlegible-next@^5.2.5": "5.2.5",
-    "npm:@fontsource/metropolis@^5.2.5": "5.2.5",
-    "npm:@fontsource/space-mono@^5.2.8": "5.2.8",
     "npm:@iconify-json/material-symbols@^1.2.29": "1.2.29",
     "npm:@iconify-json/simple-icons@^1.2.42": "1.2.42",
     "npm:@playform/compress@0.2": "0.2.0_lightningcss@1.30.1_terser@5.42.0",
@@ -267,15 +264,6 @@
       "integrity": "sha512-NgJPHHbEpLQgDH2MjQu90pzW/5vvXIZ7KOnPyNBm92A6WgZ/7b6fJyUBjoumLqeOQQGqY2QjQxRo97ah4Sj0cA==",
       "os": ["win32"],
       "cpu": ["x64"]
-    },
-    "@fontsource/atkinson-hyperlegible-next@5.2.5": {
-      "integrity": "sha512-s57anqwQi5TYqObuxLNrL/pz2DRYNGRPnoC9Q8huQ34x0mOBOjpRaVNtD8f8+A7qxK20GqEAaRgWQr12WsoNWg=="
-    },
-    "@fontsource/metropolis@5.2.5": {
-      "integrity": "sha512-zAz6XS1ZXVXZadcqsOnToiePAKEiEywxOwILEaE4sRl+pVOFQI/30xMiKvjQae1NRK3TbeKxJAmt+yFkPguXJw=="
-    },
-    "@fontsource/space-mono@5.2.8": {
-      "integrity": "sha512-25X0fg1+kxxLes9/c6AozhrrAuBW1uLaOL584IRg4DZxVxNOMzcS3mHS1UtmsyTwtU2HpiIt9Kv23Q+7xQO+hg=="
     },
     "@iconify-json/material-symbols@1.2.29": {
       "integrity": "sha512-UUSrsl0gHF0GjAB9eZOpXrj7/v55ayMzo3QnMwUqP/FSfSkITKLR7CsBmUIFS8eEj8eRTfBNWA1yiIJR6UOdWg==",
@@ -3600,9 +3588,6 @@
     "packageJson": {
       "dependencies": [
         "npm:@astrojs/sitemap@^3.4.1",
-        "npm:@fontsource/atkinson-hyperlegible-next@^5.2.5",
-        "npm:@fontsource/metropolis@^5.2.5",
-        "npm:@fontsource/space-mono@^5.2.8",
         "npm:@iconify-json/material-symbols@^1.2.29",
         "npm:@iconify-json/simple-icons@^1.2.42",
         "npm:@playform/compress@0.2",
