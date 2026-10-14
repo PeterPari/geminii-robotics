@@ -4,24 +4,13 @@ import Button from "../components/Button.astro";
 import Paragraph from "../components/Paragraph.astro";
 import Link from "../components/Link.astro";
 import Socials from "../components/Socials.astro";
-import Picture from "astro/components/Picture.astro";
-import landingGraphic from "../assets/robotics.webp";
-
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "Geminii Robotics 73845",
-  alternateName: ["Geminii Robotics", "Geminii 73845", "Geminii"],
-  url: Astro.site,
-}
 ---
 
 <BaseLayout
-	title="Geminii Robotics ♊︎ FTC 73845"
-	expandedNav="true"
-	description="Geminii Robotics is a FIRST Tech Challenge robotics team based at The Browning School. We are a student-led team that aims to engineer for humanity."
+	title="Geminii Robotics ♊︎ FTC Team 38977 | New York City"
+	expandedNav={true}
+	description="Geminii Robotics is FIRST Tech Challenge (FTC) Team 38977, a student-led robotics team at The Browning School in New York City. We engineer for humanity."
 >
-	<script type="application/ld+json" slot="head" set:html={JSON.stringify(structuredData)} />
 	<div
 		id="landing"
 		class="relative flex flex-col items-center justify-center min-h-dvh w-dvw px-6 pt-48 pb-24 bg-gradient-to-b from-black from-30% to-geminii-950 to-90%"
@@ -30,12 +19,13 @@ const structuredData = {
 			id="about"
 			class="flex flex-col justify-center items-center text-center w-9/10 space-y-8"
 		>
+			<h1 class="sr-only">Geminii Robotics, FIRST Tech Challenge Team 38977</h1>
 			<h2 class="text-white text-4xl font-display font-extrabold">
 				What is Geminii?
 			</h2>
 			<Paragraph>
-				Geminii Robotics is a <strong>FIRST Tech Challenge</strong> (FTC)
-				robotics team based at <Link href="https://browning.edu" external={true}>The Browning School</Link>, a New York City all-boys school.
+				Geminii Robotics is <Link href="https://www.firstinspires.org/robotics/ftc" external={true}><strong>FIRST Tech Challenge</strong></Link> (FTC)
+				Team 38977, a robotics team based at <Link href="https://browning.edu" external={true}>The Browning School</Link>, a New York City all-boys school.
 			</Paragraph>
 			<Paragraph>
 				With our <strong>student-led</strong>, innovative designs and
@@ -43,6 +33,12 @@ const structuredData = {
 				skills we learned in FTC to <strong
 					class="whitespace-nowrap">engineer for humanity.</strong
 				>
+			</Paragraph>
+			<Paragraph>
+				Off the field, we mentor younger students and visit nursing homes
+				through our <Link href="/outreach/">community outreach</Link>. We are
+				entirely self-funded, so every <Link href="/giving/">gift to the team</Link>
+				goes straight into the work.
 			</Paragraph>
 			<Button text="ABOUT US" href="/about/" />
 		</div>

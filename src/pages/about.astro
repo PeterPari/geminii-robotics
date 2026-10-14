@@ -2,9 +2,50 @@
 import Paragraph from "../components/Paragraph.astro";
 import Button from "../components/Button.astro";
 import MainLayout from "../layouts/MainLayout.astro";
+
+// Plain-text answers so the same copy feeds both the page and the FAQPage structured data.
+const faqs = [
+	{
+		q: "What is Geminii Robotics?",
+		a: "Geminii Robotics is FIRST Tech Challenge (FTC) Team 38977, a student-led robotics team at The Browning School, an all-boys school in New York City. The team was founded in 2026.",
+	},
+	{
+		q: "Why is it spelled “Geminii”?",
+		a: "The team was founded by twins, Nate and Brandon. The name comes from Gemini, the Latin word for “twins”.",
+	},
+	{
+		q: "Is Geminii Robotics related to Google’s Gemini Robotics?",
+		a: "No. Geminii Robotics, spelled with two i’s, is a student FTC team in New York City. It has no connection to Google DeepMind or its Gemini Robotics AI models.",
+	},
+	{
+		q: "How is Geminii related to Ultro Robotics?",
+		a: "Geminii is an affiliate of Ultro Robotics (FTC Team 10539), The Browning School’s main FTC team. Geminii trains the next generation of engineers and leaders for Ultro.",
+	},
+	{
+		q: "What is FIRST Tech Challenge?",
+		a: "FIRST Tech Challenge is a robotics program from FIRST for students in grades 7 to 12. Teams design, build and program robots and compete with and against other teams each season.",
+	},
+	{
+		q: "How can I support or sponsor Geminii Robotics?",
+		a: "Geminii is entirely self-funded, and students handle the team’s finances. You can give online through The Browning School on our Giving page with the note “For Robotics”, or email geminii-robotics@browning.edu about sponsorship.",
+	},
+	{
+		q: "How do I contact the team?",
+		a: "Email geminii-robotics@browning.edu or message @geminii.robotics on Instagram. The team is based at The Browning School, 337 East 64th Street, New York, NY 10065.",
+	},
+];
+
+const faqSchema = {
+	"@type": "FAQPage",
+	mainEntity: faqs.map(({ q, a }) => ({
+		"@type": "Question",
+		name: q,
+		acceptedAnswer: { "@type": "Answer", text: a },
+	})),
+};
 ---
 
-<MainLayout title="About Us" description="Geminii Robotics was established in 2026 as an affiliate team of Ultro Robotics, founded by twins Nate and Brandon. Learn more about our team and sponsorship.">
+<MainLayout title="About Us" description="Meet Geminii Robotics, FTC Team 38977: founded in 2026 by twins Nate and Brandon at The Browning School in NYC as an affiliate of Ultro Robotics." schema={[faqSchema]}>
 	<Paragraph slot="subtitle">
 		Geminii was established in 2026 as an affiliate team of Ultro Robotics.
 		The team was founded by twins Nate and Brandon, hence the name Geminii,
@@ -26,6 +67,20 @@ import MainLayout from "../layouts/MainLayout.astro";
 				sponsor us.
 			</Paragraph>
 			<Button text="SPONSOR US" href="/giving/" />
+		</div>
+	</section>
+	<hr class="mx-auto w-9/10 max-w-144 border-t-2 border-geminii-600" />
+	<section class="flex flex-col items-center justify-center px-4 py-8 mb-10" aria-labelledby="faq-heading">
+		<h2 id="faq-heading" class="text-white text-4xl font-display font-extrabold m-4">
+			FAQ
+		</h2>
+		<div class="w-full max-w-144 flex flex-col gap-8">
+			{faqs.map(({ q, a }) => (
+				<div class="flex flex-col gap-2">
+					<h3 class="text-geminii-600 text-xl font-display font-bold">{q}</h3>
+					<Paragraph className="max-w-none">{a}</Paragraph>
+				</div>
+			))}
 		</div>
 	</section>
 </MainLayout>

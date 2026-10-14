@@ -36,6 +36,11 @@ jobs:
 
       - name: Build site
         run: deno task build
+        env:
+          # Optional repository variables (Settings → Secrets and variables → Actions → Variables).
+          PUBLIC_GA_MEASUREMENT_ID: ${{ vars.PUBLIC_GA_MEASUREMENT_ID }}
+          PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ vars.PUBLIC_GOOGLE_SITE_VERIFICATION }}
+          PUBLIC_BING_SITE_VERIFICATION: ${{ vars.PUBLIC_BING_SITE_VERIFICATION }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
@@ -52,3 +57,22 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # Tells Bing (and the other IndexNow engines: Yandex, Seznam, Naver, Yep) to recrawl every page
+  # in the sitemap. The key is the file public/941bb3b2062ec549708924f168e50f9f.txt. Google ignores IndexNow; it reads the sitemap.
+  indexnow:
+    needs: deploy
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    env:
+      SITE: https://geminii.browning.edu
+      INDEXNOW_KEY: 941bb3b2062ec549708924f168e50f9f
+    steps:
+      - name: Submit sitemap URLs to IndexNow
+        run: |
+          urls=$(curl -fsS "$SITE/sitemap-0.xml" | grep -oE '<loc>[^<]+</loc>' | sed -E 's#</?loc>##g' | jq -R . | jq -sc .)
+          echo "Submitting: $urls"
+          curl -fsS -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            -d "{\"host\":\"${SITE#https://}\",\"key\":\"$INDEXNOW_KEY\",\"keyLocation\":\"$SITE/$INDEXNOW_KEY.txt\",\"urlList\":$urls}" \
+            -w 'IndexNow HTTP %{http_code}\n'

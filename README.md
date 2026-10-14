@@ -64,6 +64,13 @@ deno run preview
 # Deployment
 Every push to `main` builds the site and publishes `dist/` to GitHub Pages via `.github/workflows/deploy.yml`. In the repo's **Settings → Pages**, **Source** must be set to **GitHub Actions** (not "Deploy from a branch", which serves the raw Astro source and 404s). The custom domain is kept in `public/CNAME`.
 
+# SEO
+Every page gets its title, meta description, canonical URL, Open Graph/Twitter card tags and JSON-LD structured data from `src/layouts/BaseLayout.astro`. Pass `title` and `description` when adding a page; `image`, `noindex` and `schema` (extra schema.org nodes, e.g. the About page's FAQ) are optional. The sitemap (`/sitemap-index.xml`) is linked from `/robots.txt`, and each deploy submits it to IndexNow (Bing and others). The default share image is `public/og-image.png` (1200×630).
+
+Google Analytics and the Search Console / Bing verification tags turn on when these GitHub repository variables are set: `PUBLIC_GA_MEASUREMENT_ID`, `PUBLIC_GOOGLE_SITE_VERIFICATION`, `PUBLIC_BING_SITE_VERIFICATION`.
+
+The keyword map, audit results and setup steps are in [docs/SEO.md](docs/SEO.md).
+
 # TODO
 - [ ] finish building content pages
 - [ ] convert navbar to use CSS scroll-driven animations instead of JS

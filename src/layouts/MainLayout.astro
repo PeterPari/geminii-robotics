@@ -5,14 +5,22 @@ import BaseLayout from "./BaseLayout.astro";
 interface Props {
     title: string;
     heading?: string;
-    description?: string;
+    description: string;
     className?: string;
+    noindex?: boolean;
+    schema?: Record<string, unknown>[];
 }
 
-const { title, heading = title.toUpperCase(), description = "", className } = Astro.props;
+const { title, heading = title.toUpperCase(), description, className, noindex = false, schema = [] } = Astro.props;
 ---
 
-<BaseLayout title={title + " | Geminii Robotics"} description={description}>
+<BaseLayout
+    title={`${title} | Geminii Robotics FTC 38977`}
+    description={description}
+    noindex={noindex}
+    schema={schema}
+    breadcrumbs={noindex ? [] : [{ name: title, path: Astro.url.pathname }]}
+>
     <PageHeading heading={heading} className={className}>
         <slot name="subtitle"/>
     </PageHeading>
