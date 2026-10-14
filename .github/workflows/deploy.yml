@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-# This workflow will install Deno then run `deno lint` and `deno test`.
+# This workflow installs Deno, builds the site, and copies dist/ to the prod server over SSH.
 # For more information see: https://github.com/denoland/setup-deno
 
 name: Build and deploy to prod
