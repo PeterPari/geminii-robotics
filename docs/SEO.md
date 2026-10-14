@@ -50,7 +50,7 @@ No paid keyword tool (Ahrefs, Semrush) was available, so search volume and diffi
 
 "Geminii" is one letter away from **Gemini Robotics**, Google DeepMind's robotics AI. That model has a Wikipedia page, DeepMind product pages and wide press coverage, so a search for "geminii robotics" is likely to be autocorrected or answered with Google's product. A search for "Geminii Robotics" in October 2026 returned only DeepMind and the GitHub repo. The site itself was not indexed yet.
 
-Strategy: always pair the name with qualifiers Google can't confuse, such as **FTC**, **73845**, **Browning** and **NYC**. Answer the mix-up directly on the page; the About page FAQ now has "Is Geminii Robotics related to Google's Gemini Robotics?". Titles and descriptions already follow this pattern.
+Strategy: always pair the name with qualifiers Google can't confuse, such as **FTC**, **38977**, **Browning** and **NYC**. Answer the mix-up directly on the page; the About page FAQ now has "Is Geminii Robotics related to Google's Gemini Robotics?". Titles and descriptions already follow this pattern.
 
 ### Competitors (who takes the clicks we want)
 
@@ -61,20 +61,20 @@ Strategy: always pair the name with qualifiers Google can't confuse, such as **F
 | Ex Nihilo, FTC 30413 ([ultro.browning.edu/ex-nihilo](https://ultro.browning.edu/ex-nihilo/)) | Ultro's community team, also competing for "Browning robotics" searches. |
 | Browning news posts ([browning.edu/news](https://browning.edu/news/robotics-hosts-citywide-scrimmage)) | They rank for Browning robotics queries. |
 | Other NYC FTC teams (Stuy Fission/Fusion, Dalton's Atomic Theory, Brooklyn Tech, St. Edmund Prep Nerd Herd) | They compete for "NYC FTC team" queries. Most have weak or no team sites, so the generic local terms are winnable. |
-| Aggregators: [FTC Events](https://ftc-events.firstinspires.org), [FTCScout](https://ftcscout.org), [NYC FIRST](https://nycfirst.org/ftc) | They rank for every team number. Team 73845 isn't listed on FTC Events or FTCScout yet, which is a key gap. |
+| Aggregators: [FTC Events](https://ftc-events.firstinspires.org), [FTCScout](https://ftcscout.org), [NYC FIRST](https://nycfirst.org/ftc) | They rank for every team number. Team 38977 isn't listed on FTC Events or FTCScout yet, which is a key gap. |
 
 ### Main keywords
 
 | Keyword | Intent | Est. volume | Est. difficulty | Notes |
 | --- | --- | --- | --- | --- |
 | geminii robotics | Navigational | Very low (new team) | Hard because of the Gemini collision | Win it with exact spelling plus qualifiers |
-| ftc 73845 / ftc team 73845 | Navigational | Very low | Easy, once FTC Events/FTCScout list the team | Our page should sit next to the FIRST listings |
+| ftc 38977 / ftc team 38977 | Navigational | Very low | Easy, once FTC Events/FTCScout list the team | Our page should sit next to the FIRST listings |
 | browning school robotics | Navigational/informational | Low | Medium (Ultro holds #1) | Aim for #2, with a link from Ultro |
 | nyc ftc robotics team | Informational/local | Low–medium | Medium | Local pages from FIRST and schools rank |
 
 ### Long-tail variations
 
-- geminii ftc, geminii 73845, geminii robotics nyc, geminii browning
+- geminii ftc, geminii 38977, geminii robotics nyc, geminii browning
 - browning school ftc team, browning robotics team new york
 - ultro robotics affiliate team, ultro geminii
 - rookie ftc team nyc 2026, new ftc team manhattan
@@ -87,7 +87,7 @@ Strategy: always pair the name with qualifiers Google can't confuse, such as **F
 
 | Page | Primary keyword | Secondary keywords | Search intent |
 | --- | --- | --- | --- |
-| `/` | Geminii Robotics FTC 73845 | FTC team NYC, Browning School robotics team | Navigational: "who are they" |
+| `/` | Geminii Robotics FTC 38977 | FTC team NYC, Browning School robotics team | Navigational: "who are they" |
 | `/about/` | about Geminii Robotics | founded by twins, Ultro Robotics affiliate, why "Geminii", Gemini vs Geminii, FAQ queries | Informational |
 | `/outreach/` | Geminii Robotics outreach | robotics outreach NYC, Carter Burden Network robotics, Intro to Engineering mentoring | Informational |
 | `/giving/` | donate to Geminii Robotics | sponsor an FTC team NYC, support student robotics, Browning gift "For Robotics" | Transactional |
@@ -132,7 +132,7 @@ These also ship as `FAQPage` structured data. Google now shows FAQ rich results 
 
 | Check | Result |
 | --- | --- |
-| Title tags | ✅ Unique on every page, 35–50 characters, and every one includes the brand and "FTC 73845". |
+| Title tags | ✅ Unique on every page, 35–50 characters, and every one includes the brand and "FTC 38977". |
 | Meta descriptions | ✅ Unique on every page, 145–153 characters. |
 | H1 tags | ✅ Exactly one per page. The home page's H1 is visually hidden because the logo intro is the visual title. |
 | Heading order | ✅ No skipped levels (outreach cards now sit under an H2). |
@@ -161,18 +161,18 @@ No backlink tool was available. Sources found manually:
 
 | Site | How to get the link | Who |
 | --- | --- | --- |
-| **ultro.browning.edu** | Add Geminii to Ultro's About page or footer ("affiliate team: Geminii, FTC 73845"). Today it doesn't mention Geminii at all. **Most valuable link.** | Ultro web team |
+| **ultro.browning.edu** | Add Geminii to Ultro's About page or footer ("affiliate team: Geminii, FTC 38977"). Today it doesn't mention Geminii at all. **Most valuable link.** | Ultro web team |
 | **browning.edu** | Ask Communications to link the team from the athletics/clubs or STEM page, and from a news post about the new team. | Browning Communications |
-| **FTC Events / FIRST Dashboard** | Once team 73845 is registered, set the team's **website** field to `https://geminii.browning.edu` in the FIRST dashboard. FTCScout and other aggregators copy that listing. | Team coach or lead mentor |
+| **FTC Events / FIRST Dashboard** | Once team 38977 is registered, set the team's **website** field to `https://geminii.browning.edu` in the FIRST dashboard. FTCScout and other aggregators copy that listing. | Team coach or lead mentor |
 | **Instagram @geminii.robotics** | Put `https://geminii.browning.edu` in the bio. | Team |
-| **GitHub repo** | Set the repo's **About → Website** to `https://geminii.browning.edu`. The description still says it's Ultro's website; change it to "Website for Geminii Robotics, FTC Team 73845". | Repo owner |
+| **GitHub repo** | Set the repo's **About → Website** to `https://geminii.browning.edu`. The description still says it's Ultro's website; change it to "Website for Geminii Robotics, FTC Team 38977". | Repo owner |
 | **The Monthly Panther** (school paper) | Pitch a story on the new team founded by twins, with a link. | Team |
 | **Carter Burden Network** | Ask to be listed as a community or volunteer partner, with a link. | Team |
 | **NYC FIRST** (nycfirst.org) | Get listed in team spotlights and event recaps. | Team |
 
 ### Unlinked mentions
 
-As of this audit, the web has no mentions of "Geminii Robotics" or "73845" outside the GitHub repo. Every mention from now on should include a link. Once the site has data, check GSC's **Links** report, set a Google Alert for `"Geminii Robotics"`, and email any page that mentions the team without a link.
+As of this audit, the web has no mentions of "Geminii Robotics" or "38977" outside the GitHub repo. Every mention from now on should include a link. Once the site has data, check GSC's **Links** report, set a Google Alert for `"Geminii Robotics"`, and email any page that mentions the team without a link.
 
 ### New link opportunities
 
