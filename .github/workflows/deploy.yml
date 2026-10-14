@@ -1,31 +1,33 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
+# Builds the Astro site with Deno and publishes dist/ to GitHub Pages.
+# Requires Settings → Pages → Build and deployment → Source: "GitHub Actions".
+# For more information see: https://docs.astro.build/en/guides/deploy/github/
 
-# This workflow installs Deno, builds the site, and copies dist/ to the prod server over SSH.
-# For more information see: https://github.com/denoland/setup-deno
-
-name: Build and deploy to prod
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["prod"]
+    branches: ["main"]
+  workflow_dispatch:
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
+
+# Allow one deployment at a time; don't cancel an in-progress production deploy.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-    environment: prod-deploy
-
     steps:
       - name: Setup repo
         uses: actions/checkout@v4
 
       - name: Setup Deno
-        uses: denoland/setup-deno@v2  # v1.1.2
+        uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
 
@@ -34,16 +36,19 @@ jobs:
 
       - name: Build site
         run: deno task build
-      
-      - name: Configure SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
 
-      - name: Deploy over SSH
-        uses: nick-fields/retry@v3
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          timeout_minutes: 5
-          max_attempts: 3
-          command: scp -o StrictHostKeyChecking=no -r ./dist/* ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:~/ultro.browning.edu/public
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
