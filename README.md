@@ -61,6 +61,9 @@ Preview built site:
 deno run preview
 ```
 
+# Deployment
+Every push to `main` builds the site and publishes `dist/` to GitHub Pages via `.github/workflows/deploy.yml`. In the repo's **Settings → Pages**, **Source** must be set to **GitHub Actions** (not "Deploy from a branch", which serves the raw Astro source and 404s). The custom domain is kept in `public/CNAME`.
+
 # TODO
 - [ ] finish building content pages
 - [ ] convert navbar to use CSS scroll-driven animations instead of JS
