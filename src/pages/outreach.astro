@@ -3,6 +3,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 import Paragraph from "../components/Paragraph.astro";
 import Card from "../components/Card.astro";
 import Link from "../components/Link.astro";
+import Button from "../components/Button.astro";
 ---
 
 <MainLayout title="Outreach" description="Geminii Robotics outreach: mentoring Intro to Engineering students and visiting NYC nursing homes with the Carter Burden Network to share FIRST robotics.">
@@ -32,5 +33,12 @@ import Link from "../components/Link.astro";
 				</p>
 			</Card>
 		</div>
+	</section>
+	<section class="flex flex-col items-center text-center px-4 pb-16 gap-6">
+		<Paragraph>
+			Our outreach is funded by the team itself. <Link href="/about/">Learn more about Geminii</Link>,
+			or help us reach more people with a gift.
+		</Paragraph>
+		<Button text="SUPPORT OUR OUTREACH" href="/giving/" />
 	</section>
 </MainLayout>

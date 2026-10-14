@@ -8,15 +8,17 @@ interface Props {
     description: string;
     className?: string;
     noindex?: boolean;
+    schema?: Record<string, unknown>[];
 }
 
-const { title, heading = title.toUpperCase(), description, className, noindex = false } = Astro.props;
+const { title, heading = title.toUpperCase(), description, className, noindex = false, schema = [] } = Astro.props;
 ---
 
 <BaseLayout
     title={`${title} | Geminii Robotics FTC 73845`}
     description={description}
     noindex={noindex}
+    schema={schema}
     breadcrumbs={noindex ? [] : [{ name: title, path: Astro.url.pathname }]}
 >
     <PageHeading heading={heading} className={className}>

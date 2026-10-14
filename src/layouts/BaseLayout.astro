@@ -14,6 +14,8 @@ interface Props {
 	noindex?: boolean;
 	/** Breadcrumb trail below Home, e.g. [{ name: "About Us", path: "/about/" }]. */
 	breadcrumbs?: { name: string; path: string }[];
+	/** Extra schema.org nodes for this page (e.g. an FAQPage), merged into the site's JSON-LD graph. */
+	schema?: Record<string, unknown>[];
 }
 
 const {
@@ -24,7 +26,14 @@ const {
 	imageAlt = "GEMINII wordmark: FIRST Tech Challenge Team 73845, The Browning School, New York City",
 	noindex = false,
 	breadcrumbs = [],
+	schema = [],
 } = Astro.props;
+
+// Set as GitHub repository variables (Settings → Secrets and variables → Actions → Variables);
+// the deploy workflow passes them to the build. Each tag is left out while its variable is unset.
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+const bingSiteVerification = import.meta.env.PUBLIC_BING_SITE_VERIFICATION;
 
 const site = Astro.site!;
 // GitHub Pages serves every page as a directory, so canonical URLs always end in a slash.
@@ -110,6 +119,7 @@ const structuredData = {
 					},
 				]
 			: []),
+		...schema,
 	],
 };
 ---
@@ -132,6 +142,8 @@ const structuredData = {
 		<meta name="author" content="Geminii Robotics" />
 		<link rel="manifest" href="/site.webmanifest" />
 		<link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+		{googleSiteVerification && <meta name="google-site-verification" content={googleSiteVerification} />}
+		{bingSiteVerification && <meta name="msvalidate.01" content={bingSiteVerification} />}
 
 		<!-- Open Graph (Facebook, iMessage, LinkedIn, Slack, Discord…) -->
 		<meta property="og:type" content="website" />
@@ -154,6 +166,20 @@ const structuredData = {
 		<meta name="twitter:image:alt" content={imageAlt} />
 
 		{!noindex && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
+
+		{gaMeasurementId && (
+			<>
+				<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+				<script is:inline define:vars={{ gaMeasurementId }}>
+					window.dataLayer = window.dataLayer || [];
+					function gtag() {
+						dataLayer.push(arguments);
+					}
+					gtag("js", new Date());
+					gtag("config", gaMeasurementId);
+				</script>
+			</>
+		)}
 		{expandedNav && (
 			<script is:inline>
 				// Home intro gate: runs before first paint so nav/content never flash.
