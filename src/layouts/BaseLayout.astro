@@ -3,7 +3,115 @@ import NavigationBar from "../components/NavigationBar.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
-const { title, expandedNav, description = "" } = Astro.props;
+interface Props {
+	title: string;
+	description: string;
+	expandedNav?: boolean;
+	/** Site-relative path or absolute URL of the social share image. */
+	image?: string;
+	imageAlt?: string;
+	/** Keep the page out of search results (e.g. the 404 page). */
+	noindex?: boolean;
+	/** Breadcrumb trail below Home, e.g. [{ name: "About Us", path: "/about/" }]. */
+	breadcrumbs?: { name: string; path: string }[];
+}
+
+const {
+	title,
+	expandedNav = false,
+	description,
+	image = "/og-image.png",
+	imageAlt = "GEMINII wordmark: FIRST Tech Challenge Team 73845, The Browning School, New York City",
+	noindex = false,
+	breadcrumbs = [],
+} = Astro.props;
+
+const site = Astro.site!;
+// GitHub Pages serves every page as a directory, so canonical URLs always end in a slash.
+const path = Astro.url.pathname.endsWith("/") ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonicalURL = new URL(path, site).href;
+const imageURL = new URL(image, site).href;
+const siteName = "Geminii Robotics";
+
+const orgId = new URL("/#organization", site).href;
+const websiteId = new URL("/#website", site).href;
+
+const structuredData = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "SportsTeam",
+			"@id": orgId,
+			name: "Geminii Robotics",
+			alternateName: ["Geminii Robotics 73845", "Geminii 73845", "FTC Team 73845", "Geminii", "GEMINII"],
+			description:
+				"Geminii Robotics is FIRST Tech Challenge (FTC) Team 73845, a student-led robotics team at The Browning School in New York City and an affiliate of Ultro Robotics.",
+			url: new URL("/", site).href,
+			logo: {
+				"@type": "ImageObject",
+				url: new URL("/icon-512.png", site).href,
+				width: 512,
+				height: 512,
+			},
+			image: new URL("/og-image.png", site).href,
+			sport: "Robotics",
+			foundingDate: "2026",
+			email: "geminii-robotics@browning.edu",
+			address: {
+				"@type": "PostalAddress",
+				streetAddress: "337 East 64th Street",
+				addressLocality: "New York",
+				addressRegion: "NY",
+				postalCode: "10065",
+				addressCountry: "US",
+			},
+			memberOf: {
+				"@type": "SportsOrganization",
+				name: "FIRST Tech Challenge",
+				url: "https://www.firstinspires.org/robotics/ftc",
+			},
+			parentOrganization: {
+				"@type": "EducationalOrganization",
+				name: "The Browning School",
+				url: "https://browning.edu",
+			},
+			sameAs: ["https://www.instagram.com/geminii.robotics/"],
+		},
+		{
+			"@type": "WebSite",
+			"@id": websiteId,
+			name: "Geminii Robotics 73845",
+			alternateName: ["Geminii Robotics", "Geminii 73845", "Geminii"],
+			url: new URL("/", site).href,
+			inLanguage: "en-US",
+			publisher: { "@id": orgId },
+		},
+		{
+			"@type": "WebPage",
+			"@id": `${canonicalURL}#webpage`,
+			url: canonicalURL,
+			name: title,
+			description,
+			inLanguage: "en-US",
+			isPartOf: { "@id": websiteId },
+			about: { "@id": orgId },
+			primaryImageOfPage: { "@type": "ImageObject", url: imageURL },
+		},
+		...(breadcrumbs.length
+			? [
+					{
+						"@type": "BreadcrumbList",
+						itemListElement: [{ name: "Home", path: "/" }, ...breadcrumbs].map((crumb, i) => ({
+							"@type": "ListItem",
+							position: i + 1,
+							name: crumb.name,
+							item: new URL(crumb.path, site).href,
+						})),
+					},
+				]
+			: []),
+	],
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -16,8 +124,36 @@ const { title, expandedNav, description = "" } = Astro.props;
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<link rel="preload" href="/assets/fonts/Arvo-Regular.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="/assets/fonts/Arvo-Bold.woff2" as="font" type="font/woff2" crossorigin />
-		<meta name="description" content={description} />
 		<title>{title}</title>
+		<meta name="description" content={description} />
+		{!noindex && <link rel="canonical" href={canonicalURL} />}
+		<meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large"} />
+		<meta name="theme-color" content="#000000" />
+		<meta name="author" content="Geminii Robotics" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+
+		<!-- Open Graph (Facebook, iMessage, LinkedIn, Slack, Discord…) -->
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={siteName} />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		{!noindex && <meta property="og:url" content={canonicalURL} />}
+		<meta property="og:image" content={imageURL} />
+		<meta property="og:image:type" content="image/png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content={imageAlt} />
+
+		<!-- Twitter / X -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={imageURL} />
+		<meta name="twitter:image:alt" content={imageAlt} />
+
+		{!noindex && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
 		{expandedNav && (
 			<script is:inline>
 				// Home intro gate: runs before first paint so nav/content never flash.

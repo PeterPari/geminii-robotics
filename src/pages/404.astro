@@ -1,0 +1,14 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Paragraph from "../components/Paragraph.astro";
+import Button from "../components/Button.astro";
+---
+
+<MainLayout title="Page Not Found" heading="404" description="This page doesn't exist on the Geminii Robotics website." noindex={true}>
+	<Paragraph slot="subtitle">
+		We couldn’t find that page. It may have moved, or the link may be mistyped.
+	</Paragraph>
+	<section class="flex flex-col items-center pb-24">
+		<Button text="BACK HOME" href="/" />
+	</section>
+</MainLayout>
